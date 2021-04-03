@@ -6,16 +6,24 @@ header{
     width: 100%;  
     position: sticky;
     top:0; 
+    
 }
-.sticky + main {
-    padding-top: 100px;
+main{
+    display: flex;
+    flex-direction: row;    
 }
-.sticky{
-    position: fixed;
+aside{
+    border: 2px solid black;
+    position: sticky;
     top:0;
-    width: 100%;
+    flex-grow: 1;  
+    order: 2;  
+    width: 80px;
+    background-color:black;
 }
-
+.contenedor-secundario{
+    flex-grow: 4;
+}
 /*menu responsive*/
 .menuresponsive{
     display: block;

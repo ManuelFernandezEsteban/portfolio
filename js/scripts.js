@@ -1,32 +1,10 @@
-  /*$(document).ready(function(){
-  $('.menuresponsive input').change(function(){
-        if ($(this).is(':checked')){
-            $('main').css('padding-top','250px');
-        }
-        else{
-            $('main').css('padding-top','100px');
-        }
+$(document).ready(function(){
+    $("noticias").on('click',function(){
+        alert("hola");
     });
-});
+    alert("hola");
 
-
-
-function escucharScroll(){
-    window.onscroll=function(){ cambiarClasesHeader()};
-}
-
-function cambiarClasesHeader(){
-    let header = document.getElementById("header");
-    var sticky = header.offsetTop;
-    if (window.pageYOffset >= sticky) {
-        header.classList.add("sticky")
-      } else {
-        header.classList.remove("sticky");
-    }
-   
-}
- */
-
+})
 
 function aceptalopd(opcion)
 {
