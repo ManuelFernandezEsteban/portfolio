@@ -1,11 +1,10 @@
+
 $(document).ready(function(){
-    $("noticias").on('click',function(){
+
+    $('.noticias').click(function(){
         alert("hola");
-    });
-    alert("hola");
-
+    })
 })
-
 function aceptalopd(opcion)
 {
     if (opcion)/*acepta la lopd habilitamos boton submit*/

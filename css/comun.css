@@ -6,21 +6,27 @@ header{
     width: 100%;  
     position: sticky;
     top:0; 
-    
+    z-index: 3;
 }
 main{
     display: flex;
     flex-direction: row;    
 }
-aside{
+.noticias{
     border: 2px solid black;
     position: sticky;
     top:0;
     flex-grow: 1;  
     order: 2;  
     width: 80px;
-    background-color:black;
+    background-color:black;    
+    padding: 100px;
+    color: white;
+    display: flex;
+    justify-content: center;
 }
+
+
 .contenedor-secundario{
     flex-grow: 4;
 }
