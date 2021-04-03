@@ -1,10 +1,26 @@
 
 $(document).ready(function(){
 
-    $('.noticias').click(function(){
-        alert("hola");
+    var fuera=false;
+    $('.noticias p').click(function(){
+        //alert("hola");
+        if (!fuera){
+            fuera=true;   
+            $(this).css('transform','rotate(0deg)')         
+            $('.noticias').animate({
+                width:'500px'
+            });
+            
+        }else{ 
+            $(this).css('transform','rotate(270deg)')           
+            $('.noticias').animate({
+                width:'50px'
+            })
+            fuera=false;
+            $(this).css('transform','rotate(270deg)')
+        }
     })
-})
+
 function aceptalopd(opcion)
 {
     if (opcion)/*acepta la lopd habilitamos boton submit*/
@@ -55,3 +71,4 @@ function validar(formularioPresupuesto)
 
 }
 
+})
