@@ -1,32 +1,25 @@
-  /*$(document).ready(function(){
-  $('.menuresponsive input').change(function(){
-        if ($(this).is(':checked')){
-            $('main').css('padding-top','250px');
+
+$(document).ready(function(){
+
+    var fuera=false;
+    $('.noticias p').click(function(){
+        //alert("hola");
+        if (!fuera){
+            fuera=true;   
+            $(this).css('transform','rotate(0deg)')         
+            $('.noticias').animate({
+                width:'500px'
+            });
+            
+        }else{ 
+            $(this).css('transform','rotate(270deg)')           
+            $('.noticias').animate({
+                width:'50px'
+            })
+            fuera=false;
+            $(this).css('transform','rotate(270deg)')
         }
-        else{
-            $('main').css('padding-top','100px');
-        }
-    });
-});
-
-
-
-function escucharScroll(){
-    window.onscroll=function(){ cambiarClasesHeader()};
-}
-
-function cambiarClasesHeader(){
-    let header = document.getElementById("header");
-    var sticky = header.offsetTop;
-    if (window.pageYOffset >= sticky) {
-        header.classList.add("sticky")
-      } else {
-        header.classList.remove("sticky");
-    }
-   
-}
- */
-
+    })
 
 function aceptalopd(opcion)
 {
@@ -78,3 +71,4 @@ function validar(formularioPresupuesto)
 
 }
 
+})
