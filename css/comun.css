@@ -1,0 +1,504 @@
+/*Estilos comunes*/
+
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@600&family=Tillana:wght@400;800&family=Ubuntu&display=swap');
+header{
+    background-color: black;
+}
+/*menu responsive*/
+.menuresponsive{
+    display: block;
+}
+.menuresponsive nav{
+    display: none;
+}
+.menu{
+    display: none;
+}
+.menuresponsive a { 
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    font-family: 'Ubuntu';    
+    background: black;
+}
+
+.espacio{
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    font-family: 'Ubuntu';
+    background: black;
+}
+.menuresponsive input[type="checkbox"], .menuresponsive .barras, .menuresponsive .cruz {
+    position: absolute;  
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+}
+ul{
+    list-style-type: none;
+}
+   
+.menuresponsive .barras, .menuresponsive .cruz {
+    font-size: 40px;
+    pointer-events: none;
+}
+   
+.menuresponsive input[type="checkbox"] {
+    opacity: 0; 
+}
+   
+.menuresponsive {
+    color: white;
+    position: relative; 
+    background: black;
+    min-height: 48px;
+    margin-right: 5px;
+    
+}  
+.menuresponsive input:checked ~ nav {
+    display: block;
+}
+   
+.menuresponsive input:checked ~ .barras {
+    display: none;
+}
+   
+.menuresponsive input:not(:checked) ~ .cruz {
+    display: none;
+}
+/*fin menu responsive*/
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Teko';
+}
+h1{
+    font-size: 3.5em;
+    font-weight: bolder;
+    padding: 20px; 
+}
+h2{
+    font-size: 2.5em;
+    font-weight: bold;
+    padding: 20px;
+    margin-top: 20px;
+}
+label{
+    font-family: Ubuntu;
+}
+p{
+    font-family: Ubuntu;
+    font-size: 1em;
+    padding: 10px;
+    line-height: 1.7;
+}
+html{
+    min-height: 100%;
+}
+body{
+    width: 100%;
+    height: auto;
+}
+
+.contenedor-global{
+    min-height: 100%;
+    position: relative;    
+}
+
+header{
+    width: 100%;
+    height: 10%;
+}
+.proyector{
+    display: none;
+}
+.bienvenida{
+    display: flex;
+    flex-direction: column;  
+    align-items: flex-start;      
+}
+
+.trabajos{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.miniatura-bienvenida{
+    margin: auto;
+    width: 100%;
+}
+
+footer{
+    width: 100%;
+    height: 10%;  
+    background-color: black;
+    display: flex;
+    align-items: center;
+}
+.blanco {
+    color: white;
+}
+.caja-logo{       
+    display: inline-block;   
+    width: auto;
+    height: 50px;
+    padding: 10px;    
+}
+.logo{
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+}
+.caja-logo a{
+    text-decoration: none;
+    color: white    
+}
+/*fin estilos menu*/
+/*estilos home*/
+.contenido{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;    
+    
+    margin-bottom: 10%;
+    margin-top: 10%;
+}
+
+.caja-contenido{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+img{
+    padding: 0%;
+    width: 100%;   
+    margin: auto;
+}
+
+.nodecoracion{
+    color: black;
+    text-decoration: none;
+}
+/*fin estilos home*/
+/*inicio estilos portfolio*/
+.portfolio{
+    flex-flow: column nowrap;
+    display: flex;        
+    justify-content: flex-start;    
+    margin: auto;    
+}
+.caja-portfolio{
+    display: flex;
+    flex-flow: column nowrap;    
+}
+.visor{
+    display: none;
+}
+.miniaturas{
+    flex: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    white-space: nowrap;
+    scrollbar-width: none;    
+}
+
+.caja-miniatura{
+    width: auto;
+    height: auto;    
+    padding: 0px 5px 0px 5px;
+    display: block;
+}
+.miniatura{
+    width: 300px;
+    height: 100%;
+    margin: auto;
+}
+
+.resumen-trabajo{
+    flex: 2;    
+}
+/*fin estilos portfolio*/
+/*inicio estilos contacto*/
+
+.contenedor-contacto{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+}
+
+img.icono{
+    width: 32px;
+}
+.general{
+    display: flex;
+    flex-direction: column;  
+    align-items: flex-start;    
+}
+.contacto{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    
+}
+
+.contacto a{
+    color: black;
+    padding: 5%;
+}
+.boton{
+    background-color: black;
+    color: white;
+    font-family: 'Tillana';
+    border-radius: 0;
+    border: 0;
+}
+.botones{        
+    padding: 5%;
+}
+
+.input-formulario{
+    width: 80%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: Ubuntu;
+}
+
+.mapa{
+    margin: auto;
+    width: 100%;      
+}
+img .mapa{
+    object-fit: cover;
+}
+
+/*fin estilos contacto*/
+/*inicio estilos presupuesto*/
+
+.caja-formulario{
+    display: flex;
+    flex-flow: column nowrap;
+    margin-bottom: 100px;
+}
+.caja-formulario:nth-of-type(4){
+    flex: 2;
+}
+.input-formulario{
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: Ubuntu;
+}
+.presupuesto{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+/*fin estilos presupuesto*/
+
+
+/*media querys*/
+/*tamaño ipad*/
+@media only screen and (min-width:768px){
+
+    .miniatura-bienvenida{
+        margin: auto;
+        width: 85%;
+    }
+    .bienvenida{        
+        flex-direction: row;
+              
+    }
+    .bienvenida p{
+        padding: 30px;
+    }
+    .visor{
+        display: none;
+    }
+    .caja-formulario{        
+        flex-flow: row wrap;       
+    }
+    .input-formulario{
+        width: 100%;
+    }
+}   
+/*tamaño laptop*/
+@media only screen and (min-width:1024px){
+    .menuresponsive{
+        display: none;
+    }
+    .miniaturas{
+        display: none;
+    }
+    /*menu no responsive*/
+    .menu{
+        align-self: flex-end;
+        flex-basis: auto;
+        display: flex;
+        flex-flow: row nowrap;        
+        justify-content: flex-end;
+        list-style-type: none;
+        font-family: 'Tillana';
+    }
+    .lista-menu{
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;    
+        width: auto;
+        overflow: hidden;
+    }
+    .menu-enlace{
+        text-decoration: none;
+        color: white;
+        padding: 5px 5px 0px 5px;
+        display: inline-block;
+    }
+    
+    .lista-menu li:hover{
+        background-color: white;
+    }
+    .menu-enlace:hover{
+        color: black;
+        font-style: italic;
+    }
+    
+    .seleccionado{
+        color: black;
+        background-color: white;
+        font-style: italic;
+    }
+    /*fin menu no responsive*/
+    h1{
+        font-size: 6em;
+        
+        padding: 20px; 
+    }
+    h2{
+        font-size: 3em;
+        
+        padding: 20px;
+        margin-top: 20px;
+    }
+    
+    p{        
+        font-size: 1.2em;
+        padding: 10px;
+        line-height: 2;
+    }
+    .visor{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+        position: relative;
+        margin-right: 30px;
+        height: 600px;
+        flex: 2;
+
+    }
+    .imagen{
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        border: 2px solid black;
+        display: block;
+    }
+    .portfolio{
+        flex-flow: column wrap;
+        display: flex;        
+        justify-content: flex-start;           
+    }    
+    
+    .caja-portfolio{
+        display: flex;
+        flex-flow: row wrap; 
+        padding-bottom: 100px;
+           
+    }
+    .resumen-trabajo{
+        display: flex;
+        margin-top: 100px;
+        flex: 1;       
+        padding: 50px;
+        display: block;
+        align-self: flex-end;
+        margin-right: 50px;
+    }
+    ul.slider li{
+        opacity: 0;
+        transition: opacity 0.5s;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    ul.slider li:first-child{
+        opacity: 1;
+    }
+    ul.slider li:target{
+        opacity: 1;
+    }   
+
+    .menu-slider{
+        display: flex;
+        flex-direction: column;
+       
+        position: absolute;
+        right: 100%;
+              
+    }
+    
+    .thumbnails{
+        width: 100px;
+        height: 100px;
+        
+    }
+    
+    .contenedor-contacto{
+        flex-flow: row wrap;
+    }
+    .general{
+        padding: 20px;
+    }
+
+    .caja-formulario:last-child{
+        align-self: flex-end;
+    }
+}
+
+@media only screen and (min-width:1200px){
+ 
+    .contenedor-contacto{
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+    .general:first-child{
+        flex-grow: 2;
+        flex-wrap: nowrap;
+    }
+    .caja-formulario{
+        flex-wrap: wrap;
+    }
+    .contenedor-presupuesto{
+        text-align: center;
+    }
+    .caja-formulario{
+        justify-content: center;
+    }
+    
+}
+    
+
