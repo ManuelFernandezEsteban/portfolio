@@ -10,16 +10,48 @@ $(document).ready(function(){
             $('.noticias').animate({
                 width:'500px'
             });
-            
+            document.getElementById("cajaNoticias").style.display="block";
         }else{ 
-            $(this).css('transform','rotate(270deg)')           
+            $(this).css('transform','rotate(270deg)');           
             $('.noticias').animate({
                 width:'50px'
             })
             fuera=false;
-            $(this).css('transform','rotate(270deg)')
+            document.getElementById("cajaNoticias").style.display="none";
         }
     })
+})
+
+var objetoHttp=null;
+function escribirNoticia(){
+    if (objetoHttp.readyState==4){
+        var documento= objetoHttp.responseXML;
+        var texto=documento.documentElement;
+        var cadenaAEscribir="";
+        var i = 0;
+        while (texto.getElementsByTagName("item")[i]!=null){
+            cadenaAEscribir += "<h3>Titular: "+texto.getElementsByTagName("item")[i].childNodes[4].firstChild.nodeValue+"</h3>";
+            i++;
+        }
+        document.getElementById("cajaNoticias").innerHTML=cadenaAEscribir;
+        
+    }
+}
+
+
+function cargarNoticia(){
+    
+    if(window.XMLHttpRequest){
+        objetoHttp=new XMLHttpRequest();        
+    }else if (window.ActiveXObject){
+        objetoHttp= new ActiveXObject("Microsoft.XMLHTTP")
+    }
+    objetoHttp.open("GET","xml/rss.xml",true);
+    objetoHttp.onreadystatechange=escribirNoticia;
+    objetoHttp.send(null);
+}
+
+
 
 function aceptalopd(opcion)
 {
@@ -71,4 +103,3 @@ function validar(formularioPresupuesto)
 
 }
 
-})
