@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:s="https://www.zdnet.com/search" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+    <channel><title>Latest news</title><description>Most recent news</description><language>en</language><link>https://www.zdnet.com/</link>
+<copyright>© 2021 ZDNET, A RED VENTURES COMPANY. ALL RIGHTS RESERVED.</copyright>
+<pubDate>Mon, 15 Mar 2021 18:26:23 +0000</pubDate>
+<lastBuildDate>Mon, 15 Mar 2021 18:26:23 +0000</lastBuildDate>
+<generator>ZDNet</generator>
+<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+<ttl>2</ttl>
+<image>
+    <url>https://www.zdnet.com/a/fly/bundles/zdnetcore/images/logos/zdnet-144x144.png</url>
+    <link>https://www.zdnet.com/</link>
+    <title>Latest news</title>
+    <width>144</width>
+    <height>144</height>
+</image>
+<category>Technology</category>
+<s:counts>
+                <start>0</start>
+                <return>20</return>
+                <found>387697</found>
+            </s:counts>                
+            <item><guid isPermaLink="false">2a3b69e3-908b-4052-8285-5a388a1b4e0f</guid>
+<link>https://www.zdnet.com/article/best-web-hosting-providers-services-dreamhost-bluehost-wix-wordpress/#ftag=RSSbaffb68</link>
+<title>Best web hosting in 2021: Find the right service for your site</title>
+<description>Whether you&#039;re working from home, running a startup, or building out a larger internet presence for your business, you&#039;ll need to select a web host. We compare the best web hosting services available and help you choose the right web hosting provider for your particular needs.</description>
+<pubDate>Mon, 15 Mar 2021 18:00:00 +0000</pubDate>
+	<media:credit role="author">David Gewirtz</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">c608a704-809e-473e-bad9-0038e1f719db</guid>
+<link>https://www.zdnet.com/article/best-keyboard/#ftag=RSSbaffb68</link>
+<title>Best keyboard in 2021</title>
+<description>Finding yourself spending more time working from your home office? Time to kit it out with quality keyboards so you can get more work done in less time while also keeping your joints -- especially wrists and shoulders -- healthy.</description>
+<pubDate>Mon, 15 Mar 2021 16:22:00 +0000</pubDate>
+	<media:credit role="author">Adrian Kingsley-Hughes</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">23b13024-c9e2-4b4e-b116-042e4572cd90</guid>
+<link>https://www.zdnet.com/article/microsoft-exchange-server-zero-day-attacks-malicious-software-found-on-2300-machines-in-uk/#ftag=RSSbaffb68</link>
+<title>Microsoft Exchange Server zero-day attacks: Malicious software found on 2,300 machines in the UK</title>
+<description>An increasing range of cyber attackers - including ransomware gangs - are attempting to exploit Exchange Server vulnerabilities, so organisations should apply the critical security patches as a matter of urgency.</description>
+<pubDate>Mon, 15 Mar 2021 15:37:00 +0000</pubDate>
+	<media:credit role="author">Danny Palmer</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">c297b707-b012-45a9-ac8d-c3d595819184</guid>
+<link>https://www.zdnet.com/article/with-epyc-milan-launch-amd-aims-to-push-further-into-the-enterprise/#ftag=RSSbaffb68</link>
+<title>With Epyc Milan launch, AMD aims to push further into the enterprise</title>
+<description>AMD says sales of its latest Epyc chip will benefit from the company&#039;s higher visibility in the market, as well as the ongoing &quot;compute mega-cycle.&quot;</description>
+<pubDate>Mon, 15 Mar 2021 15:00:02 +0000</pubDate>
+	<media:credit role="author">Stephanie Condon</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">a482225d-be5a-4bfb-9043-b20010e2a527</guid>
+<link>https://www.zdnet.com/article/google-cloud-automation-anywhere-form-partnership-to-push-rpa-adoption-in-the-enterprise/#ftag=RSSbaffb68</link>
+<title>Google Cloud, Automation Anywhere form partnership to push RPA adoption in the enterprise</title>
+<description>Automation Anywhere&#039;s Automation 360 platform will be available on Google Cloud, and both companies will mutually developing AI- and RPA-powered services.</description>
+<pubDate>Mon, 15 Mar 2021 14:58:03 +0000</pubDate>
+	<media:credit role="author">Natalie Gagliordi</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">36c3d7aa-feb5-4c0e-984d-fee596cca48e</guid>
+<link>https://www.zdnet.com/article/google-fails-to-quash-incognito-mode-user-tracking-privacy-violation-lawsuit/#ftag=RSSbaffb68</link>
+<title>Google fails to quash Incognito mode user tracking, privacy lawsuit</title>
+<description>The company may now have to fight against user privacy violation claims in court.</description>
+<pubDate>Mon, 15 Mar 2021 14:33:12 +0000</pubDate>
+	<media:credit role="author">Charlie Osborne</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">cf54ad4a-7b80-4a3a-abdf-a5c85a78b6ba</guid>
+<link>https://www.zdnet.com/article/aws-s3-storage-now-holds-over-100-trillion-objects/#ftag=RSSbaffb68</link>
+<title>AWS: S3 storage now holds over 100 trillion objects</title>
+<description>AWS&#039; S3 online storage service turns 15 years old and now stores over 100 trillion objects.</description>
+<pubDate>Mon, 15 Mar 2021 14:29:11 +0000</pubDate>
+	<media:credit role="author">Liam Tung</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">ceba0d1e-97e0-4e8c-a340-09711e304b5f</guid>
+<link>https://www.zdnet.com/article/think-local-to-stay-ahead-of-the-competition/#ftag=RSSbaffb68</link>
+<title>Think local to stay ahead of the competition</title>
+<description>As we move into the new decade, Forrester is identifying forces that will require organizations to rethink the one-size-fits-all model and move to an approach that shifts the balance to more local-specific services and delivery.</description>
+<pubDate>Mon, 15 Mar 2021 14:24:52 +0000</pubDate>
+	<media:credit role="author">Forrester Research</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">44320052-c054-456d-8c8a-572ee00a5cb8</guid>
+<link>https://www.zdnet.com/article/desktop-metal-forms-desktop-health-aims-to-expand-into-healthcare/#ftag=RSSbaffb68</link>
+<title>Desktop Metal forms Desktop Health, aims to expand into healthcare</title>
+<description>Desktop Health will focus on dentistry, orthodontics, dermatology, orthopedics, cardiology, plastic surgery and printed regenerative applications.</description>
+<pubDate>Mon, 15 Mar 2021 13:53:00 +0000</pubDate>
+	<media:credit role="author">Larry Dignan</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">a0646520-67ab-4c71-8b7c-22ef5e556d76</guid>
+<link>https://www.zdnet.com/article/hafniums-china-chopper-a-slick-and-tiny-web-shell-for-creating-server-backdoors/#ftag=RSSbaffb68</link>
+<title>Hafnium’s China Chopper: a ‘slick’ and tiny web shell for creating server backdoors</title>
+<description>Hafnium has been linked to recent attacks on Microsoft Exchange Server.</description>
+<pubDate>Mon, 15 Mar 2021 13:04:07 +0000</pubDate>
+	<media:credit role="author">Charlie Osborne</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">ab773236-9814-46e2-9955-776326a66b4f</guid>
+<link>https://www.zdnet.com/article/preventing-bias-in-ai-is-hard-bug-bounties-could-point-the-way-forward/#ftag=RSSbaffb68</link>
+<title>Preventing bias in AI is hard. Bug bounties could point the way forward</title>
+<description>Deborah Raji is researching ways to apply the models that underpin bug bounty programs to algorithmic harm detection.</description>
+<pubDate>Mon, 15 Mar 2021 13:03:36 +0000</pubDate>
+	<media:credit role="author">Daphne Leprince-Ringuet</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">6b8956d7-6a1e-4640-a0e6-7be65dc70f9a</guid>
+<link>https://www.zdnet.com/article/devops-is-a-mixed-bag-so-far/#ftag=RSSbaffb68</link>
+<title>The snags holding back DevOps: culture, delivery and security</title>
+<description>5 steps for making 2021 a great year for DevOps. &#039;We need to rethink connection and integrations, both on a technical level and a human one&#039;</description>
+<pubDate>Mon, 15 Mar 2021 12:32:00 +0000</pubDate>
+	<media:credit role="author">Joe McKendrick</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">464fb15c-4b25-420a-af88-a8d070df5169</guid>
+<link>https://www.zdnet.com/article/chrome-on-windows-10-will-now-use-a-lot-less-memory-says-google/#ftag=RSSbaffb68</link>
+<title>Chrome on Windows 10 will now use a lot less memory, says Google</title>
+<description>Chrome 89 should be noticeably faster on Windows 10 and uses fewer resources on macOS and Android.</description>
+<pubDate>Mon, 15 Mar 2021 12:10:22 +0000</pubDate>
+	<media:credit role="author">Liam Tung</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">042143ca-15a2-444a-b971-ef44dd2f3a42</guid>
+<link>https://www.zdnet.com/article/best-chromebook-2021/#ftag=RSSbaffb68</link>
+<title>Best Chromebook in 2021</title>
+<description>Not everyone needs a MacBook or a Windows 10 laptop. These Chromebook laptops feature low prices and long battery lives.</description>
+<pubDate>Mon, 15 Mar 2021 12:00:00 +0000</pubDate>
+	<media:credit role="author">Adrian Kingsley-Hughes</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">8b3d1509-0882-4521-b5a8-663c803f9951</guid>
+<link>https://www.zdnet.com/article/iphone-separation-anxiety-syndrome-have-we-become-too-attached-to-our-personal-devices/#ftag=RSSbaffb68</link>
+<title>iPhone separation anxiety syndrome: Have we become too attached to our personal devices?</title>
+<description>This is the one where David Gewirtz becomes temporarily separated from his iPhone, has a quiet inner freakout, and wonders if our bond with technology is actually an aberrant psychological disorder.</description>
+<pubDate>Mon, 15 Mar 2021 11:40:00 +0000</pubDate>
+	<media:credit role="author">David Gewirtz</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">ecbb9652-1bc5-4fcb-816d-3a341dd3f644</guid>
+<link>https://www.zdnet.com/product/lg-gram-17-2021/#ftag=RSSbaffb68</link>
+<title>LG Gram 17 (2021) review: Still the benchmark for 17-inch portability</title>
+<description>Despite being astonishingly light, LG&#039;s 2021 Gram 17 has a tough (MIL-STD 810G-tested) chassis. The screen and internal specs are excellent, although battery life could be better.</description>
+<pubDate>Mon, 15 Mar 2021 11:33:00 +0000</pubDate>
+	<media:credit role="author">Sandra Vogel</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">6bfd0739-3272-49c5-b21b-34c60c74cf59</guid>
+<link>https://www.zdnet.com/article/google-this-spectre-proof-of-concept-shows-how-dangerous-these-attacks-can-be/#ftag=RSSbaffb68</link>
+<title>Google: This Spectre proof-of-concept shows how dangerous these attacks can be</title>
+<description>Google issues a new warning about Spectre attacks using JavaScript to leak data from one site to another.</description>
+<pubDate>Mon, 15 Mar 2021 11:27:26 +0000</pubDate>
+	<media:credit role="author">Liam Tung</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">3b677fa8-8f2e-478b-8a2e-55581daa69a4</guid>
+<link>https://www.zdnet.com/article/liquid-piston-to-become-beating-heart-of-air-force-flying-car/#ftag=RSSbaffb68</link>
+<title>Liquid Piston to become beating heart of Air Force flying orb</title>
+<description>A hybrid approach to flying machines could quicken development of Urban Air Mobility.</description>
+<pubDate>Mon, 15 Mar 2021 11:00:03 +0000</pubDate>
+	<media:credit role="author">Greg Nichols</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">f3987e1e-443b-41ec-8a1e-671508bfe029</guid>
+<link>https://www.zdnet.com/article/microsoft-investigates-potential-tie-between-partner-firm-and-potential-exchange-bug-leak/#ftag=RSSbaffb68</link>
+<title>Microsoft investigates potential ties between partner security firm, Exchange Server attack code leak</title>
+<description>Updated: Exploit tools used in widespread attacks reportedly are similar to PoC code privately distributed by Microsoft to vendors.</description>
+<pubDate>Mon, 15 Mar 2021 10:46:00 +0000</pubDate>
+	<media:credit role="author">Charlie Osborne</media:credit><s:doctype>Text</s:doctype></item>
+                            <item><guid isPermaLink="false">370dcde3-1047-49f1-88b3-7971879b0c61</guid>
+<link>https://www.zdnet.com/article/are-quantum-computers-good-at-picking-stocks-this-project-tried-to-find-out/#ftag=RSSbaffb68</link>
+<title>Are quantum computers good at picking stocks? This project tried to find out</title>
+<description>A European bank has been working with KPMG and a team of scientists to apply quantum computing to portfolio optimization.</description>
+<pubDate>Mon, 15 Mar 2021 10:43:12 +0000</pubDate>
+	<media:credit role="author">Daphne Leprince-Ringuet</media:credit><s:doctype>Text</s:doctype></item>
+            </channel>
+</rss>
