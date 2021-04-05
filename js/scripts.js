@@ -6,25 +6,26 @@ $(document).ready(function(){
         //alert("hola");
         if (!fuera){
             fuera=true;   
-            $(this).css('transform','rotate(0deg)');      
+            $('.caja-disparador p').css("align-self","flex-star"); 
             $('.noticias').animate({
-                width:'500px'
+                
+                flexGrow:'0'
+
             });
             //$('.cajaNoticias').css('display','block');
-            document.getElementById("cajaNoticias").style.display="block";
+            //document.getElementById("cajaNoticias").style.display="block";
             $(".contenido-caja-noticia").each(function(){
                 $(this).css("padding-top","20px");
                 $(this).css("padding-left","20px");
             });
             $("#cajaNoticias").css("padding-top","20px");
         }else{ 
-            fuera=false;
-            $(this).css('transform','rotate(270deg)');           
+            fuera=false;                       
             $('.noticias').animate({
-                width:'50px'
+                flexGrow:'1'
             })
-            //$('.cajaNoticias').css('display','none');
-            document.getElementById("cajaNoticias").style.display="none";
+            $('.caja-disparador p').css("align-self","center");
+            //document.getElementById("cajaNoticias").style.display="none";
         }
     })
 })

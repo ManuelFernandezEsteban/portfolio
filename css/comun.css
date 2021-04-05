@@ -13,14 +13,13 @@ main{
     flex-direction: row;    
 }
 .noticias{
-    border: 2px solid black;
-    position: sticky;
-    top:0;     
+    border: 2px solid black;    
+    /*flex-grow: 1;        */
     order: 2;  
     width: 50px;
     background-color:black;        
     color: white;
-    height: 1000px;      
+    height: auto;      
 }
 
 
@@ -32,12 +31,13 @@ main{
 }
 .caja-disparador p{
     position:sticky;    
-    top: 200px;
-    left: 5px;
-    transform: rotate(270deg);
-    padding: 20px;
+    top: 50%; 
+    right: 10px;   
+    transform: rotate(270deg); 
+    align-self: center; 
+    padding: 10px;  
 }
-#despliegue:hover{
+.caja-disparador p:hover{
     cursor: pointer;
     display: block;
 }
@@ -46,7 +46,7 @@ main{
     display: none;        
 }
 .contenedor-secundario{
-    flex-grow: 4;
+    flex:4;
 }
 /*menu responsive*/
 .menuresponsive{
