@@ -2,21 +2,28 @@
 $(document).ready(function(){
 
     var fuera=false;
-    $('.noticias p').click(function(){
+    $('.caja-disparador p').click(function(){
         //alert("hola");
         if (!fuera){
             fuera=true;   
-            $(this).css('transform','rotate(0deg)')         
+            $(this).css('transform','rotate(0deg)');      
             $('.noticias').animate({
                 width:'500px'
             });
+            //$('.cajaNoticias').css('display','block');
             document.getElementById("cajaNoticias").style.display="block";
+            $(".contenido-caja-noticia").each(function(){
+                $(this).css("padding-top","20px");
+                $(this).css("padding-left","20px");
+            });
+            $("#cajaNoticias").css("padding-top","20px");
         }else{ 
+            fuera=false;
             $(this).css('transform','rotate(270deg)');           
             $('.noticias').animate({
                 width:'50px'
             })
-            fuera=false;
+            //$('.cajaNoticias').css('display','none');
             document.getElementById("cajaNoticias").style.display="none";
         }
     })
@@ -25,12 +32,14 @@ $(document).ready(function(){
 var objetoHttp=null;
 function escribirNoticia(){
     if (objetoHttp.readyState==4){
-        var documento= objetoHttp.responseXML;
-        var texto=documento.documentElement;
-        var cadenaAEscribir="";
+        var documento = objetoHttp.responseXML;
+        var texto = documento.documentElement;
+        var cadenaAEscribir = "";
         var i = 0;
-        while (texto.getElementsByTagName("item")[i]!=null){
-            cadenaAEscribir += "<h3>Titular: "+texto.getElementsByTagName("item")[i].childNodes[4].firstChild.nodeValue+"</h3>";
+        while (i<=6){
+            cadenaAEscribir = cadenaAEscribir + "<div class=\"contenido-caja-noticia\"><h3>Titular: "+texto.getElementsByTagName("item")[i].childNodes[4].firstChild.nodeValue+"</h3>";
+            cadenaAEscribir = cadenaAEscribir + "<h4>Descripción: </h4> <div>"+texto.getElementsByTagName("item")[i].childNodes[6].firstChild.nodeValue+"</div>";
+            cadenaAEscribir = cadenaAEscribir + "Enlace: <a href=\""+texto.getElementsByTagName("item")[i].childNodes[2].firstChild.nodeValue+"\" target=\"_blank\">"+texto.getElementsByTagName("item")[i].childNodes[2].firstChild.nodeValue+"</a></div>";
             i++;
         }
         document.getElementById("cajaNoticias").innerHTML=cadenaAEscribir;
