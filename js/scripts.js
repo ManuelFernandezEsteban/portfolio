@@ -25,8 +25,7 @@ $(document).ready(function(){
             }            
             document.getElementById("cajaNoticias").style.display="block";
             $(".contenido-caja-noticia").each(function(){
-                $(this).css("padding-top","20px");
-                $(this).css("padding-left","20px");
+                $(this).css("padding-top","20px");                
                 $(this).css("margin-left","60px");
                 $(this).css("font-family","Ubuntu");
                /* $(this).css("color","white");

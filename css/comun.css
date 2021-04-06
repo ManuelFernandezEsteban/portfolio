@@ -16,7 +16,7 @@ main{
     border: 2px solid black;    
     /*flex-grow: 1;        */
     order: 2;  
-    width: 50px;
+    width: 30px;
     background-color:black;        
     color: white;
     height: auto;  
@@ -359,6 +359,11 @@ img .mapa{
 /*tamaño ipad*/
 @media only screen and (min-width:768px){
 
+    .noticias{
+        
+        width: 50px;        
+    }
+
     .miniatura-bienvenida{
         margin: auto;
         width: 85%;
@@ -382,6 +387,12 @@ img .mapa{
 }   
 /*tamaño laptop*/
 @media only screen and (min-width:1024px){
+
+    .noticias{
+        
+        width: 80px;        
+    }
+
     .menuresponsive{
         display: none;
     }
