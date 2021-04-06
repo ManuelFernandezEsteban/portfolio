@@ -1,6 +1,13 @@
 var fuera=false;
+var saludo;
 $(document).ready(function(){
-
+    saludo = setTimeout(mensaje,5000); 
+    $('.caja-disparador p').css("align-self","center"); 
+    $('.noticias').css('flex-grow','0');  //cualquier otro tamaño          
+    document.getElementById("cajaNoticias").style.display="none";
+    if (screen.width<768){ //tamaño movil
+        document.getElementById("contenedor-secundario").style.display="block";
+    }
     
     $('.caja-disparador p').click(function(){
         //alert("hola");
@@ -21,7 +28,7 @@ $(document).ready(function(){
                 document.getElementById("contenedor-secundario").style.display="none";
             }
            else if (screen.width>768){  //tamaño desktop o superior                                 
-               $('.noticias').css('flex-grow','2');
+               $('.noticias').css('flex-grow','3');
             }            
             document.getElementById("cajaNoticias").style.display="block";
             $(".contenido-caja-noticia").each(function(){
@@ -37,7 +44,23 @@ $(document).ready(function(){
             
         }
     })
+    
 })
+function mensaje(){
+    alert("Bienvenidos a mi portfolio");
+    clearTimeout(saludo);
+}
+$(window).resize(function(){//cerramos el panel de noticias
+    if (fuera){            
+        fuera=false;   
+        $('.caja-disparador p').css("align-self","center"); 
+        $('.noticias').css('flex-grow','0');  //cualquier otro tamaño          
+        document.getElementById("cajaNoticias").style.display="none";
+        if (screen.width<768){ //tamaño movil
+            document.getElementById("contenedor-secundario").style.display="block";
+        }
+    }
+});
 
 var objetoHttp=null;
 function escribirNoticia(){
