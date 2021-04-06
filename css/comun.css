@@ -19,8 +19,9 @@ main{
     width: 50px;
     background-color:black;        
     color: white;
-    height: auto;      
+    height: auto;  
 }
+    
 
 
 .caja-disparador{
@@ -120,6 +121,9 @@ ul{
 /*fin menu responsive*/
 h1,h2,h3,h4,h5,h6{
     font-family: 'Teko';
+}
+h3{
+    font-size: 1.8em;
 }
 h1{
     font-size: 3.5em;
@@ -360,7 +364,7 @@ img .mapa{
         width: 85%;
     }
     .bienvenida{        
-        flex-direction: row;
+        flex-direction: column;
               
     }
     .bienvenida p{
@@ -383,6 +387,9 @@ img .mapa{
     }
     .miniaturas{
         display: none;
+    }
+    .bienvenida{        
+        flex-direction: row;
     }
     /*menu no responsive*/
     .menu{
@@ -537,6 +544,9 @@ img .mapa{
     }
     .caja-formulario{
         justify-content: center;
+    }
+    .bienvenida{        
+        flex-direction: row;
     }
     
 }
