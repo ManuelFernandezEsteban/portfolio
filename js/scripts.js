@@ -43,9 +43,27 @@ $(document).ready(function(){
             $('.caja-disparador p').css("align-self","start");
             
         }
-    })
+    })    
     
 })
+function navega(enlace){
+    console.log(enlace);
+    $("#main").load(enlace,'#main');
+     
+}
+
+
+$('.menu-enlace').on('click',function(event){
+    event.preventDefault();
+    let destino=($(this).attr('href'));
+    console.log(destino);
+    navega(destino);
+});
+
+
+
+
+
 function mensaje(){
     alert("Bienvenidos a mi portfolio");
     clearTimeout(saludo);
