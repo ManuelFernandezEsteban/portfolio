@@ -20,9 +20,9 @@ function escribirNoticia(){
             cadenaAEscribir = cadenaAEscribir + "<a href=\""+texto.getElementsByTagName("item")[i].childNodes[2].firstChild.nodeValue+"\" target=\"_blank\">"+texto.getElementsByTagName("item")[i].childNodes[2].firstChild.nodeValue+"</a></div>";
             i++;
         }
-        //document.getElementById("cajaNoticias").innerHTML=cadenaAEscribir;
+        document.getElementById("cajaNoticias").innerHTML=cadenaAEscribir;
         //console.log(cadenaAEscribir);
-        $("#cajaNoticias").html(cadenaAEscribir);
+        //$("#cajaNoticias").html(cadenaAEscribir);
         
     }
 }
