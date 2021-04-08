@@ -1,6 +1,8 @@
 var fuera=false;
 var saludo;
 var objetoHttp=null;
+const CUERPOINICIAL = 'cuerpoInicio.html';
+const XMLNOTICIAS = 'xml/rss.xml';
 
 
 function navega(enlace){
@@ -28,16 +30,16 @@ function escribirNoticia(){
 }
 function cargarInicio(){
 
-    navega('cuerpoInicio.html');
+    navega(CUERPOINICIAL);
     if(window.XMLHttpRequest){
         objetoHttp=new XMLHttpRequest();        
     }else if (window.ActiveXObject){
         objetoHttp= new ActiveXObject("Microsoft.XMLHTTP")
     }
-    objetoHttp.open("GET","xml/rss.xml",true);
+    objetoHttp.open("GET",XMLNOTICIAS,true);
     objetoHttp.onreadystatechange=escribirNoticia;
     objetoHttp.send(null);
-    saludo = setTimeout(mensaje,5000); 
+     
     $('.caja-disparador p').css("align-self","center"); 
     $('.noticias').css('flex-grow','0');  //cualquier otro tamaño          
     $('#cajaNoticias').css('display','none');
@@ -45,6 +47,7 @@ function cargarInicio(){
         //document.getElementById("contenedor-secundario").style.display="block";
         $('#contenedor-secundario').css('display','block');
     }
+    saludo = setTimeout(mensaje,5000);
 }
 function iniciar(){
     console.log("hola");
