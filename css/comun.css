@@ -6,7 +6,7 @@ header{
     width: 100%;  
     position: sticky;
     top:0; 
-    z-index: 3;
+    z-index: 2;
 }
 main{
     display: flex;
@@ -14,7 +14,7 @@ main{
 }
 .noticias{
     border: 2px solid black;    
-    flex-grow: 1;        
+          
     order: 2;  
     width: 30px;
     background-color:black;        
@@ -360,7 +360,7 @@ img .mapa{
 @media only screen and (min-width:768px){
 
     .noticias{
-        flex-grow:4;
+       /* flex-grow:4;*/
         width: 50px;        
     }
 
@@ -389,7 +389,7 @@ img .mapa{
 @media only screen and (min-width:1024px){
 
     .noticias{
-        flex-grow:2;
+        /*flex-grow:2;*/
         width: 80px;        
     }
 
