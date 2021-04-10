@@ -133,6 +133,7 @@ ul{
 .menuresponsive input:not(:checked) ~ .cruz {
     display: none;
 }
+
 /*fin menu responsive*/
 h1,h2,h3,h4,h5,h6{
     font-family: 'Teko';
@@ -400,6 +401,22 @@ img .mapa{
         width: 100%;
     }
 }   
+/*bienvenida*/
+
+.bandaSuperior{
+    background-color: black;
+    width: 100%;
+    min-height: 40px;
+}
+#cajaBienvenida{
+    display: none;
+    width: 400px;
+    height: 400px;
+}
+
+
+
+
 /*tamaño laptop*/
 @media only screen and (min-width:1024px){
 

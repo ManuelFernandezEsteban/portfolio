@@ -4,6 +4,7 @@ var objetoHttp=null;
 const CUERPOINICIAL = 'cuerpoInicio.html';
 const XMLNOTICIAS = 'xml/rss.xml';
 const REFERENCIAMAIN=$('main');
+const URLPOPUP='bienvenida.html';
 
 function navega(enlace){
     console.log(enlace);
@@ -58,8 +59,14 @@ function iniciar(){
     cargarInicio();
 }
 
+function mostrarBienvenida(){
+    $('#cajaBienvenida').css('display','block');
+}
+
 function mensaje(){
-    alert("Bienvenidos a mi portfolio");
+    //window.open(URLPOPUP,'bienvenida','width=400,height=400,scrollbars=NO,Resizable=NO,Menubar=NO,Status=NO,Titlebar=NO,Toolbar=NO');
+    //alert("Bienvenidos a mi PortFolio");
+    mostrarBienvenida();
     clearTimeout(saludo);
 }
 

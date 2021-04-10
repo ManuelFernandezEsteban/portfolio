@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <link rel="stylesheet" href="css/css-reset.css">
     <link rel="stylesheet" href="css/comun.css">
@@ -12,21 +13,26 @@
     podrán ver mi trabajo, como contactar conmigo y descargar una copia de mi currículum si lo desean">
     <meta name="locality" content="Málaga, Costa del Sol, Andalucía, España, Europa">
     <meta name="robots" content="index,follow">
-    <meta name="category" content="Spanish, Spain, Desarrollo web">   
+    <meta name="category" content="Spanish, Spain, Desarrollo web">
     <title>Portfolio de Manuel Fernández Esteban</title>
 </head>
+
 <body>
     <div id="contenedor-global" class="contenedor-global">
         <header id="header">
             <div class="caja-logo">
-                <a href="cuerpoInicio.html" title="home"><h1 class="logo">MFE</h1></a>
+                <a href="cuerpoInicio.html" title="home">
+                    <h1 class="logo">MFE</h1>
+                </a>
             </div>
             <nav class="menu">
                 <ul class="lista-menu">
                     <li><a class="menu-enlace seleccionado" href="cuerpoInicio.html" title="Home">Home</a></li>
                     <li><a class="menu-enlace" href="cuerpoPortfolio.html" title="PortFolio">PortFolio</a></li>
-                    <li><a class="menu-enlace" href="cuerpoContacto.html" title="Datos de contacto y redes sociales">Contacto</a></li>                    
-                    <li><a class="menu-enlace" href="cuerpoPresupuesto.html" title="Pide un presupuesto">Presupuesto</a></li>
+                    <li><a class="menu-enlace" href="cuerpoContacto.html"
+                            title="Datos de contacto y redes sociales">Contacto</a></li>
+                    <li><a class="menu-enlace" href="cuerpoPresupuesto.html" title="Pide un presupuesto">Presupuesto</a>
+                    </li>
                 </ul>
             </nav>
             <div class="menuresponsive">
@@ -34,30 +40,55 @@
                 <i class="barras"><img src="ico/001-menu.svg" alt="menu abrir"></i>
                 <i class="cruz"><img src="ico/002-cancel.svg" alt="menu cerrar"></i>
                 <nav>
-                  <ul>
-                    <li><div class="espacio"><a href="#"></a></div></li>
-                    <li><a class="menu-enlace" href="cuerpoInicio.html" target="_self">Home</a></li>
-                    <li><a class="menu-enlace" href="cuerpoPortfolio.html" target="_self">Portfolio</a></li>
-                    <li><a class="menu-enlace" href="cuerpoContacto.html" target="_self">Contacto</a></li>
-                    <li><a class="menu-enlace" href="cuerpoPresupuesto.html" target="_self">Presupuesto</a></li>                    
-                  </ul>
+                    <ul>
+                        <li>
+                            <div class="espacio"><a href="#"></a></div>
+                        </li>
+                        <li><a class="menu-enlace" href="cuerpoInicio.html" target="_self">Home</a></li>
+                        <li><a class="menu-enlace" href="cuerpoPortfolio.html" target="_self">Portfolio</a></li>
+                        <li><a class="menu-enlace" href="cuerpoContacto.html" target="_self">Contacto</a></li>
+                        <li><a class="menu-enlace" href="cuerpoPresupuesto.html" target="_self">Presupuesto</a></li>
+                    </ul>
                 </nav>
-              </div>
+            </div>
         </header>
         <main id="main">
-            
+
         </main>
-        <footer>            
-            <div class="caja-logo">
-                <a href="cuerpoInicio.html" title="home">
+        <div id="cajaBienvenida">
+            <div class="bandaSuperior"></div>
+            <div class="contenedor">
+                <div class="contenido">
+                    <h3>Bienvenidos!</h3>
+                    <p>Gracias por visitar mi portfolio</p>
+
+                </div>
+                <button class="boton">Cerrar</button>
+                <div class="caja-logo">
                     <h1 class="logo">MFE</h1>
-                </a>
-                
+                </div>
             </div>
-            <p class="blanco">Todos los derechos reservados. 2021</p>
-        </footer>
-    </div>
-    <script src="js/scripts.js"></script>
-    
+        </div>
 </body>
+<!--<script>
+    $(document).ready(function () {
+        $('.boton').on('click', function (e) {
+            window.close();
+        });
+    })
+</script>-->
+<footer>
+    <div class="caja-logo">
+        <a href="cuerpoInicio.html" title="home">
+            <h1 class="logo">MFE</h1>
+        </a>
+
+    </div>
+    <p class="blanco">Todos los derechos reservados. 2021</p>
+</footer>
+</div>
+<script src="js/scripts.js"></script>
+
+</body>
+
 </html>
