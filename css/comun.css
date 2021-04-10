@@ -25,7 +25,17 @@ main{
     padding: 5px;
     font-family: 'Ubuntu';    
 }   
-
+.contenido-caja-noticia a{
+    color: white;
+}
+.contenido-caja-noticia a:visited{
+    color: white;
+}
+.separador
+{
+    border: 0.3px solid white; 
+    margin: 5px;
+}
 
 .caja-disparador{
     display: flex;
@@ -47,8 +57,8 @@ main{
 }
 
 #cajaNoticias{
-    display: none;    
-    padding-top: 50px;
+    display: none;   
+    
         
 }
 .contenedor-secundario{

@@ -20,6 +20,7 @@ function escribir(){
             cadenaAEscribir = cadenaAEscribir + "<div class=\"contenido-caja-noticia\"><h3>"+texto.getElementsByTagName("item")[i].childNodes[4].firstChild.nodeValue+"</h3>";
             cadenaAEscribir = cadenaAEscribir + "<div>"+texto.getElementsByTagName("item")[i].childNodes[6].firstChild.nodeValue+"</div>";
             cadenaAEscribir = cadenaAEscribir + "<a href=\""+texto.getElementsByTagName("item")[i].childNodes[2].firstChild.nodeValue+"\" target=\"_blank\">"+texto.getElementsByTagName("item")[i].childNodes[2].firstChild.nodeValue+"</a></div>";
+            cadenaAEscribir = cadenaAEscribir + "<div class=\"separador\"></div>"
             i++;
         }
        
@@ -97,11 +98,11 @@ $(document).ready(function()
                     $('.noticias').css('flex-grow','2');
                 }
                 $('#cajaNoticias').css('display','block');               
-                $('#cajaNoticias').css('padding-top','30px');
+                $('#cajaNoticias').css('padding-top','0px');
                 $('.caja-disparador p').css('align-self','start');
                 $('.caja-disparador p').css('top','0');
                 $('.caja-disparador p').css('transform','rotate(0deg)');
-                
+                console.log(REFERENCIAMAIN.children());
                 
             }
         }) 
@@ -109,8 +110,7 @@ $(document).ready(function()
             console.log("hola");
             event.preventDefault();
             let destino=($(this).attr('href'));
-            $('.seleccionado').removeClass('seleccionado');
-            $('a[href$="cuerpoInicio.html"').addClass('seleccionado');
+            
             console.log(destino);
             navega(destino);
         });
