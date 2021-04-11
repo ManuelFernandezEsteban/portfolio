@@ -409,7 +409,7 @@ img .mapa{
     width: 100%;
     min-height: 40px;
 }
-.cajaBienvenida{        
+.caja-bienvenida{        
     background: rgba(0,0,0,0.3);
     position: fixed;
     top: 0;
@@ -420,6 +420,7 @@ img .mapa{
     align-items: center;
     justify-content: center;   
 }
+
 .pop-up{
     background-color: white;
     border-radius: 3px;

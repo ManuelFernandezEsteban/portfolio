@@ -60,7 +60,8 @@ function iniciar(){
 }
 
 function mostrarBienvenida(){
-    $('.cajaBienvenida').css('display','flex');
+    $('.caja-bienvenida').css('display','flex');
+    
 }
 
 function mensaje(){    
@@ -114,8 +115,7 @@ $(document).ready(function()
             }
         }) 
         $('#boton-bienvenida').on('click',function(){
-
-            $('.cajaBienvenida').css('display','none');
+            $('.caja-bienvenida').css('display','none');            
         });
 
         $('.caja-logo a').on('click',function(event){            
