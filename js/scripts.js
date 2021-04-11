@@ -55,17 +55,17 @@ function cargarInicio(){
     saludo = setTimeout(mensaje,5000);
 }
 function iniciar(){
-    console.log("hola");
+    
     cargarInicio();
 }
 
 function mostrarBienvenida(){
-    $('#cajaBienvenida').css('display','block');
+    $('.cajaBienvenida').css('display','flex');
 }
 
-function mensaje(){
-    //window.open(URLPOPUP,'bienvenida','width=400,height=400,scrollbars=NO,Resizable=NO,Menubar=NO,Status=NO,Titlebar=NO,Toolbar=NO');
+function mensaje(){    
     //alert("Bienvenidos a mi PortFolio");
+    
     mostrarBienvenida();
     clearTimeout(saludo);
 }
@@ -113,17 +113,19 @@ $(document).ready(function()
                 
             }
         }) 
-        $('.caja-logo a').on('click',function(event){
-            console.log("hola");
+        $('#boton-bienvenida').on('click',function(){
+
+            $('.cajaBienvenida').css('display','none');
+        });
+
+        $('.caja-logo a').on('click',function(event){            
             event.preventDefault();
-            let destino=($(this).attr('href'));
-            
+            let destino=($(this).attr('href'));            
             console.log(destino);
             navega(destino);
         });
 
-        $('.menu-enlace').on('click',function(event){
-            console.log("hola");
+        $('.menu-enlace').on('click',function(event){            
             event.preventDefault();
             let destino=($(this).attr('href'));
             $('.seleccionado').removeClass('seleccionado'); 

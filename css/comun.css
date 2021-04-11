@@ -208,7 +208,8 @@ footer{
     display: inline-block;   
     width: auto;
     height: 50px;
-    padding: 10px;    
+    padding: 10px;
+    background-color: black;    
 }
 .logo{
     font-size: 40px;
@@ -408,12 +409,47 @@ img .mapa{
     width: 100%;
     min-height: 40px;
 }
-#cajaBienvenida{
+.cajaBienvenida{        
+    background: rgba(0,0,0,0.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     display: none;
-    width: 400px;
-    height: 400px;
+    align-items: center;
+    justify-content: center;   
+}
+.pop-up{
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
 }
 
+.contenido-popup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido-popup h3{
+    padding-top: 20px;
+}
+
+.contenedor-popup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-bienvenida{
+    font-size: 40px;
+    font-weight: bold;
+    color: black;
+    align-self: flex-end;
+}
 
 
 
