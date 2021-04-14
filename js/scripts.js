@@ -148,29 +148,34 @@ $(document).ready(function()
                     $('#contenedor-secundario').css('display','block');
                 }
             }
-        })
+        });
 
         $('.ficha').on('click',function(){            
-                var fichas = $('.ficha');
-                console.log(fichas);
-                fichas.each(function(){
-                    $(this).addClass('fichaOculta');
-                })
-                $(this).css('cursor','auto');
-                $(this).removeClass('fichaOculta');
-                $(this).css('width','100%');
-                $(this).css('height','100%');                
-                $(this).children('.cruz-galeria').addClass('in');
-                $(this).children('.img').css('width','100%');
-                $(this).children('.img').css('height','100%');
-                $(this).children('.img').children('img').css('width','90%');
-                $(this).children('.img').children('img').css('height','90%');
-                $(this).children('.texto-imagen').css('display','flex');
-                $(this).next('div').css('height','100%');
-                $(this).next('div').next('img').css('width','100%');
-                $('.galeria').css('grid-template-columns','1fr');
+            let fichas = $('.ficha');
+            
+            fichas.each(function () {
+                $(this).addClass('Oculta');
+            })
+            $(this).css('cursor', 'auto');
+            $(this).removeClass('Oculta');
+            $(this).css('width', '100%');
+            $(this).css('height', '100%');
+            $(this).children('.in').css('display','block');
+            $(this).children('.img').css('width', '100%');
+            $(this).children('.img').css('height', '100%');
+            $(this).children('.img').children('img').css('width', '90%');
+            $(this).children('.img').children('img').css('height', '90%');
+            $(this).children('.texto-imagen').css('display', 'flex');   
+            $('.galeria').css('grid-template-columns', '1fr');
+        });
+
+        $('.in').on('click',function(){  
+
+            $(this).css('display','none');
             
         })
+
+        
 });
 
 

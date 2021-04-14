@@ -456,30 +456,34 @@ img .mapa{
     width: 330px;
     height: 300px;
 }
-.img:hover{
-    cursor: pointer;
-}
+
 .ficha{
     place-self: center;
     position: relative;
+    
 }
-.fichaOculta{
+.ficha:hover{
+    cursor: pointer;
+}
+.Oculta{
     display: none;
 }
 
 .cruz-galeria{
-    display: none;
-    
+    display: none;    
+}
+.in:hover{
+    cursor: pointer;
 }
 
 .in{
-    display: block;
+    display: none;
     position: absolute;  
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    right: 10%;
-    top: 0;
+    right: 100%;
+    top: -10%;
     width: 40px;
     height: 40px;
     background: black;
