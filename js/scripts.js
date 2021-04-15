@@ -4,11 +4,15 @@ var objetoHttp=null;
 const CUERPOINICIAL = 'cuerpoInicio.html';
 const XMLNOTICIAS = 'xml/rss.xml';
 const REFERENCIAMAIN=$('main');
-const URLPOPUP='bienvenida.html';
 
 function navega(enlace){
-    console.log(enlace);
-    REFERENCIAMAIN.load(enlace);     
+    
+    REFERENCIAMAIN.load(enlace);  
+    
+    if (enlace=='cuerpoContacto.html'){
+        console.log(enlace);
+        //cargarMapa();
+    }   
 }
 
 function escribir(){
@@ -229,4 +233,74 @@ function validar(formularioPresupuesto)
     formularioPresupuesto.submit();
 
 }
+var map;
+var mostrar_direcciones; 
+var servicios_rutas = new google.maps.DirectionsService();
 
+
+
+
+function cargarMapa(){    
+    mostrar_direcciones = new google.maps.DirectionsRenderer();
+    var punto = new google.maps.LatLng(36.741118,-4.489761);
+    
+    var opciones = {
+        zoom: 15,
+        center: punto,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };    
+    map = new google.maps.Map(document.getElementById("mapa"),opciones);
+    console.log(document.getElementById("mapa"));
+    var marca = new google.maps.Marker({
+        position:punto,
+        map:map                
+    });
+    var caja = new google.maps.InfoWindow({
+        content:'Oficina: <b>Manuel Fernández Esteban</b><br>Teléfono:677 230 977</br>Dirección: Avenida Arquitecto Luís Bono, 7'});
+        google.maps.event.addListener(marca,'click',function(){
+        caja.open(map,marca);
+    });
+    mostrar_direcciones.setMap(map); 
+    mostrar_direcciones.setPanel(document.getElementById("ruta"));
+    var opciones_fotos = {
+        position:punto,
+        pov:{
+            heading:34,
+            pitch:0,
+            zoom:1
+        }
+    };    
+}
+function geolocalizar(){
+    
+    var geocoder = new google.maps.Geocoder();
+    
+    var direccion = $("#direccion").val();    
+    geocoder.geocode({'address':direccion},function(results,status){
+        if(status=='OK'){
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map:map,
+                position:results[0].geometry.location
+            });
+        }else{
+            alert('No se ha podido localizar la dirección. '+ status);
+        }
+    });
+}
+
+function calcularRuta(){
+    let partida = $("#partida").val();
+    let destino = $("#destino").val();
+    let opciones ={
+        origin:partida,
+        destination:destino,
+        travelMode:google.maps.DirectionsTravelMode.DRIVING
+    };
+    servicios_rutas.route(opciones,function(response,status){
+        if(status==google.maps.DirectionsStatus.OK){
+            mostrar_direcciones.setDirections(response);
+        }
+    })
+
+}

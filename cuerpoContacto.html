@@ -55,8 +55,25 @@
                     </p>
                     <img class="icono" src="ico/mapa.svg" alt="icono direccion">
                 </div>
-                <div class="mapa"><img  src="img/mapa-oficina-v2.png" alt="mapa de situación de la oficina"></div>
-                
         </section>
+                <div id="mapa" >
 
+                </div>
+                <div id="ruta"></div>
+                <div>
+                    <input class="input-formulario" type="text" name="direccion" id="direccion" placeholder="Avda. Arquitecto Luis Bono, 7, Málaga">
+                    <input class="boton" type="button" value="Geolocalizar" onclick="geolocalizar()">
+                </div>
+                <div>
+                    <input class="input-formulario" type="text" name="partida" id="partida" placeholder="Partida">
+                    <input class="input-formulario" type="text" name="destino" id="destino" placeholder="Destino">
+                    <input class="boton" type="button" value="Calcular ruta" onclick="calcularRuta()">
+                </div>
+        
+        
     </div>
+<script>
+    $(document).ready(function(){
+        cargarMapa();
+    })
+</script>

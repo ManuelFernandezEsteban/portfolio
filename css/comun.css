@@ -340,12 +340,17 @@ img.icono{
     font-family: Ubuntu;
 }
 
-.mapa{
+#mapa{
+    width: 100%;
+    height: 30%;
+    position: relative;
     margin: auto;
-    width: 100%;      
 }
-img .mapa{
-    object-fit: cover;
+#ruta{
+    width: 50%;
+    height: auto;
+    position: relative;
+    margin: auto;
 }
 
 /*fin estilos contacto*/
