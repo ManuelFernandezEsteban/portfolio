@@ -82,6 +82,7 @@
 }
 
 .ficha{
+    display: block;
     place-self: center;
     position: relative;
     
@@ -93,9 +94,7 @@
     display: none;
 }
 
-.cruz-galeria{
-    display: none;    
-}
+
 .in:hover{
     cursor: pointer;
 }
@@ -109,8 +108,13 @@
     right: 100%;
     top: -10%;
     width: 40px;
-    height: 40px;
+    height: auto;
     background: black;
     font-size: 40px;
+    
+}
+.in img{
+    width: 40px;
+    margin: auto;
 }
 /*fin estilos galeria dinamica*/
