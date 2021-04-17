@@ -7,12 +7,8 @@ const REFERENCIAMAIN=$('main');
 
 function navega(enlace){
     
-    REFERENCIAMAIN.load(enlace);  
-    
-    if (enlace=='cuerpoContacto.html'){
-        console.log(enlace);
-        //cargarMapa();
-    }   
+    REFERENCIAMAIN.load(enlace);      
+     
 }
 
 function escribir(){
@@ -47,8 +43,9 @@ function escribirNoticia(){
     objetoHttp.send(null);
     
 }
-function cargarInicio(){
 
+function iniciar(){
+    
     navega(CUERPOINICIAL);
     $('.caja-disparador p').css("align-self","center"); 
     $('.noticias').css('flex-grow','0');  //cualquier otro tamaño          
@@ -58,19 +55,13 @@ function cargarInicio(){
     }
     saludo = setTimeout(mensaje,5000);
 }
-function iniciar(){
-    
-    cargarInicio();
-}
 
 function mostrarBienvenida(){
     $('.caja-bienvenida').css('display','flex');
-    
+    //alert("Bienvenidos a mi PortFolio");
 }
 
-function mensaje(){    
-    //alert("Bienvenidos a mi PortFolio");
-    
+function mensaje(){ 
     mostrarBienvenida();
     clearTimeout(saludo);
 }
@@ -133,8 +124,9 @@ $(document).ready(function()
             event.preventDefault();
             let destino=($(this).attr('href'));
             $('.seleccionado').removeClass('seleccionado'); 
-            $(this).addClass('seleccionado');  
-            console.log(destino);
+            $(this).addClass('seleccionado'); 
+            //$('.menuresponsive nav').css('display','none');
+
             navega(destino);
         });
 
@@ -245,18 +237,18 @@ function cargarMapa(){
     var punto = new google.maps.LatLng(36.741118,-4.489761);
     
     var opciones = {
-        zoom: 15,
+        zoom: 16,
         center: punto,
         mapTypeId: google.maps.MapTypeId.ROADMAP
-    };    
+    };           
     map = new google.maps.Map(document.getElementById("mapa"),opciones);
-    console.log(document.getElementById("mapa"));
+    
     var marca = new google.maps.Marker({
         position:punto,
         map:map                
     });
     var caja = new google.maps.InfoWindow({
-        content:'Oficina: <b>Manuel Fernández Esteban</b><br>Teléfono:677 230 977</br>Dirección: Avenida Arquitecto Luís Bono, 7'});
+        content:'Oficina: <b>Manuel Fernández Esteban</b><br>Teléfono:677 230 977</br>Dirección: Avenida Arquitecto Luís Bono, 7 <br> Málaga 29190</br>'});
         google.maps.event.addListener(marca,'click',function(){
         caja.open(map,marca);
     });
@@ -292,15 +284,19 @@ function geolocalizar(){
 function calcularRuta(){
     let partida = $("#partida").val();
     let destino = $("#destino").val();
-    let opciones ={
-        origin:partida,
-        destination:destino,
-        travelMode:google.maps.DirectionsTravelMode.DRIVING
-    };
-    servicios_rutas.route(opciones,function(response,status){
-        if(status==google.maps.DirectionsStatus.OK){
-            mostrar_direcciones.setDirections(response);
-        }
-    })
+    
+    if ((partida!="")&&(destino!="")){
+        console.log(partida+","+destino);
+        let opciones ={
+            origin:partida,
+            destination:destino,
+            travelMode:google.maps.DirectionsTravelMode.DRIVING
+        };
+        servicios_rutas.route(opciones,function(response,status){
+            if(status==google.maps.DirectionsStatus.OK){
+                mostrar_direcciones.setDirections(response);
+            }
+        })
+    }
 
 }

@@ -1,79 +1,83 @@
-
-    <div class="contenedor-contacto">
-        <section class="general bienvenida">
-            <h1>Contacto</h1>
-                <p>
-                    Puedes contactar conmigo mediante correo electrónico, teléfono, o rellenando este formulario.
-                    También te dejo un mapa donde se encuentra mi oficina. Si lo deseas puedes contactarme
-                    en mis redes sociales. Hablemos.
-                </p>            
-        </section>
-        <section class="general">  
-            <h2>Comunícate conmigo en</h2>
-                <div class="contacto">
-                    <p><a href="mailto:lolo3f@gmail.com">lolo3f@gmail.com</a></p>
-                    <img class="icono" src="ico/email.svg" alt="icono mail">
-                </div>
-                <div class="contacto">
-                    <p>677·230.977</p>
-                    <img class="icono" src="ico/whatsapp.svg" alt="icono whatsapp">
-                </div>
-                <div class="contacto">  
-                    <p>Mi perfil de LinkedIn</p>                          
-                    <a href="https://www.linkedin.com/in/manuel-fernandez-esteban" target="_blank" title="enlace a linkedin">
-                        <img class="icono" src="ico/linkedin.svg" alt="icono linkedin">
-                    </a>
-                </div>
-                <div class="contacto">  
-                    <p>Quédate una copia de mi CV</p>                          
-                    <a href="cv/Curriculum Manuel Fernandez Esteban.pdf" target="_blank" title="enlace a linkedin">
-                        <img class="icono" src="ico/cv.svg" alt="icono CV">
-                    </a>
-                </div>
-        </section>
-        <section class="general">
-            <h2>Déjame un comentario</h2>
-            <form id="formularioContacto" name="formularioContacto" method="post" action="">                            
-                <p><label for="nombre">Nombre:</label><br>
-                <input class="input-formulario" type="text" name="nombre" id="nombre" placeholder="Manuel"></p>
-                <p><label for="email">Correo:</label><br>
-                <input class="input-formulario" type="email" name="email" id="email" placeholder="manuel@tucorreo.com"></p>
-                <p><label for="mensaje">Déjame tu mensaje:</label><br>
-                <textarea name="mensaje" id="mensaje" cols="30" rows="8"></textarea></p>
-                <div class="botones">
-                    <input class="boton" type="submit" value="enviar">
-                    <input class="boton" type="reset" value="borrar">
-                </div>
-            </form>  
-        </section>
-        <section class="general">
-            <h2>Mi oficina esta en</h2>
-                <div class="contacto">                            
-                    <p>
-                        Av. Arquitecto Luís Bono,7
-                        29190, Málaga(España)
-                    </p>
-                    <img class="icono" src="ico/mapa.svg" alt="icono direccion">
-                </div>
-        </section>
-                <div id="mapa" >
-
-                </div>
-                <div id="ruta"></div>
-                <div>
-                    <input class="input-formulario" type="text" name="direccion" id="direccion" placeholder="Avda. Arquitecto Luis Bono, 7, Málaga">
-                    <input class="boton" type="button" value="Geolocalizar" onclick="geolocalizar()">
-                </div>
-                <div>
-                    <input class="input-formulario" type="text" name="partida" id="partida" placeholder="Partida">
-                    <input class="input-formulario" type="text" name="destino" id="destino" placeholder="Destino">
-                    <input class="boton" type="button" value="Calcular ruta" onclick="calcularRuta()">
-                </div>
+<div class="contenedor-contacto">
+    <section class="general bienvenida">
+        <h1>Contacto</h1>
+        <p>
+            Puedes contactar conmigo mediante correo electrónico, teléfono, o rellenando este formulario.
+            También te dejo un mapa donde se encuentra mi oficina. Si lo deseas puedes contactarme
+            en mis redes sociales. Hablemos.
+        </p>
+    </section>
+    <section class="general">
+        <h2>Comunícate conmigo en</h2>
+        <div class="contacto">
+            <p><a href="mailto:lolo3f@gmail.com">lolo3f@gmail.com</a></p>
+            <img class="icono" src="ico/email.svg" alt="icono mail">
+        </div>
+        <div class="contacto">
+            <p>677·230.977</p>
+            <img class="icono" src="ico/whatsapp.svg" alt="icono whatsapp">
+        </div>
+        <div class="contacto">
+            <p>Mi perfil de LinkedIn</p>
+            <a href="https://www.linkedin.com/in/manuel-fernandez-esteban" target="_blank" title="enlace a linkedin">
+                <img class="icono" src="ico/linkedin.svg" alt="icono linkedin">
+            </a>
+        </div>
+        <div class="contacto">
+            <p>Quédate una copia de mi CV</p>
+            <a href="cv/Curriculum Manuel Fernandez Esteban.pdf" target="_blank" title="enlace a linkedin">
+                <img class="icono" src="ico/cv.svg" alt="icono CV">
+            </a>
+        </div>
+    </section>
+    <section class="general">
+        <h2>Déjame un comentario</h2>
+        <form id="formularioContacto" name="formularioContacto" method="post" action="">
+            <p><label for="nombre">Nombre:</label><br>
+                <input class="input-formulario" type="text" name="nombre" id="nombre" placeholder="Manuel">
+            </p>
+            <p><label for="email">Correo:</label><br>
+                <input class="input-formulario" type="email" name="email" id="email" placeholder="manuel@tucorreo.com">
+            </p>
+            <p><label for="mensaje">Déjame tu mensaje:</label><br>
+                <textarea name="mensaje" id="mensaje" cols="30" rows="8"></textarea>
+            </p>
+            <div class="botones">
+                <input class="boton" type="submit" value="enviar" onclick="validar(this.form);return false">
+                <input class="boton" type="reset" value="borrar">
+            </div>
+        </form>
+    </section>
+    
+    <section class="general">
+        <h2>Mi oficina esta en</h2>
+        <div class="contacto">
+            <p>
+                Av. Arquitecto Luís Bono,7
+                29190, Málaga(España)
+            </p>
+            <img class="icono" src="ico/mapa.svg" alt="icono direccion">
+        </div>
         
+        <div>
+            <input class="input-formulario" type="text" name="direccion" id="direccion"
+                placeholder="Avda. Arquitecto Luis Bono, 7, Málaga">
+            <input class="boton" type="button" value="Geolocalizar" onclick="geolocalizar()">
+        </div>
         
+        <div>
+            <input class="input-formulario" type="text" name="partida" id="partida" placeholder="Partida">
+            <input class="input-formulario" type="text" name="destino" id="destino" placeholder="Destino">
+            <input class="boton" type="button" value="Calcular ruta" onclick="calcularRuta()">
+        </div>
+        <div id="ruta"></div>
+        <div id="mapa"></div>
+       
+    </section>
     </div>
-<script>
-    $(document).ready(function(){
-        cargarMapa();
-    })
-</script>
+    
+    <script>
+        $(document).ready(function () {
+            cargarMapa();
+        })
+    </script>
