@@ -650,3 +650,7 @@ function calcularRuta(){
     }
 
 }
+
+function calcularPresupuesto(){
+    console.log("aqui calculamos el presupuesto cada vez que haya un cambio en el fieldset");
+}

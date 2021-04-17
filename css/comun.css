@@ -360,11 +360,18 @@ img.icono{
 
 /*fin estilos contacto*/
 /*inicio estilos presupuesto*/
-
+.contenedor-presupuesto{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
 .caja-formulario{
     display: flex;
     flex-flow: column nowrap;
     margin-bottom: 100px;
+   
 }
 .caja-formulario:nth-of-type(4){
     flex: 2;
@@ -541,7 +548,7 @@ img.icono{
         display: none;
     }
     .caja-formulario{        
-        flex-flow: row wrap;       
+        flex-flow: row nowrap;       
     }
     .input-formulario{
         width: 100%;
@@ -555,7 +562,7 @@ img.icono{
     min-height: 40px;
 }
 .caja-bienvenida{        
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.5);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -768,11 +775,9 @@ img.icono{
         flex-wrap: nowrap;
     }
     .caja-formulario{
-        flex-wrap: wrap;
+        flex-wrap: wrap;        
     }
-    .contenedor-presupuesto{
-        text-align: center;
-    }
+    
     .caja-formulario{
         justify-content: center;
     }
