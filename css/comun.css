@@ -68,6 +68,9 @@ main{
     flex-direction: row;    
 }
 /*menu responsive*/
+#opcion{
+    color: white;
+}
 .menuresponsive{
     display: block;
 }
@@ -87,7 +90,7 @@ main{
 }
 
 .espacio{
-    color: black;
+    color: white;
     text-decoration: none;
     display: block;
     padding: 10px 20px;
@@ -535,6 +538,8 @@ legend{
 /*tamaño ipad*/
 @media only screen and (min-width:768px){
 
+   
+
     .noticias{
        /* flex-grow:4;*/
         width: 50px;        
@@ -616,6 +621,9 @@ legend{
 /*tamaño laptop*/
 @media only screen and (min-width:1024px){
 
+    #opcion{
+        display: none;
+    }
     .noticias{
         /*flex-grow:2;*/
         width: 80px;        

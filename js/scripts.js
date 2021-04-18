@@ -127,7 +127,33 @@ $(document).ready(function () {
         let destino = ($(this).attr('href'));
         $('.seleccionado').removeClass('seleccionado');
         $(this).addClass('seleccionado');
-        $('.menuresponsive nav').css('display','none');
+
+        switch (destino) {
+            case "cuerpoInicio.html":
+                $('#opcion').empty();
+                $('#opcion').append("Home");
+                break;
+            case "cuerpoPortfolio.html":
+                $('#opcion').empty();
+                $('#opcion').append("Portfolio");
+                break;
+            case "cuerpoContacto.html":
+                $('#opcion').empty();
+                $('#opcion').append("Contacto");
+                break;
+            case "cuerpoPresupuesto.html":
+                $('#opcion').empty();
+                $('#opcion').append("Presupuesto");
+                break;
+                                
+            default:
+                $('#opcion').empty();
+                $('#opcion').append("Home");
+                break;
+        }
+        
+       // $('.menuresponsive ul').css('display','none');
+       // $('.menuresponsive checkbox').prop('checked',true);
         navega(destino);
     });
 
@@ -655,6 +681,7 @@ function calcularPresupuesto() {
     let base = 0;
     let tiempo = 0;
     let tipoPagina = $(':selected').val();
+    
     switch (tipoPagina) {
         case 'corporativo':
             base = CORPORATIVO;
@@ -672,9 +699,13 @@ function calcularPresupuesto() {
             base = 0;
             break;
     }
+    
     if (base == 0) {
         alert("Seleccione un tipo de web");
-    } else {
+    } 
+    else 
+    {
+        
         tiempo = $('#plazo').val();
         
         if (tiempo < 0) {
@@ -697,6 +728,7 @@ function calcularPresupuesto() {
                 descuento = 0.2;
                 break;
         }
+        
         var extras = $('input:checkbox:checked');
         var valorExtras = 0;
         extras.each(function () {
@@ -704,11 +736,14 @@ function calcularPresupuesto() {
                 valorExtras = valorExtras + 400;
             }
         })
+        
         let rebaja = 0;
         if (descuento != 0) {
             rebaja = (base + valorExtras) * descuento
-        }        
+        }  
+        presupuesto=(base+valorExtras)-rebaja;      
         $('#total').val(presupuesto + '€');
+        
     }
 }
 
