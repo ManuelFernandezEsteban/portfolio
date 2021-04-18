@@ -5,7 +5,8 @@
             <form id="formularioPresupuesto" name="formularioPresupuesto" method="post" action="">   
                 <div class="caja-formulario">  
                     <div>    
-                        <fieldset title="Datos"> 
+                        <fieldset title="Datos">
+                            <legend>Datos</legend> 
                             <p><label for="nombre">Nombre:</label><br>
                             <input class="input-formulario" type="text" name="nombre" id="nombre" placeholder="Manuel" required></p>
                             <p><label for="apellidos">Apellidos:</label><br>
@@ -18,9 +19,11 @@
                     </div>
                     <div>    
                         <fieldset title="Web" onchange="calcularPresupuesto()"> 
+                            <legend>Web</legend>
                             <p><label for="tipoWeb">Tipo Web:</label><br>
                             <p>
                                 <select name="tipoWeb" id="tipoWeb">
+                                    <option value=""></option>
                                     <option value="corporativo">Corporativo</option>
                                     <option value="portfolio">PortFolio</option>
                                     <option value="tienda">Tienda online</option>
@@ -28,10 +31,11 @@
                                 </select>
                             </p>
                             <p><label for="plazo">Plazo en meses:</label><br>
-                            <input class="input-formulario" type="number" name="plazo" id="plazo" placeholder="2"></p>
+                            <input class="input-formulario" type="number" min="1" name="plazo" id="plazo" placeholder="1" onchange="calcularPresupuesto()"></p>
                             
                                 
                             <fieldset title="Extras">
+                                <legend>Opciones</legend>
                                 <p>Marque que opciones desea:</p>
                                 <p>
                                     <label for="eCommerce">eCommerce</label>
@@ -52,11 +56,7 @@
                                 <p>
                                     <label for="donde">Donde estamos</label>
                                     <input type="checkbox" name="donde" id="donde">
-                                </p>
-                                <p>
-                                    <label for="todas">Todas</label>
-                                    <input type="checkbox" name="todas" id="todas">
-                                </p>
+                                </p>                               
                             </fieldset>
                         </fieldset>    
                             <p><label for="total">Presupuesto estimado:</label><br>
@@ -66,12 +66,16 @@
                     <div>
                         <p><label for="mensaje">Adelántame tu propuesta:</label><br>
                         <textarea  name="mensaje" id="mensaje" cols="39" rows="10"></textarea></p>
-                        <p><input type="checkbox" name="lopd" id="lopd" onclick="aceptalopd(this.checked)"><label for="lopd"> Acepte nuestra política de privacidad</label></p>
+                        <p><input type="checkbox" name="lopd" id="lopd" onchange="mirarLopd(this)"><label for="lopd"> Acepte nuestra política de privacidad</label></p>
                         <div class="botones">                    
-                            <input id="btnSubmit" class="boton" type="submit" value="enviar" onclick="validar(this.form);return false">
+                            <input id="btnSubmit" class="boton" type="submit" value="enviar" disabled=true onclick="validar(this.form);return false">
                             <input id="btnReset" class="boton" type="reset" value="borrar" onclick="resetbtnSubmmit()">
                         </div>
                     </div>
                 </div>
-            </form>             
+            </form>
+                         
     </div>
+<script>
+   
+</script>

@@ -327,6 +327,7 @@ img.icono{
     font-family: 'Tillana';
     border-radius: 0;
     border: 0;
+    
 }
 .botones{        
     padding: 5%;
@@ -389,6 +390,12 @@ img.icono{
     bottom: 0;
     left: 0;
 }
+legend{
+    font-family: 'Teko';
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
 /*fin estilos presupuesto*/
 
 /*estilos galeria dinámica*/

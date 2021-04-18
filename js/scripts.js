@@ -1,6 +1,8 @@
 var fuera=false;
 var saludo;
 var objetoHttp=null;
+
+
 const CUERPOINICIAL = 'cuerpoInicio.html';
 const XMLNOTICIAS = 'xml/rss.xml';
 const REFERENCIAMAIN=$('main');
@@ -54,6 +56,7 @@ function iniciar(){
         $('#contenedor-secundario').css('display','block');
     }
     saludo = setTimeout(mensaje,5000);
+    
 }
 
 function mostrarBienvenida(){
@@ -169,25 +172,10 @@ $(document).ready(function()
 
             $(this).css('display','none');
             
-        })
+        });
 
         
 });
-
-
-
-function aceptalopd(opcion)
-{
-    if (opcion)/*acepta la lopd habilitamos boton submit*/
-    {
-        document.getElementById('btnSubmit').disabled=false;
-
-    }
-    else/*no acepta la lopd deshabilitamos boton submit*/
-    {
-        document.getElementById('btnSubmit').disabled=true;
-    }
-}
 
 function resetbtnSubmmit()
 {
@@ -650,7 +638,76 @@ function calcularRuta(){
     }
 
 }
+const CORPORATIVO=500;
+const PORTFOLIO=450;
+const TIENDA=700;
+const MAGAZINE=400;
+const OPCION = 400;
+let descuento=0;
+
+function mirarLopd(check){
+    
+    if($('#lopd').is(':checked')){
+        $('#btnSubmit').prop('disabled',false);
+    }else{
+        $('#btnSubmit').prop('disabled',true);
+    }
+}
+
 
 function calcularPresupuesto(){
-    console.log("aqui calculamos el presupuesto cada vez que haya un cambio en el fieldset");
-}
+    //console.log($(this));
+    let presupuesto = 0;
+    let base = 0;
+    let tiempo=1;
+    let tipoPagina = $(':selected').val();
+    switch (tipoPagina) {
+        case 'corporativo':
+            base = CORPORATIVO;
+            break;
+        case 'portfolio':
+            base = PORTFOLIO;
+            break;
+        case 'tienda':
+            base = TIENDA;
+            break;
+        case 'magazine':
+            base = MAGAZINE;
+            break;
+        default:
+            base=0;
+            break;
+    }
+    tiempo=$('plazo').val();
+    
+    if ((tiempo<1)||(tiempo==null)){
+        tiempo=1;
+    }
+    switch (tiempo) {
+        case 1:
+            descuento = 0.05;
+            break;
+        case 2:
+            descuento = 0.1;
+            break;
+        case 3:
+            descuento = 0.15;
+            break;
+        default:
+            descuento = 0.2;
+            break;
+    }    
+    var extras = $('input:checkbox:checked');
+    var valorExtras=0;
+    extras.each( function(){
+        if($(this).prop("id")!="lopd"){
+            valorExtras=valorExtras+400;
+        }
+    })
+    let rebaja = (base+valorExtras)*descuento
+    presupuesto = (base+valorExtras)-rebaja;
+    console.log(presupuesto);
+    $('#total').val(presupuesto+'€');
+    }
+
+
