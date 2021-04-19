@@ -1,32 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="css/css-reset.css">
-    <link rel="stylesheet" href="css/comun.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Manuel Fernández Esteban">
-    <meta name="description" content="Portafolio de Manuel Fernández Esteban, 
-    podrán ver mi trabajo, como contactar conmigo y descargar una copia de mi currículum si lo desean">
-    <meta name="locality" content="Málaga, Costa del Sol, Andalucía, España, Europa">
-    <meta name="robots" content="index,follow">
-    <meta name="category" content="Spanish, Spain, Desarrollo web">
-    <title>Portfolio de Manuel Fernández Esteban</title>
+    <link rel="stylesheet" href="css/css-reset.css">
+    <link rel="stylesheet" href="css/comun.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
 </head>
-
-<body onload="iniciar()">
-    <div class="contenedor-global">
-        <header>
+<body>
+    <div id="contenedor-global" class="contenedor-global">
+        <header id="header">
             <div class="caja-logo">
                 <a href="cuerpoInicio.html" title="home">
-                    <h1>MFE</h1>
+                    <h1 class="logo">MFE</h1>
                 </a>
-            </div>            
+            </div>
             <nav class="menu">
-                <ul>
+                <ul class="lista-menu">
                     <li><a class="menu-enlace seleccionado" href="cuerpoInicio.html" title="Home">Home</a></li>
                     <li><a class="menu-enlace" href="cuerpoPortfolio.html" title="PortFolio">PortFolio</a></li>
                     <li><a class="menu-enlace" href="cuerpoContacto.html"
@@ -36,14 +28,13 @@
                 </ul>
             </nav>
             <div class="menuresponsive">
-                <p id="opcion"></p>
                 <input type="checkbox">
                 <i class="barras"><img src="ico/001-menu.svg" alt="menu abrir"></i>
                 <i class="cruz"><img src="ico/002-cancel.svg" alt="menu cerrar"></i>
                 <nav>
                     <ul>
                         <li>
-                            <div class="espacio"></div>
+                            <div class="espacio"><a href="#"></a></div>
                         </li>
                         <li><a class="menu-enlace" href="cuerpoInicio.html" target="_self">Home</a></li>
                         <li><a class="menu-enlace" href="cuerpoPortfolio.html" target="_self">Portfolio</a></li>
@@ -54,23 +45,42 @@
             </div>
         </header>
         <main id="main">
-
-        </main>
-        <div class="caja-bienvenida">
-            <div class="pop-up">
-                <div class="bandaSuperior">                    
-                </div>
-                <div class="contenedor-popup">
-                    <div class="contenido-popup">
-                        <h3>Bienvenidos!</h3>
-                        <p>Gracias por visitar mi portfolio</p>
-                        <button id="boton-bienvenida" class="boton">Cerrar</button>
-                    </div>                    
-                    <h1 class="logo-bienvenida">MFE</h1>                    
-                </div>
-            </div>
+            
+    <aside id="noticias" class="noticias">
+        <div class="caja-disparador">
+            <p id="disparador" >Noticias</p></a> 
+            <div id="cajaNoticias"></div>                                 
         </div>
+        
+    </aside>            
+    <div id="contenedor-secundario" class="contenedor-secundario">
+        <section class="bienvenida">
+            <h1>Hola!</h1>
+            <p class="parrafo-bienvenida">
+                Gracias por visitar mi página, soy Manuel Fernández Esteban, <br>
+                este es mi trabajo como desarrollador web hasta el momento, <br>
+                sé que no es mucho pero Roma no se hizo en un día. <br>
+                Puedes descargar una copia de mi currículum, <br>
+                o rellenando un formulario solicitar un presupuesto. 
+            </p> 
+        </section>
+        <section class="trabajos">
+            <div class="item-trabajo">
+                <a class="nodecoracion" href="portfolio.html#peluqueria">
+                    <h2>Peluquería y estética Isabel</h2>
+                </a>                    
+            </div>
+            <img class="miniatura-bienvenida" src="img/peluqueria-home-1024.PNG" alt="imagen home">
+            <div class="item-trabajo">
+                <a class="nodecoracion" href="portfolio.html#offbeat"><h2>Portfolio OffBeat Fotovisuales</h2></a>                                          
+            </div>
+            <img class="miniatura-bienvenida" src="img/offbeat-home.PNG" alt="imagen home">
+        </section>
+    </div>
+    <div id="caja"></div>
+    
 
+        </main>       
         
         <footer>
         <div class="caja-logo">
@@ -86,10 +96,5 @@
 </div>
 <script type="text/JavaScript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKM9W66UL5ENSfoAiajVbE4fRuhwXsgoU"></script>
 <script src="js/scripts.js"></script>
-<script src="js/eventos.js"></script>
-<script src="js/funcionesmapa.js"></script>
-<script src="js/calculopresupuesto.js"></script>
-</body>
-
-
+</body>>
 </html>

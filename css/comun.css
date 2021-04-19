@@ -218,7 +218,7 @@ footer{
     padding: 10px;
     background-color: black;    
 }
-.logo{
+.caja-logo h1{
     font-size: 40px;
     font-weight: bold;
     color: white;
@@ -633,7 +633,7 @@ legend{
         list-style-type: none;
         font-family: 'Tillana';
     }
-    .lista-menu{
+    .menu ul{
         list-style-type: none;
         display: flex;
         flex-direction: row;    
