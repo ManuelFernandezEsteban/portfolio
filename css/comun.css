@@ -70,6 +70,7 @@ main{
 /*menu responsive*/
 #opcion{
     color: white;
+    align-self:flex-end;
 }
 .menuresponsive{
     display: block;
@@ -515,22 +516,6 @@ legend{
     height: 40px;
     background: black;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*fin estilos galeria dinamica*/
 
 

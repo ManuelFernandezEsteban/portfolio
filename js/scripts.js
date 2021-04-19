@@ -127,36 +127,32 @@ $(document).ready(function () {
         let destino = ($(this).attr('href'));
         $('.seleccionado').removeClass('seleccionado');
         $(this).addClass('seleccionado');
-
+        $('#opcion').empty();
         switch (destino) {
-            case "cuerpoInicio.html":
-                $('#opcion').empty();
+            case "cuerpoInicio.html":                
                 $('#opcion').append("Home");
                 break;
-            case "cuerpoPortfolio.html":
-                $('#opcion').empty();
+            case "cuerpoPortfolio.html":                
                 $('#opcion').append("Portfolio");
                 break;
-            case "cuerpoContacto.html":
-                $('#opcion').empty();
+            case "cuerpoContacto.html":                
                 $('#opcion').append("Contacto");
                 break;
-            case "cuerpoPresupuesto.html":
-                $('#opcion').empty();
+            case "cuerpoPresupuesto.html":                
                 $('#opcion').append("Presupuesto");
                 break;
                                 
-            default:
-                $('#opcion').empty();
+            default:                
                 $('#opcion').append("Home");
                 break;
         }
         
        // $('.menuresponsive ul').css('display','none');
-       // $('.menuresponsive checkbox').prop('checked',true);
+        $('.menuresponsive').children('input').prop('checked',false);
+        console.log($('.menuresponsive').children('input'));
         navega(destino);
     });
-
+   
 
     $(window).resize(function () {//cerramos el panel de noticias
         if (fuera) {
@@ -710,6 +706,7 @@ function calcularPresupuesto() {
         
         if (tiempo < 0) {
             tiempo = 0;
+            $('#plazo').val(0);
         }
         switch (tiempo) {
             case '1':
