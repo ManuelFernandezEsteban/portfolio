@@ -647,7 +647,7 @@ legend{
         display: inline-block;
     }
     
-    .lista-menu li:hover{
+    li:hover{
         background-color: white;
     }
     .menu-enlace:hover{

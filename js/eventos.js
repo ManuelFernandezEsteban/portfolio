@@ -1,6 +1,7 @@
 $(document).ready(function () {    
-
-    REFERENCIAMAIN.on('click', '.caja-disparador p', function () { //controla el despligue del aside de noticias
+    const REFERENCIAMAIN = $('main');
+    
+  REFERENCIAMAIN.on('click', '.caja-disparador p', function () { //controla el despligue del aside de noticias
 
         if (fuera) {
             fuera = false;
