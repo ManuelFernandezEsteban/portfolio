@@ -1,0 +1,19 @@
+[{"id":"0",
+    "src":"img/offbeat-home.PNG",
+    "titulo":"Donde estamos",
+    "descripcion":"Pantalla donde estamos, maquetado con flex y uso de al libreria goglle Maps"
+},
+{
+    "id":"1",
+    "src":"img/offbeat-galeria.PNG",
+    "titulo":"Home",
+    "descripcion":"Pantalla home, menu sticky-bar a lo largo de la imagen central"
+},
+{
+    "id":"2",
+    "src":"img/offbeat-contacto.PNG",
+    "titulo":"home",
+    "descripcion":"Pantalla home, detalle de cajas maquetadas con flex"
+}
+
+]

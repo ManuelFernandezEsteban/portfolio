@@ -12,7 +12,7 @@ imagenes.forEach(imagen =>{
 })
 
 contenedorLight.addEventListener('click', (e) =>{
-    if(e.target !== imagenesLight){
+    if(e.target !== imagenGrande){
         contenedorLight.classList.remove('show');
        // imagenesLight.classList.remove('showImage');
         textoLight.classList.remove('showImage');
