@@ -1,44 +1,40 @@
 
     <section id="peluqueria" class="portfolio">
         <h1>Trabajos</h1>
-        <div class="caja-portfolio"> 
-            <div class="resumen-trabajo">
-                <h2>Peluquería y estética Isabel</h2>
-                <p>
-                    Mi primer trabajo "profesional", diseño completo movil-first 
-                    sentando las bases para el posicionamiento SEO.
-                </p>
-            </div> 
-            <div class="visor">   
-                <ul class="slider">
-                    <li id="slidepeluqueria1"><img class="imagen" src="img/peluqueria-home-1024.PNG" alt="imagen home"></li>
-                    <li id="slidepeluqueria2"><img class="imagen" src="img/peluqueria-home-1200.PNG" alt="imagen galeria"></li>
-                    <li id="slidepeluqueria3"><img class="imagen" src="img/peluqueria-donde-1200.PNG" alt="imagen contacto"></li>  
-                                       
-                </ul>
-              
-                    <ul class="menu-slider">
-                        <li><a  href="#slidepeluqueria1"><img class="thumbnails" src="img/peluqueria-home-1024.PNG" alt="imagen home"></a></li>
-                        <li><a  href="#slidepeluqueria2"><img class="thumbnails" src="img/peluqueria-home-1200.PNG"  alt="imagen galeria"></a></li>
-                        <li><a href="#slidepeluqueria3"><img class="thumbnails" src="img/peluqueria-donde-1200.PNG" alt="imagen contacto"></a></li>
-                        
-                    </ul>
+        <div class="caja-portfolio">             
+            <article class="trabajo">
+                <div class="resumen-trabajo">
+                    <h2>Peluquería y estética Isabel</h2>
+                    <p>
+                        Mi primer trabajo "profesional", diseño completo movil-first 
+                        sentando las bases para el posicionamiento SEO.
+                    </p>
+                </div>
+                <section class="gallery" id="portafolio">
+                    <div class="contenedor">                      
+                      <div class="contenedor-galeria">                       
+                        <img src="" alt="" numero="" class="img-galeria">
+                        <img src="" alt="" numero="" class="img-galeria">
+                        <img src="" alt="" numero="" class="img-galeria">                   
+                      </div>
+                    </div>
+                  </section>
                   
-            </div>                    
-            <div class="miniaturas">
-                <div class="caja-miniatura">
-                    <img class="miniatura" src="img/peluqueria-home-1024.PNG" alt="imagen home">
-                </div>
-                <div class="caja-miniatura">
-                    <img class="miniatura" src="img/peluqueria-home-1200.PNG" alt="imagen galeria">
-                </div>
-                <div class="caja-miniatura">
-                    <img class="miniatura" src="img/peluqueria-donde-1200.PNG" alt="imagen servicios">                        </div>
-                
-                </div>
-            </div>  
-        </div>
-        <div id="offbeat" class="caja-portfolio"> 
+                  <section class="imagen-light">
+                    <i class="fas fa-times close"></i>
+                    <div class="container">
+                        <div class="agregar-texto">
+                            <h1></h1>
+                            <p></p>
+                        </div>
+                        <img src="" alt="" class="imagenGaleria">
+                    </div>
+                    
+                  </section>
+                  
+    
+            </article>
+    <!--    <div id="offbeat" class="caja-portfolio"> 
             <div class="resumen-trabajo">
                 <h2>OffBeat Fotovisuales</h2>
                 <p>
@@ -73,6 +69,11 @@
                     <img class="miniatura" src="img/offbeat-contacto.PNG" alt="imagen contacto">
                 </div>                        
             </div>                           
-        </div>
+        </div>-->
     </section>
-
+    <script src="js/eventos-galeria.js"></script>
+    <script>
+      $(document).ready(function(){
+        traerFotos();
+      });
+    </script>
