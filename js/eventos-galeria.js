@@ -1,6 +1,7 @@
 
 function iniciarGaleria(){
-    const imagenes = document.querySelectorAll('.img-galeria');
+    const imagenesPeluqueria = document.querySelectorAll('#portafolioPeluqueria .img-galeria');
+    const imagenesOffbeat = document.querySelectorAll('#portafolioOffbeat .img-galeria');
     //const imagenesLight = document.querySelector('.agregar-imagen');
     const textoLight = document.querySelector('.agregar-texto');
     const contenedorLight = document.querySelector('.imagen-light');
@@ -12,7 +13,7 @@ function iniciarGaleria(){
     cargarFotos();
 
 
-    imagenes.forEach(imagen => {
+    imagenesPeluqueria.forEach(imagen => {
         imagen.addEventListener('click', () => {
             aparecerImagen(imagen)
 
@@ -40,24 +41,39 @@ function iniciarGaleria(){
     }
 
     function cargarFotos() {
-        fetch("json/peluqueria.json")
+        fetch("json/trabajos.json")
         .then(response=>response.json())
         .then(data=>{
-            var objetoFotos=data;
-            fotosPeluqueria=data;
+            
+            var objetoFotos;
+            var trabajo;
+            for (var i=0; i<=data.length-1;i++){
+                trabajo=data[i].trabajo;
+                switch (trabajo) {
+                    case 'portafolioPeluqueria'://cargo fotos en pluqueria
+                        
+                        break;
+                    case 'portafolioOffBeat'://cargo fotos en offbeat
+                        
+                    break;
+                    default:
+                        break;
+                }                
+            }
+            
             console.log(objetoFotos);
             var limite = 0;
-            if (objetoFotos.length > imagenes.length) {
-                limite = imagenes.length - 1;
+            if (objetoFotos.length > imagenesPeluqueria.length) {
+                limite = imagenesPeluqueria.length - 1;
             }
             else {
                 limite = objetoFotos.length - 1;
             }
             console.log(limite);
             for (var i = 0; i <= limite; i++) {
-                imagenes[i].setAttribute('src', objetoFotos[i].src);
-                imagenes[i].setAttribute('numero', i);
-                console.log(imagenes[i]);
+                imagenesPeluqueria[i].setAttribute('src', objetoFotos[i].src);
+                imagenesPeluqueria[i].setAttribute('numero', i);
+                console.log(imagenesPeluqueria[i]);
             }
         })
     }
