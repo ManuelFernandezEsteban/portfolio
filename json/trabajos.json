@@ -1,6 +1,8 @@
 [
     {
         "trabajo": "portafolioPeluqueria",
+        "nombre":"Peluquería y estética Isabel",
+        "descripcion":"Mi primer trabajo \"profesional\", diseño completo movil-first  sentando las bases para el posicionamiento SEO.",
         "fotos": [
             {
                 "id": 0,
@@ -24,6 +26,8 @@
     },
     {
         "trabajo": "portafolioOffbeat",
+        "nombre":"OffBeat Fotovisuales",
+        "descripcion":"Mi segundo trabajo \"profesional\", deuda pendiente por fin resuelta, diseño pensado para desktop, ya que es en una pantalla grande donde podemos apreciar el trabajo realizado por los fotógrafos. En este trabajo nace la idea de usar un slider para ver imagenes sin usar Javascript. También aquí se tienen muy encuenta la base para el posicionamiento SEO.",
         "fotos": [
             {
                 "id": 0,

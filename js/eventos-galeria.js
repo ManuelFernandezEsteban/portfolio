@@ -3,6 +3,10 @@ function iniciarGaleria() {
     const PELUQUERIA = 'portafolioPeluqueria';
     const OFFBEAT = 'portafolioOffbeat';
     const RUTATRABAJOS = "json/trabajos.json";
+    const RESUMENPELUQUERIAH2=document.querySelector("#peluqueria h2");
+    const RESUMENPELUQUERIAP=document.querySelector("#peluqueria p");
+    const RESUMENOFFBEATH2=document.querySelector("#offbeat h2");
+    const RESUMENOFFBEATP=document.querySelector("#offbeat p");
     const imagenesPeluqueria = document.querySelectorAll('#portafolioPeluqueria .img-galeria');
     const imagenesOffbeat = document.querySelectorAll('#portafolioOffbeat .img-galeria');    
     const textoLight = document.querySelector('.agregar-texto');
@@ -68,6 +72,8 @@ function iniciarGaleria() {
                     objetoFotos = data[j].fotos;
                                       
                     if (trabajo == PELUQUERIA) {//cargo fotos en pluqueria 
+                        RESUMENPELUQUERIAH2.innerHTML=data[j].nombre;
+                        RESUMENPELUQUERIAP.innerHTML=data[j].descripcion;
                         fotosPeluqueria = objetoFotos;
                         if (objetoFotos.length > imagenesPeluqueria.length) {
                             limite = imagenesPeluqueria.length - 1;
@@ -84,7 +90,9 @@ function iniciarGaleria() {
                         }
                     }
                     else (trabajo == OFFBEAT) //cargo fotos en offbeat
-                    {                 
+                    {             
+                        RESUMENOFFBEATH2.innerHTML=data[j].nombre;
+                        RESUMENOFFBEATP.innerHTML=data[j].descripcion;    
                         fotosOffbeat = objetoFotos;
                         if (objetoFotos.length > imagenesOffbeat.length) {
                             limite = imagenesOffbeat.length - 1;
