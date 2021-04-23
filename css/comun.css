@@ -1,28 +1,31 @@
 /*Estilos comunes*/
 
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@600&family=Tillana:wght@400;800&family=Ubuntu&display=swap');
-header{
-    background-color: black;    
-    width: 100%;  
-    position: sticky;
-    top:0; 
-    z-index: 3;
-}
-main{
-    display: flex;
-    flex-direction: row;    
-}
+
+/* inicio estilos aside*/
 .noticias{
-    border: 2px solid black;    
-    flex-grow: 1;        
+    border: 2px solid black;              
     order: 2;  
     width: 30px;
     background-color:black;        
     color: white;
     height: auto;  
 }
-    
-
+.contenido-caja-noticia{
+    padding: 5px;
+    font-family: 'Ubuntu';    
+}   
+.contenido-caja-noticia a{
+    color: white;
+}
+.contenido-caja-noticia a:visited{
+    color: white;
+}
+.separador
+{
+    border: 0.3px solid white; 
+    margin: 5px;
+}
 
 .caja-disparador{
     display: flex;
@@ -44,12 +47,31 @@ main{
 }
 
 #cajaNoticias{
-    display: none;        
+    display: none;      
+        
 }
+
+/*fin aside noticias*/
+/*estilos contenedor principal*/
 .contenedor-secundario{
     flex:4;
 }
+header{
+    background-color: black;    
+    width: 100%;  
+    position: sticky;
+    top:0; 
+    z-index: 2;
+}
+main{
+    display: flex;
+    flex-direction: row;    
+}
 /*menu responsive*/
+#opcion{
+    color: white;
+    align-self:flex-end;
+}
 .menuresponsive{
     display: block;
 }
@@ -69,7 +91,7 @@ main{
 }
 
 .espacio{
-    color: black;
+    color: white;
     text-decoration: none;
     display: block;
     padding: 10px 20px;
@@ -118,6 +140,7 @@ ul{
 .menuresponsive input:not(:checked) ~ .cruz {
     display: none;
 }
+
 /*fin menu responsive*/
 h1,h2,h3,h4,h5,h6{
     font-family: 'Teko';
@@ -192,9 +215,10 @@ footer{
     display: inline-block;   
     width: auto;
     height: 50px;
-    padding: 10px;    
+    padding: 10px;
+    background-color: black;    
 }
-.logo{
+.caja-logo h1{
     font-size: 40px;
     font-weight: bold;
     color: white;
@@ -233,52 +257,133 @@ img{
 /*fin estilos home*/
 /*inicio estilos portfolio*/
 .portfolio{
-    flex-flow: column nowrap;
+    flex-flow: column;
     display: flex;        
     justify-content: flex-start;    
     margin: auto;    
 }
 .caja-portfolio{
     display: flex;
-    flex-flow: column nowrap;    
-}
-.visor{
-    display: none;
-}
-.miniaturas{
-    flex: 1;
-    display: flex;
-    flex-flow: row nowrap;
-    overflow-y: hidden;
-    overflow-x: auto;
-    width: auto;
-    height: auto;
-    padding: 10px;
-    white-space: nowrap;
-    scrollbar-width: none;    
-}
-
-.caja-miniatura{
-    width: auto;
-    height: auto;    
-    padding: 0px 5px 0px 5px;
-    display: block;
-}
-.miniatura{
-    width: 300px;
-    height: 100%;
-    margin: auto;
+    flex-flow: column;    
 }
 
 .resumen-trabajo{
     flex: 2;    
 }
+/*estilos galeria dinámica*/
+
+.trabajo{
+    display: flex;
+    flex-direction: column;    
+    justify-content: center;
+    flex: 1;    
+    align-items: center;
+    
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1200px;
+    overflow: hidden;
+    margin: auto;
+    padding: 60px 0;
+}
+.galeria {
+    background: #f2f2f2;    
+    display: flex;
+    flex: 2;
+}
+
+.contenedor-galeria{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.img-galeria {
+    object-fit:cover;   
+    width: 50%;
+    display: block;
+    margin-bottom: 15px;
+    box-shadow: 0 0 6px rgb(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.img-galeria:hover{
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.imagen-light{
+    position: fixed;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    top: 5%;
+    left: 0;    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transform: translate(100%);
+    transition: transform .3s ease-in-out;
+    z-index: 1;
+}
+.agregar-texto p{
+    font-family: 'Ubuntu';
+    font-size: 1em;     
+}
+.agregar-texto h1{
+    font-size: 2.5em;
+    font-family: 'Teko';
+}
+.container{
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+}
+
+.show{
+    transform: translate(0);
+}
+
+.agregar-texto {   
+    align-self: center;
+    padding-top: 20px;    
+    transition: transform .4s .3s;
+}
+.imagenGaleria{
+    object-fit: cover;
+    width: 100%;     
+    border-radius: 10px;
+    transform: scale(0);
+    transition: transform .4s .3s;
+}
+.showImage{
+    transform: scale(1);
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    cursor: pointer;
+    color:black;
+    font-size: 25px;
+}
+/*fin estilos galeria dinamica*/
 /*fin estilos portfolio*/
 /*inicio estilos contacto*/
 
 .contenedor-contacto{
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column;
     justify-content: flex-start;
 }
 
@@ -289,6 +394,7 @@ img.icono{
     display: flex;
     flex-direction: column;  
     align-items: flex-start;    
+    flex-grow: 4;
 }
 .contacto{
     display: flex;
@@ -307,6 +413,7 @@ img.icono{
     font-family: 'Tillana';
     border-radius: 0;
     border: 0;
+    
 }
 .botones{        
     padding: 5%;
@@ -320,21 +427,38 @@ img.icono{
     font-family: Ubuntu;
 }
 
-.mapa{
-    margin: auto;
-    width: 100%;      
+.contenedor-formulario-contacto{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
-img .mapa{
-    object-fit: cover;
+#mapa{
+    /*position: relative;*/
+    width: 100%;
+    height: 600px;
+}
+#ruta{
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin: auto;
 }
 
 /*fin estilos contacto*/
 /*inicio estilos presupuesto*/
-
+.contenedor-presupuesto{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
 .caja-formulario{
     display: flex;
     flex-flow: column nowrap;
     margin-bottom: 100px;
+   
 }
 .caja-formulario:nth-of-type(4){
     flex: 2;
@@ -352,15 +476,86 @@ img .mapa{
     bottom: 0;
     left: 0;
 }
+legend{
+    font-family: 'Teko';
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
 /*fin estilos presupuesto*/
+
+
+/*bienvenida*/
+
+.bandaSuperior{
+    background-color: black;
+    width: 100%;
+    min-height: 40px;
+}
+.caja-bienvenida{        
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;   
+}
+
+.pop-up{
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+}
+
+.contenido-popup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido-popup h3{
+    padding-top: 20px;
+}
+
+.contenedor-popup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-bienvenida{
+    font-size: 40px;
+    font-weight: bold;
+    color: black;
+    align-self: flex-end;
+}
+/*fin caja bienvenida*/
 
 
 /*media querys*/
 /*tamaño ipad*/
 @media only screen and (min-width:768px){
 
+    .imagenGaleria{
+        width: 100%;
+    }
+    .contenedor-galeria{
+        flex-direction: column;
+        align-items: center;
+    }
+    .img-galeria {
+        width: 60%;
+    }
+    /*.galeria{
+        height: 800px;
+    }*/
     .noticias{
-        flex-grow:4;
+       /* flex-grow:4;*/
         width: 50px;        
     }
 
@@ -379,17 +574,26 @@ img .mapa{
         display: none;
     }
     .caja-formulario{        
-        flex-flow: row wrap;       
+        flex-flow: row nowrap;       
     }
     .input-formulario{
         width: 100%;
     }
 }   
+
+
 /*tamaño laptop*/
 @media only screen and (min-width:1024px){
 
+    .trabajo{
+        flex-direction: row;
+    }
+
+    #opcion{
+        display: none;
+    }
     .noticias{
-        flex-grow:2;
+        /*flex-grow:2;*/
         width: 80px;        
     }
 
@@ -412,7 +616,7 @@ img .mapa{
         list-style-type: none;
         font-family: 'Tillana';
     }
-    .lista-menu{
+    .menu ul{
         list-style-type: none;
         display: flex;
         flex-direction: row;    
@@ -426,7 +630,7 @@ img .mapa{
         display: inline-block;
     }
     
-    .lista-menu li:hover{
+    li:hover{
         background-color: white;
     }
     .menu-enlace:hover{
@@ -457,71 +661,11 @@ img .mapa{
         padding: 10px;
         line-height: 2;
     }
-    .visor{
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-items: flex-end;
-        position: relative;
-        margin-right: 30px;
-        height: 600px;
-        flex: 2;
-
-    }
-    .imagen{
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-        border: 2px solid black;
-        display: block;
-    }
-    .portfolio{
-        flex-flow: column wrap;
-        display: flex;        
-        justify-content: flex-start;           
-    }    
-    
-    .caja-portfolio{
-        display: flex;
-        flex-flow: row wrap; 
-        padding-bottom: 100px;
-           
-    }
     .resumen-trabajo{
-        display: flex;
-        margin-top: 100px;
+        display: flex;        
         flex: 1;       
         padding: 50px;
-        display: block;
-        align-self: flex-end;
-        margin-right: 50px;
-    }
-    ul.slider li{
-        opacity: 0;
-        transition: opacity 0.5s;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
-    ul.slider li:first-child{
-        opacity: 1;
-    }
-    ul.slider li:target{
-        opacity: 1;
-    }   
-
-    .menu-slider{
-        display: flex;
-        flex-direction: column;
-       
-        position: absolute;
-        right: 100%;
-              
-    }
-    
-    .thumbnails{
-        width: 100px;
-        height: 100px;
+        display: block;        
         
     }
     
@@ -531,7 +675,6 @@ img .mapa{
     .general{
         padding: 20px;
     }
-
     .caja-formulario:last-child{
         align-self: flex-end;
     }
@@ -543,21 +686,34 @@ img .mapa{
         flex-flow: row wrap;
         justify-content: center;
     }
+    .contenedor-formulario-contacto{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
     .general:first-child{
         flex-grow: 2;
         flex-wrap: nowrap;
     }
     .caja-formulario{
-        flex-wrap: wrap;
+        flex-wrap: wrap;        
     }
-    .contenedor-presupuesto{
-        text-align: center;
-    }
+    
     .caja-formulario{
         justify-content: center;
     }
     .bienvenida{        
         flex-direction: row;
+    }
+    .contenedor-galeria{
+        flex-direction: row;
+    }
+    .img-galeria{
+        width: 30%;
+    }
+    .imagenGaleria{
+        width: 60%;
     }
     
 }

@@ -1,0 +1,48 @@
+[
+    {
+        "trabajo": "portafolioPeluqueria",
+        "fotos": [
+            {
+                "id": 0,
+                "src": "img/peluqueria-donde-1200.PNG",
+                "titulo": "Donde estamos",
+                "descripcion": "Pantalla donde estamos, maquetado con flex y uso de al libreria goglle Maps"
+            },
+            {
+                "id": 1,
+                "src": "img/peluqueria-home-1024.PNG",
+                "titulo": "Home",
+                "descripcion": "Pantalla home, menu sticky-bar a lo largo de la imagen central"
+            },
+            {
+                "id": 2,
+                "src": "img/peluqueria-home-1200.PNG",
+                "titulo": "home",
+                "descripcion": "Pantalla home, detalle de cajas maquetadas con flex"
+            }
+        ]
+    },
+    {
+        "trabajo": "portafolioOffbeat",
+        "fotos": [
+            {
+                "id": 0,
+                "src": "img/offbeat-home.PNG",
+                "titulo": "Home",
+                "descripcion": "Pantalla home, maquetado con flex"
+            },
+            {
+                "id": 1,
+                "src": "img/offbeat-galeria.PNG",
+                "titulo": "Galería",
+                "descripcion": "Pantalla galería, galería dinámica implementada mediante HTML y CSS"
+            },
+            {
+                "id": 2,
+                "src": "img/offbeat-contacto.PNG",
+                "titulo": "Contacto",
+                "descripcion": "Pantalla contacto, enlaces de iconos a descarga de archivos y enlaces externos"
+            }
+        ]
+    }
+]
