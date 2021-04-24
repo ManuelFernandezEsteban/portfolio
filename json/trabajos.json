@@ -2,13 +2,13 @@
     {
         "trabajo": "portafolioPeluqueria",
         "nombre":"Peluquería y estética Isabel",
-        "descripcion":"Mi primer trabajo \"profesional\", diseño completo movil-first  sentando las bases para el posicionamiento SEO.",
+        "descripcion":"Mi primer trabajo \"profesional\", diseño completo movil-first, sentando las bases para el posicionamiento SEO, uso de las API's de GoogleMaps para el mapa de donde estamos.",
         "fotos": [
             {
                 "id": 0,
                 "src": "img/peluqueria-donde-1200.PNG",
                 "titulo": "Donde estamos",
-                "descripcion": "Pantalla donde estamos, maquetado con flex y uso de al libreria goglle Maps"
+                "descripcion": "Pantalla donde estamos, maquetado con flex y uso de al libreria Google Maps"
             },
             {
                 "id": 1,
@@ -19,7 +19,7 @@
             {
                 "id": 2,
                 "src": "img/peluqueria-home-1200.PNG",
-                "titulo": "home",
+                "titulo": "Home",
                 "descripcion": "Pantalla home, detalle de cajas maquetadas con flex"
             }
         ]
