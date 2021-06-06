@@ -1,7 +1,7 @@
-$(document).ready(function () {    
+$(document).ready(function () {
     const REFERENCIAMAIN = $('main');
-    
-  REFERENCIAMAIN.on('click', '.caja-disparador p', function () { //controla el despligue del aside de noticias
+
+    REFERENCIAMAIN.on('click', '.caja-disparador p', function () { //controla el despligue del aside de noticias
 
         if (fuera) {
             fuera = false;
@@ -33,7 +33,7 @@ $(document).ready(function () {
             $('#cajaNoticias').css('padding-top', '0px');
             $('.caja-disparador p').css('align-self', 'start');
             $('.caja-disparador p').css('top', '0');
-            $('.caja-disparador p').css('transform', 'rotate(0deg)');            
+            $('.caja-disparador p').css('transform', 'rotate(0deg)');
         }
     })
 
@@ -45,7 +45,7 @@ $(document).ready(function () {
     $('.caja-logo a').on('click', function (event) {
 
         event.preventDefault();
-        let destino = ($(this).attr('href'));        
+        let destino = ($(this).attr('href'));
         navega(destino);
     });
 
@@ -56,27 +56,30 @@ $(document).ready(function () {
         $('.seleccionado').removeClass('seleccionado');
         $(this).addClass('seleccionado');
         $('#opcion').empty();
+        console.log(destino);
         switch (destino) {
-            case "cuerpoInicio.html":                
+            case "cuerpoInicio.html":
                 $('#opcion').append("Home");
                 break;
-            case "cuerpoPortfolio.html":                
+            case "cuerpoPortfolio.html":
                 $('#opcion').append("Portfolio");
                 break;
-            case "cuerpoContacto.html":                
+            case "cuerpoContacto.html":
                 $('#opcion').append("Contacto");
                 break;
-            case "cuerpoPresupuesto.html":                
+            case "cuerpoPresupuesto.html":
                 $('#opcion').append("Presupuesto");
                 break;
-                                
-            default:                
+            case "cuerpoLogin.html":                
+                $('#opcion').append("Área usuarios");
+                break;
+            default:
                 $('#opcion').append("Home");
                 break;
-        } 
-        $('.menuresponsive').children('input').prop('checked',false);
+        }
+        $('.menuresponsive').children('input').prop('checked', false);
         navega(destino);
-    });   
+    });
 
     $(window).resize(function () {//cerramos el panel de noticias
 
@@ -94,7 +97,7 @@ $(document).ready(function () {
     });
 
     $('.ficha').on('click', function () {
-        
+
         let fichas = $('.ficha');
         fichas.each(function () {
             $(this).addClass('Oculta');

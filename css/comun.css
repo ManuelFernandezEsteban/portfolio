@@ -207,6 +207,9 @@ footer{
     background-color: black;
     display: flex;
     align-items: center;
+   /* position: fixed;
+    bottom: 0px;
+    left: 0px;*/
 }
 .blanco {
     color: white;
@@ -585,6 +588,9 @@ legend{
 /*tamaño laptop*/
 @media only screen and (min-width:1024px){
 
+    
+    
+
     .trabajo{
         flex-direction: row;
     }
@@ -682,6 +688,14 @@ legend{
 
 @media only screen and (min-width:1200px){
  
+
+    .wrapper-login{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        height: 800px; 
+    }
+
     .contenedor-contacto{
         flex-flow: row wrap;
         justify-content: center;
