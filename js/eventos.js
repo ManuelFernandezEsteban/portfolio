@@ -70,7 +70,7 @@ $(document).ready(function () {
             case "cuerpoPresupuesto.html":
                 $('#opcion').append("Presupuesto");
                 break;
-            case "cuerpoLogin.html":                
+            case "cuerpoLogin.php":                
                 $('#opcion').append("Área usuarios");
                 break;
             default:
@@ -120,4 +120,6 @@ $(document).ready(function () {
         $(this).css('display', 'none');
 
     });
+
+    
 });

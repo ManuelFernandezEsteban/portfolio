@@ -26,11 +26,12 @@
                 <a href="cuerpoInicio.html" title="home">
                     <h1>MFE</h1>
                 </a>
+                <div id="caja-login">
+                    
+                </div>
             </div>  
             
-           
-
-            <nav class="menu">
+            <nav class="menu">                
                 <ul>
                     <li><a class="menu-enlace seleccionado" href="cuerpoInicio.html" title="Home">Home</a></li>
                     <li><a class="menu-enlace" href="cuerpoPortfolio.html" title="PortFolio">PortFolio</a></li>
@@ -38,7 +39,7 @@
                             title="Datos de contacto y redes sociales">Contacto</a></li>
                     <li><a class="menu-enlace" href="cuerpoPresupuesto.html" title="Pide un presupuesto">Presupuesto</a>
                     </li>
-                    <li><a class="menu-enlace" href="cuerpoLogin.html" title="Area de usuarios">Usuarios</a>
+                    <li><a class="menu-enlace" href="cuerpoLogin.php" title="Area de usuarios">Usuarios</a>
                     </li>
                 </ul>
             </nav>
@@ -56,7 +57,7 @@
                         <li><a class="menu-enlace" href="cuerpoPortfolio.html" target="_self">Portfolio</a></li>
                         <li><a class="menu-enlace" href="cuerpoContacto.html" target="_self">Contacto</a></li>
                         <li><a class="menu-enlace" href="cuerpoPresupuesto.html" target="_self">Presupuesto</a></li>
-                        <li><a class="menu-enlace" href="cuerpoLogin.html" title="Area de usuarios">Usuarios</a>
+                        <li><a class="menu-enlace" href="cuerpoLogin.php" title="Area de usuarios">Usuarios</a>
                         </li>
                     </ul>
                 </nav>
@@ -99,6 +100,7 @@
 <script src="js/funcionesmapa.js"></script>
 <script src="js/calculopresupuesto.js"></script>
 <script src="js/eventos-galeria.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
 </body>
