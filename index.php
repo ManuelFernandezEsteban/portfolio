@@ -26,7 +26,7 @@
                 <a href="cuerpoInicio.html" title="home">
                     <h1>MFE</h1>
                 </a>
-                <div id="caja-login">
+                <div id="caja-login" class="color">
                     
                 </div>
             </div>  
@@ -39,7 +39,7 @@
                             title="Datos de contacto y redes sociales">Contacto</a></li>
                     <li><a class="menu-enlace" href="cuerpoPresupuesto.html" title="Pide un presupuesto">Presupuesto</a>
                     </li>
-                    <li><a class="menu-enlace" href="cuerpoLogin.php" title="Area de usuarios">Usuarios</a>
+                    <li><a class="menu-enlace" href="cuerpoLogin.html" title="Area de usuarios">Usuarios</a>
                     </li>
                 </ul>
             </nav>
@@ -57,7 +57,7 @@
                         <li><a class="menu-enlace" href="cuerpoPortfolio.html" target="_self">Portfolio</a></li>
                         <li><a class="menu-enlace" href="cuerpoContacto.html" target="_self">Contacto</a></li>
                         <li><a class="menu-enlace" href="cuerpoPresupuesto.html" target="_self">Presupuesto</a></li>
-                        <li><a class="menu-enlace" href="cuerpoLogin.php" title="Area de usuarios">Usuarios</a>
+                        <li><a class="menu-enlace" href="cuerpoLogin.html" title="Area de usuarios">Usuarios</a>
                         </li>
                     </ul>
                 </nav>

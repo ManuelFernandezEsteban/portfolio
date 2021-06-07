@@ -62,7 +62,13 @@ header{
     position: sticky;
     top:0; 
     z-index: 2;
+    
 }
+
+.oculta{
+    display: none;
+}
+
 main{
     display: flex;
     flex-direction: row;    
@@ -588,7 +594,9 @@ legend{
 /*tamaño laptop*/
 @media only screen and (min-width:1024px){
 
-    
+    #caja-login{
+        color: #f2f2f2;
+    }
     
 
     .trabajo{
@@ -674,7 +682,9 @@ legend{
         display: block;        
         
     }
-    
+    .color{
+        color: #f2f2f2;
+    }
     .contenedor-contacto{
         flex-flow: row wrap;
     }

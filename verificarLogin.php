@@ -21,16 +21,15 @@
         if ($resultado->num_rows>0){
             session_start();
             $_SESSION["valido"]='SI';
-            
-            while ($fila=$resultado->fetch_assoc()){
-                $_SESSION["usuario"]=$fila["nombreUsuario"];
-                $_SESSION["role"]=$fila["role"];
-                echo 1;
-            }
+            $userData = $resultado->fetch_assoc();
+            $data['status'] = 'ok';
+            $data['result'] = $userData;
         }else{
-            echo 0;
+            $data['status'] = 'error';
+            $data['result'] = '';
         }
-
+        mysqli_close($mysqli);
+        echo json_encode($data);
     }   
 
 

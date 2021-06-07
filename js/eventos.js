@@ -70,7 +70,7 @@ $(document).ready(function () {
             case "cuerpoPresupuesto.html":
                 $('#opcion').append("Presupuesto");
                 break;
-            case "cuerpoLogin.php":                
+            case "cuerpoLogin.html":                
                 $('#opcion').append("Área usuarios");
                 break;
             default:

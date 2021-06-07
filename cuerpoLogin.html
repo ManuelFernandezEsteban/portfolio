@@ -18,7 +18,8 @@
             <button type="button" id="enviar" class="btn btn-primary">Login</button>
             <div class="row col-6">
                 <p>¿No tienes cuenta?</p>
-                <p><a href="" title="Alta de usuarios">Regístrate</a></p>
+                <button type="button" id="BtnNuevoUsuario" class="btn btn-primary">Regístrate</button>
+                
             </div>
         </form>
 
@@ -27,13 +28,22 @@
 </div>
 <script>
     $().ready(function() {
+
+        $('#BtnNuevoUsuario').click(function(){
+            navega('nuevoUser.php');
+        })
+
+
         $('#enviar').click(function() {
             console.log('en login');
             let user = $('#Usuario').val();
             let pass = $('#Password').val();
             let datos = $('#formularioLogin').serialize();
             let url = "verificarLogin.php";
-            let dataType = "html";
+            let dataType = "json";
+            const cajaRespuesta = document.querySelector('#caja-login');;
+            let enlace;
+            let parrafo;
 
             $.ajax({
 
@@ -42,27 +52,27 @@
                 data: datos,
 
                 success: function(data) {
-                    if (data == 0) {
-                        console.log('login incorrecto');
-                        $('#respuesta').html("Usuario o contraseña incorrecta");
-                    } else {
+                    if (data.status == 'ok') {
+                    
                         console.log('logado');
                         $('#Usuario').val('');
                         $('#Password').val('');
-
-                        <?php
-                        session_start();
-                        if ($_SESSION["valido"] == 'SI') {
-
-                            $respuesta= "<span style='color:white'>Hola " . $_SESSION["usuario"] . "   </span>";
-                            $respuesta.= "<a style='color:white'>desconectar</a>";
-                        } else {
-                            $respuesta= "' no logado '";
-                        }
-
-                        ?>
-
-                        document.querySelector('#caja-login').innerHTML ="<?= $respuesta?>";
+                        let usuario = data.result.nombreUsuario;
+                        let rol = data.result.role;
+                        let respuesta = `Hola ${usuario} estas registrado como ${rol}   `;
+                                                 
+                        parrafo = document.createElement('span');
+                        parrafo.setAttribute('style','color:#f2f2f2');
+                        parrafo.className='color';
+                        parrafo.innerText=respuesta;
+                        
+                        cajaRespuesta.appendChild(parrafo);
+                        enlace = document.createElement('a');
+                        enlace.setAttribute('href','cerrarSesion.php');
+                        enlace.setAttribute('title','salir de la sesión');
+                        enlace.innerText='Salir';
+                        cajaRespuesta.appendChild(enlace);
+                        navega('usarios.html');                        
                     }
                 },
                 error: function() {
