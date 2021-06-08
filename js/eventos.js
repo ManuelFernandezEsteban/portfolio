@@ -78,7 +78,49 @@ $(document).ready(function () {
                 break;
         }
         $('.menuresponsive').children('input').prop('checked', false);
+        if (destino=='cuerpoLogin.html'){
+            if (user!=null){
+                
+                let datos = user;
+                let url = "verificarSiLogado.php";
+                let dataType = "text";               
+
+                $.ajax({
+
+                    type: "POST",
+                    url: url,
+                    data: datos,
+                    success:function(data){
+                        
+                        if (data=='ok'){
+
+                            console.log(user.roleLog);
+                            if (user.roleLog=='usuario'){
+                                destino='usuarios.html';
+                                console.log(destino);
+                            }
+                            else if (user.roleLog=='administrador'){
+                                destino='administrador.html';
+                                console.log(destino);
+                            }
+                            
+                        }
+                        navega(destino);
+                    },
+                    error: function() {
+                        console.log("error");
+                    },
+                    dataType: dataType
+                });
+            }
+             
+        }
         navega(destino);
+             
+        
+
+
+        
     });
 
     $(window).resize(function () {//cerramos el panel de noticias

@@ -36,8 +36,7 @@
 
         $('#enviar').click(function() {
             console.log('en login');
-            let user = $('#Usuario').val();
-            let pass = $('#Password').val();
+           
             let datos = $('#formularioLogin').serialize();
             let url = "verificarLogin.php";
             let dataType = "json";
@@ -59,7 +58,8 @@
                         $('#Password').val('');
                         let usuario = data.result.nombreUsuario;
                         let rol = data.result.role;
-                        let respuesta = `Hola ${usuario} estas registrado como ${rol}   `;
+                        user = new UsuarioLogado(usuario,rol);
+                        let respuesta = `Hola ${user.nombreUsuario} estas registrado como ${user.roleLog}   `;
                                                  
                         parrafo = document.createElement('span');
                         parrafo.setAttribute('style','color:#f2f2f2');
@@ -72,7 +72,11 @@
                         enlace.setAttribute('title','salir de la sesión');
                         enlace.innerText='Salir';
                         cajaRespuesta.appendChild(enlace);
-                        navega('usarios.html');                        
+                        if (user.roleLog=='usuario'){
+                            navega('usarios.html');      
+                        }else{
+                            navega('administrador.html');
+                        }                  
                     }
                 },
                 error: function() {

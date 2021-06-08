@@ -18,10 +18,11 @@
 
         $resultado = $mysqli->query($consultaSQL);
         //echo $consultaSQL;
-        if ($resultado->num_rows>0){
+        if ($resultado->num_rows==1){
             session_start();
             $_SESSION["valido"]='SI';
             $userData = $resultado->fetch_assoc();
+            $_SESSION['usuario']=$userData['nombreUsuario'];
             $data['status'] = 'ok';
             $data['result'] = $userData;
         }else{

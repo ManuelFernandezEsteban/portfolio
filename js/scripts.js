@@ -5,6 +5,7 @@ const REFERENCIAMAIN = $('main');
 var fuera = false;
 var saludo;
 var objetoHttp = null;
+let user = null ;
 
 
 function navega(enlace) {
@@ -46,7 +47,7 @@ function escribirNoticia() {
 function mostrarBienvenida() {
 
     //$('.caja-bienvenida').css('display', 'flex');
-    alert("Bienvenidos a mi PortFolio");
+    //alert("Bienvenidos a mi PortFolio");
 }
 
 function mensaje() {
