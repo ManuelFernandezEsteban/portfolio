@@ -4,9 +4,9 @@
         <form method="POST" class="col col-lg-12 mt-5 mb-5 align-self-center" id="formularioLogin">
             <h2>Acceso al área de usuarios</h2>
             <div class="row mb-3">
-                <label for="Usuario" class="col-sm-2 col-form-label">Usuario</label><span id="respuestaLogin"></span>
+                <label for="Usuario" class="col-sm-2 col-form-label">Usuario </label>
                 <div class="col-sm-10 col-12">
-                    <input type="text" class="form-control" id="Usuario" name="Usuario">
+                    <input type="text" class="form-control" id="Usuario" name="Usuario" require>
                 </div>
             </div>
             <div class="row mb-3">
@@ -30,7 +30,7 @@
     $().ready(function() {
 
         $('#BtnNuevoUsuario').click(function(){
-            navega('nuevoUser.php');
+            navega('nuevoUser.html');
         })
 
 

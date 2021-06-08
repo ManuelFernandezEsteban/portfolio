@@ -1,0 +1,77 @@
+<div class="container mt-5">
+    <div class="row col-12 col-lg-7">
+
+        <form method="POST" class="col col-lg-12 mt-5 mb-5 align-self-center" id="formularioNuevoUsuario">
+            <h2>Registro de usuarios</h2>
+            <div class="row mb-3">
+                <label for="NuevoUsuario" class="col-sm-2 col-form-label">Usuario <span id="respuestaLogin"></span></label>
+                <div class="col-sm-10 col-12">
+                    <input type="text" class="form-control" id="NuevoUsuario" name="NuevoUsuario" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="NuevoUserPassword" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="NuevoUserPassword" name="NuevoUserPassword" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="NuevoUserPasswordConfirmacion" class="col-sm-2 col-form-label">Repita password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="NuevoUserPasswordConfirmacion" name="NuevoUserPasswordConfirmacion" required>
+                </div>
+            </div>
+            <button type="button" id="enviarNuevoUser" class="btn btn-primary">Login</button>
+            <button type="reset" id="" class="btn btn-alert">Cancelar</button>
+        </form>
+
+
+    </div>
+</div>
+<script>
+    $().ready(function() {
+
+
+        
+
+        $('#enviarNuevoUser').click(function() {
+            console.log('en nuevo login');
+            
+            let datos = $('#formularioNuevoUsuario').serialize();
+            if ($('#NuevoUsuario').val()!='' && $('#NuevoUserPassword').val()!='' && ($('#NuevoUserPassword').val()==$('#NuevoUserPasswordConfirmacion').val())){
+                let datos = $('#formularioNuevoUsuario').serialize();
+            }
+            else{
+                alert("faltan datos");
+            }
+            
+            let url = "altaUsuario.php";
+            let dataType = "json";            
+
+            $.ajax({
+
+                type: "POST",
+                url: url,
+                data: datos,
+
+                success: function(data) {
+                    console.log(data);
+
+                    if (data.status == 'ok') {
+                        $('#NuevoUsuario').val('');
+                        $('#NuevoUserPassword').val('');
+                        $('#NuevoUserPasswordConfirmacion').val('')
+                        alert("Usuario creado");
+                    }
+                    alert(data);
+                },
+                error: function() {
+                    console.log("error");
+                },
+                dataType: dataType
+
+            });
+
+        })
+    })
+</script>
