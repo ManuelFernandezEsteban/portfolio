@@ -115,12 +115,8 @@ $(document).ready(function () {
             }
              
         }
-        navega(destino);
-             
-        
+        navega(destino);     
 
-
-        
     });
 
     $(window).resize(function () {//cerramos el panel de noticias
@@ -162,6 +158,8 @@ $(document).ready(function () {
         $(this).css('display', 'none');
 
     });
+
+    
 
     
 });

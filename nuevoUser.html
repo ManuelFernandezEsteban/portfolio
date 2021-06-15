@@ -4,10 +4,11 @@
         <form method="POST" class="col col-lg-12 mt-5 mb-5 align-self-center" id="formularioNuevoUsuario">
             <h2>Registro de usuarios</h2>
             <div class="row mb-3">
-                <label for="NuevoUsuario" class="col-sm-2 col-form-label">Usuario <span id="respuestaLogin"></span></label>
+                <label for="NuevoUsuario" class="col-sm-2 col-form-label">Usuario </label>
                 <div class="col-sm-10 col-12">
                     <input type="text" class="form-control" id="NuevoUsuario" name="NuevoUsuario" required>
                 </div>
+                <span id="respuestaLogin"></span>
             </div>
             <div class="row mb-3">
                 <label for="NuevoUserPassword" class="col-sm-2 col-form-label">Password</label>
@@ -31,39 +32,74 @@
 <script>
     $().ready(function() {
 
+        $('#NuevoUsuario').focusout(function(){
+            let dataType = "html";
+            console.log('Comprobamos nuevo nombre usuario');
+            let nombreNuevoUser = $('#NuevoUsuario').val();
+            let datos = "NombreUsuario="+ nombreNuevoUser;
+            datos += "&operacion=consultaNombreUsuario";
+            console.log(datos);
+            let url = "peticionesUsuarios.php";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: datos,
+                success: function(data) {
+                    console.log(data);
+                    if (data==1){
+                        $("#respuestaLogin").html("El usuario esta disponible");
+                        console.log(data);
+                    }
+                    else if (data==0){
+                        $("#respuestaLogin").html("El usuario no esta disponible");
+                        $('#NuevoUsuario').val('');
+                        $('#NuevoUsuario').focus();
+                        console.log(data);
+                    }
 
+                },
+
+                error: function() {
+                    console.log("error");
+                },
+                dataType: dataType
+    
+            });
+        });
         
 
         $('#enviarNuevoUser').click(function() {
             console.log('en nuevo login');
             
-            let datos = $('#formularioNuevoUsuario').serialize();
-            if ($('#NuevoUsuario').val()!='' && $('#NuevoUserPassword').val()!='' && ($('#NuevoUserPassword').val()==$('#NuevoUserPasswordConfirmacion').val())){
-                let datos = $('#formularioNuevoUsuario').serialize();
+            let datos;
+            let datosAEnviar;
+            if ($('#NuevoUsuario').val()!='' && $('#NuevoUsuario').val()!='' && ($('#NuevoUserPassword').val()==$('#NuevoUserPasswordConfirmacion').val())){
+                
+                   datos = $('#formularioNuevoUsuario').serialize();
+                   datos += "&operacion=insert";
             }
             else{
                 alert("faltan datos");
             }
             
-            let url = "altaUsuario.php";
-            let dataType = "json";            
+            console.log(datos);
+            let url = "peticionesUsuarios.php";
+            let dataType = "html";            
 
             $.ajax({
-
                 type: "POST",
                 url: url,
                 data: datos,
-
-                success: function(data) {
-                    console.log(data);
-
-                    if (data.status == 'ok') {
+                success: function(data) {   
+                    if (data == 'ok') {
                         $('#NuevoUsuario').val('');
                         $('#NuevoUserPassword').val('');
-                        $('#NuevoUserPasswordConfirmacion').val('')
-                        alert("Usuario creado");
-                    }
-                    alert(data);
+                        $('#NuevoUserPasswordConfirmacion').val(''); 
+                        console.log(data);
+                    } 
+                    else{
+                        console.log(data);
+                    }                   
                 },
                 error: function() {
                     console.log("error");
