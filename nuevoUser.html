@@ -6,7 +6,7 @@
             <div class="row mb-3">
                 <label for="NuevoUsuario" class="col-sm-2 col-form-label">Usuario </label>
                 <div class="col-sm-10 col-12">
-                    <input type="text" class="form-control" id="NuevoUsuario" name="NuevoUsuario" required>
+                    <input type="text" class="form-control" id="NuevoUsuario" name="NuevoUsuario" required onblur="ComprobarUser()">
                 </div>
                 <span id="respuestaLogin"></span>
             </div>
@@ -22,92 +22,43 @@
                     <input type="password" class="form-control" id="NuevoUserPasswordConfirmacion" name="NuevoUserPasswordConfirmacion" required>
                 </div>
             </div>
-            <button type="button" id="enviarNuevoUser" class="btn btn-primary">Login</button>
+
+            <div class="row mb-3">
+                <label for="nombre" class="col-sm-2 col-form-label">Nombre </label>
+                <div class="col-sm-10 col-12">
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                
+            </div>
+            <div class="row mb-3">
+                <label for="apellidos" class="col-sm-2 col-form-label">Apellidos </label>
+                <div class="col-sm-10 col-12">
+                    <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                </div>
+                
+            </div>
+            <div class="row mb-3">
+                <label for="email" class="col-sm-2 col-form-label">Email </label>
+                <div class="col-sm-10 col-12">
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                
+            </div>
+            <div class="row mb-3">
+                <label for="movil" class="col-sm-2 col-form-label">Telefono </label>
+                <div class="col-sm-10 col-12">
+                    <input type="text" class="form-control" id="movil" name="movil" required>
+                </div>
+                
+            </div>
+            <button type="button" id="enviarNuevoUser" class="btn btn-primary" onclick="NuevoUser()">Login</button>
             <button type="reset" id="" class="btn btn-alert">Cancelar</button>
         </form>
 
 
     </div>
 </div>
-<script>
-    $().ready(function() {
+<script src="js/scriptsLogin.js">
 
-        $('#NuevoUsuario').focusout(function(){
-            let dataType = "html";
-            console.log('Comprobamos nuevo nombre usuario');
-            let nombreNuevoUser = $('#NuevoUsuario').val();
-            let datos = "NombreUsuario="+ nombreNuevoUser;
-            datos += "&operacion=consultaNombreUsuario";
-            console.log(datos);
-            let url = "peticionesUsuarios.php";
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: datos,
-                success: function(data) {
-                    console.log(data);
-                    if (data==1){
-                        $("#respuestaLogin").html("El usuario esta disponible");
-                        console.log(data);
-                    }
-                    else if (data==0){
-                        $("#respuestaLogin").html("El usuario no esta disponible");
-                        $('#NuevoUsuario').val('');
-                        $('#NuevoUsuario').focus();
-                        console.log(data);
-                    }
 
-                },
-
-                error: function() {
-                    console.log("error");
-                },
-                dataType: dataType
-    
-            });
-        });
-        
-
-        $('#enviarNuevoUser').click(function() {
-            console.log('en nuevo login');
-            
-            let datos;
-            let datosAEnviar;
-            if ($('#NuevoUsuario').val()!='' && $('#NuevoUsuario').val()!='' && ($('#NuevoUserPassword').val()==$('#NuevoUserPasswordConfirmacion').val())){
-                
-                   datos = $('#formularioNuevoUsuario').serialize();
-                   datos += "&operacion=insert";
-            }
-            else{
-                alert("faltan datos");
-            }
-            
-            console.log(datos);
-            let url = "peticionesUsuarios.php";
-            let dataType = "html";            
-
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: datos,
-                success: function(data) {   
-                    if (data == 'ok') {
-                        $('#NuevoUsuario').val('');
-                        $('#NuevoUserPassword').val('');
-                        $('#NuevoUserPasswordConfirmacion').val(''); 
-                        console.log(data);
-                    } 
-                    else{
-                        console.log(data);
-                    }                   
-                },
-                error: function() {
-                    console.log("error");
-                },
-                dataType: dataType
-
-            });
-
-        })
-    })
 </script>

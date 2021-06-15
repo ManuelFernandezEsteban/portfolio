@@ -5,7 +5,7 @@ const REFERENCIAMAIN = $('main');
 var fuera = false;
 var saludo;
 var objetoHttp = null;
-let user = null ;
+let user = null;
 
 
 function navega(enlace) {
@@ -74,7 +74,7 @@ function resetbtnSubmmit() {
 }
 
 function validar(formularioPresupuesto) {     // valida el formulario de contacto y el de presupuesto
-
+    
     if (formularioPresupuesto.nombre.value.length == 0) {
         alert("Indique un nombre");
         return false;
@@ -98,7 +98,8 @@ function validar(formularioPresupuesto) {     // valida el formulario de contact
         return false;
     }
     alert("Formulario correcto");
-    formularioPresupuesto.submit();
+    //formularioPresupuesto.submit();
+    return true;
 }
 
 function mirarLopd(check) {
@@ -109,6 +110,5 @@ function mirarLopd(check) {
         $('#btnSubmit').prop('disabled', true);
     }
 }
-
 
 
