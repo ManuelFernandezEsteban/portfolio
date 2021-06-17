@@ -11,8 +11,8 @@ if ($mysqli->connect_errno) {
 } else {
     $usuario = $_POST['Usuario'];
     $pass = $_POST['Password'];
-    $consultaSQL = "SELECT `idUsuario`, `nombreUsuario`, `password`, `role`, `cliente` FROM `usuarios` WHERE 1";
-    $consultaSQL .= " AND `nombreUsuario` = '" . $usuario . "'";
+    $consultaSQL = "SELECT `idUsuario`, `usuario`, `password`, `role` FROM `usuarios` WHERE 1";
+    $consultaSQL .= " AND `usuario` = '" . $usuario . "'";
     //$consultaSQL .= "AND `password` = '".$pass."'";
 
     $resultado = $mysqli->query($consultaSQL);
@@ -22,7 +22,7 @@ if ($mysqli->connect_errno) {
         if (password_verify($pass, $userData['password'])) {
             session_start();
             $_SESSION["valido"] = 'SI';
-            $_SESSION['usuario'] = $userData['nombreUsuario'];
+            $_SESSION['usuario'] = $userData['usuario'];
             $data['status'] = 'ok';
             $data['result'] = $userData;
         }

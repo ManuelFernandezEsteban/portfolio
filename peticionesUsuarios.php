@@ -1,6 +1,6 @@
 <?php
 
-
+include_once('usuario.php');
 include_once('apiUsuarios.php');
 
 $apiUser = new apiUsuarios();
@@ -9,7 +9,11 @@ $apiUser = new apiUsuarios();
 
 if ($_POST["operacion"]=="insert"){
 
-   $apiUser->insert($_POST['NuevoUsuario'],$_POST['NuevoUserPassword'],"usuario");
+   $passCript=password_hash($_POST['NuevoUserPassword'],PASSWORD_BCRYPT);
+
+   $user = new Usuario(0, $_POST['NuevoUsuario'],$passCript,"usuario",$_POST['nombre'],$_POST['apellidos'],$_POST['email'],$_POST['movil']);
+
+   $apiUser->insert($user);
    $data='ok';
    //$data['result']=  $res ;
 

@@ -1,29 +1,30 @@
 <?php
 
 include_once('usuarios.php');
+include_once('usuario.php');
 
 class apiUsuarios {
 
-    private $usuario;
+    private $conexion;
 
     function __construct( ){
 
 
-        $this-> usuario=new Usuarios('localhost','root','','portfolio');
+        $this-> conexion=new Usuarios('localhost','root','','portfolio');
 
     }
 
     function getAll(){
         
         $usuarios = array();        
-        $resultado= $this-> usuario->getAllUsuarios();
+        $resultado= $this-> conexion->getAllUsuarios();
         if($resultado->num_rows>0){
             while ($fila=$resultado->fetch_assoc()){
                 $item=array(
                     'idUsuario'=> $fila['idUsuario'],
-                    'nombreUsuario'=>$fila['nombreUsuario'],
+                    'nombreUsuario'=>$fila['usuario'],
                     'role' => $fila['role'],
-                    'cliente' => $fila['cliente']
+                    
                 );
                 array_push($usuarios,$item);
             }
@@ -37,14 +38,13 @@ class apiUsuarios {
     function getById($idUser){
 
         $usuarios = array();        
-        $resultado= $this-> usuario->getUsuarioById($idUser);
+        $resultado= $this-> conexion->getUsuarioById($idUser);
         if($resultado->num_rows>0){
             while ($fila=$resultado->fetch_assoc()){
                 $item=array(
                     'idUsuario'=> $fila['idUsuario'],
-                    'nombreUsuario'=>$fila['nombreUsuario'],
-                    'role' => $fila['role'],
-                    'cliente' => $fila['cliente']
+                    'nombreUsuario'=>$fila['usuario'],
+                    'role' => $fila['role']                    
                 );
                 array_push($usuarios,$item);
             }
@@ -56,14 +56,14 @@ class apiUsuarios {
 
     function getByName($nameUser){
         $usuarios = array();        
-        $resultado= $this-> usuario->getUsuarioByName($nameUser);
+        $resultado= $this-> conexion->getUsuarioByName($nameUser);
         if($resultado->num_rows>0){
             while ($fila=$resultado->fetch_assoc()){
                 $item=array(
                     'idUsuario'=> $fila['idUsuario'],
-                    'nombreUsuario'=>$fila['nombreUsuario'],
-                    'role' => $fila['role'],
-                    'cliente' => $fila['cliente']
+                    'usuario'=>$fila['usuario'],
+                    'password'=>$fila['password'],
+                    'role' => $fila['role']                    
                 );
                 array_push($usuarios,$item);
             }
@@ -73,13 +73,15 @@ class apiUsuarios {
         return $usuarios;
     }
 
-    function insert($nombre,$pass,$role){
-        $passCript=password_hash($pass,PASSWORD_BCRYPT);
-        $resultado= $this->usuario->insertUsuario($nombre,$passCript,$role);
+    function insert($user){        
+        
+        $resultado= $this->conexion->insertUsuario($user);
         //echo $resultado;
     }
 
-    function delete($user){}
+    function delete($idUser){
+        $resultado= $this->conexion->insertUsuario($idUser);
+    }
 
 
 }

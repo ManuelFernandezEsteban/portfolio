@@ -15,10 +15,10 @@
                     <input type="password" class="form-control" id="Password" name="Password">
                 </div>
             </div>
-            <button type="button" id="enviar" class="btn btn-primary">Login</button>
+            <button type="button" id="enviar" class="btn btn-primary" onclick="logearUsuario()">Login</button>
             <div class="row col-6">
                 <p>¿No tienes cuenta?</p>
-                <button type="button" id="BtnNuevoUsuario" class="btn btn-primary">Regístrate</button>
+                <button type="button" id="BtnNuevoUsuario" class="btn btn-primary" onclick="enviarANuevoUsuario()">Regístrate</button>
                 
             </div>
         </form>
@@ -26,66 +26,7 @@
 
     </div>
 </div>
-<script>
-    $().ready(function() {
-
-        $('#BtnNuevoUsuario').click(function(){
-            navega('nuevoUser.html');
-        })
+<script src="js/scriptsLogin.js">
 
 
-        $('#enviar').click(function() {
-            console.log('en login');
-           
-            let datos = $('#formularioLogin').serialize();
-            let url = "verificarLogin.php";
-            let dataType = "json";
-            const cajaRespuesta = document.querySelector('#caja-login');;
-            let enlace;
-            let parrafo;
-
-            $.ajax({
-
-                type: "POST",
-                url: url,
-                data: datos,
-
-                success: function(data) {
-                    if (data.status == 'ok') {
-                    
-                        console.log('logado');
-                        $('#Usuario').val('');
-                        $('#Password').val('');
-                        let usuario = data.result.nombreUsuario;
-                        let rol = data.result.role;
-                        user = new UsuarioLogado(usuario,rol);
-                        let respuesta = `Hola ${user.nombreUsuario} estas registrado como ${user.roleLog}   `;
-                                                 
-                        parrafo = document.createElement('span');
-                        parrafo.setAttribute('style','color:#f2f2f2');
-                        parrafo.className='color';
-                        parrafo.innerText=respuesta;
-                        
-                        cajaRespuesta.appendChild(parrafo);
-                        enlace = document.createElement('a');
-                        enlace.setAttribute('href','cerrarSesion.php');
-                        enlace.setAttribute('title','salir de la sesión');
-                        enlace.innerText='Salir';
-                        cajaRespuesta.appendChild(enlace);
-                        if (user.roleLog=='usuario'){
-                            navega('usarios.html');      
-                        }else{
-                            navega('administrador.html');
-                        }                  
-                    }
-                },
-                error: function() {
-                    console.log("error");
-                },
-                dataType: dataType
-
-            });
-
-        })
-    })
 </script>

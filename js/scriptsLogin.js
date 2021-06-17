@@ -1,11 +1,68 @@
 
-const nombre = $('#nombre');
-const apellidos = $('#apellidos');
-const email = $('#email');
-const movil = $('#movil');
-const usuario = $('#NuevoUsuario');
 
 
+function enviarANuevoUsuario(){
+
+    navega('nuevoUser.html');
+
+}
+
+function logearUsuario(){
+    
+        console.log('en login');
+       
+        let datos = $('#formularioLogin').serialize();
+        //console.log(datos);
+        let url = "verificarLogin.php";
+        let dataType = "json";
+        const cajaRespuesta = document.querySelector('#caja-login');;
+        let enlace;
+        let parrafo;
+
+        $.ajax({
+
+            type: "POST",
+            url: url,
+            data: datos,
+
+            success: function(data) {
+                if (data.status == 'ok') {
+                
+                    console.log('logado');
+                    $('#Usuario').val('');
+                    $('#Password').val('');
+                    let usuario = data.result.usuario;
+                    let rol = data.result.role;
+                    user = new UsuarioLogado(usuario,rol);
+                    let respuesta = `Hola ${user.nombreUsuario} estas registrado como ${user.roleLog}   `;
+                                             
+                    parrafo = document.createElement('span');
+                    parrafo.setAttribute('style','color:#f2f2f2');
+                    parrafo.className='color';
+                    parrafo.innerText=respuesta;
+                    
+                    cajaRespuesta.appendChild(parrafo);
+                    enlace = document.createElement('a');
+                    enlace.setAttribute('href','cerrarSesion.php');
+                    enlace.setAttribute('title','salir de la sesión');
+                    enlace.innerText='Salir';
+                    cajaRespuesta.appendChild(enlace);
+                    if (user.roleLog=='usuario'){
+                        navega('usuarios.html');      
+                    }else{
+                        navega('administrador.html');
+                    }                  
+                }
+            },
+            error: function() {
+                console.log("error");
+            },
+            dataType: dataType
+
+        });
+
+   
+}
 
 function ComprobarUser() {
 
@@ -48,6 +105,11 @@ function ComprobarUser() {
 }
 
 function validarDatosFormulario() {    
+    const nombre = $('#nombre');
+    const apellidos = $('#apellidos');
+    const email = $('#email');
+    const movil = $('#movil');
+    const usuario = $('#NuevoUsuario');
 
     if (usuario.val() == '') {
         alert("Indique un usuario");
@@ -84,7 +146,7 @@ function validarDatosFormulario() {
     return true;
 }
 
-function grabarNuevoCliente(){
+/*function grabarNuevoCliente(){
 
     datosCliente = "nombre="+nombre.val()+"&apellidos="+apellidos.val()+"&email="+email.val()+"&movil="+movil.val();
     let url = "grabarCliente.php";
@@ -109,7 +171,7 @@ function grabarNuevoCliente(){
     });
 
     return data; // el id del cliente o 0 si error
-}
+}*/
 
 function NuevoUser() {
 
@@ -127,7 +189,7 @@ function NuevoUser() {
         else {
             alert("faltan datos");
         }
-        let idCliente = grabarNuevoCliente();
+        //let idCliente = grabarNuevoCliente();
         console.log(datos);
         let url = "peticionesUsuarios.php";
         let dataType = "html";
@@ -141,6 +203,7 @@ function NuevoUser() {
                     $('#NuevoUsuario').val('');
                     $('#NuevoUserPassword').val('');
                     $('#NuevoUserPasswordConfirmacion').val('');
+                    document.querySelector('#formularioNuevoUsuario').reset();
                     console.log(data);
                 }
                 else {
