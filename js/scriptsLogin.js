@@ -9,15 +9,15 @@ function enviarANuevoUsuario(){
 
 function logearUsuario(){
     
-        console.log('en login');
-       
+        console.log('en login');       
         let datos = $('#formularioLogin').serialize();
-        //console.log(datos);
+        console.log(datos);
         let url = "verificarLogin.php";
         let dataType = "json";
-        const cajaRespuesta = document.querySelector('#caja-login');;
+        const cajaRespuesta = document.querySelector('#caja-login');
+       
         let enlace;
-        let parrafo;
+        //let parrafo;
 
         $.ajax({
 
@@ -37,8 +37,9 @@ function logearUsuario(){
                     let respuesta = `Hola ${user.nombreUsuario} estas registrado como ${user.roleLog}   `;
                                              
                     parrafo = document.createElement('span');
-                    parrafo.setAttribute('style','color:#f2f2f2');
-                    parrafo.className='color';
+                    
+                    
+                    parrafo.setAttribute('style','color:white');
                     parrafo.innerText=respuesta;
                     
                     cajaRespuesta.appendChild(parrafo);
@@ -47,6 +48,7 @@ function logearUsuario(){
                     enlace.setAttribute('title','salir de la sesión');
                     enlace.innerText='Salir';
                     cajaRespuesta.appendChild(enlace);
+                    
                     if (user.roleLog=='usuario'){
                         navega('usuarios.html');      
                     }else{
