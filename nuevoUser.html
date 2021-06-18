@@ -1,62 +1,48 @@
-<div class="container mt-5">
-    <div class="row col-12 col-lg-7">
+<div class="contenedor-login">
+    <h1>Alta de usuarios</h1>
 
-        <form method="POST" class="col col-lg-12 mt-5 mb-5 align-self-center" id="formularioNuevoUsuario">
-            <h2>Registro de usuarios</h2>
-            <div class="row mb-3">
-                <label for="NuevoUsuario" class="col-sm-2 col-form-label">Usuario </label>
-                <div class="col-sm-10 col-12">
-                    <input type="text" class="form-control" id="NuevoUsuario" name="NuevoUsuario" required onblur="ComprobarUser()">
-                </div>
-                <span id="respuestaLogin"></span>
-            </div>
-            <div class="row mb-3">
-                <label for="NuevoUserPassword" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="NuevoUserPassword" name="NuevoUserPassword" required>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label for="NuevoUserPasswordConfirmacion" class="col-sm-2 col-form-label">Repita password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="NuevoUserPasswordConfirmacion" name="NuevoUserPasswordConfirmacion" required>
-                </div>
-            </div>
+    <form method="POST" class="formularioLogin" id="formularioNuevoUsuario">
 
-            <div class="row mb-3">
-                <label for="nombre" class="col-sm-2 col-form-label">Nombre </label>
-                <div class="col-sm-10 col-12">
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
-                </div>
-                
-            </div>
-            <div class="row mb-3">
-                <label for="apellidos" class="col-sm-2 col-form-label">Apellidos </label>
-                <div class="col-sm-10 col-12">
-                    <input type="text" class="form-control" id="apellidos" name="apellidos" required>
-                </div>
-                
-            </div>
-            <div class="row mb-3">
-                <label for="email" class="col-sm-2 col-form-label">Email </label>
-                <div class="col-sm-10 col-12">
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                
-            </div>
-            <div class="row mb-3">
-                <label for="movil" class="col-sm-2 col-form-label">Telefono </label>
-                <div class="col-sm-10 col-12">
-                    <input type="text" class="form-control" id="movil" name="movil" required>
-                </div>
-                
-            </div>
-            <button type="button" id="enviarNuevoUser" class="btn btn-primary" onclick="NuevoUser()">Login</button>
-            <button type="reset" id="" class="btn btn-alert">Cancelar</button>
-        </form>
+        <p>
+            <label for="NuevoUsuario">Usuario </label><br>
+            <input type="text" class="input-formulario" id="NuevoUsuario" name="NuevoUsuario" required
+                onblur="ComprobarUser()">
+            <span id="respuestaLogin"></span>
+        </p>
+        <p>
+            <label for="NuevoUserPassword">Password</label><br>
+            <input type="password" class="input-formulario" id="NuevoUserPassword" name="NuevoUserPassword" required>
+        </p>
+        <p>
+            <label for="NuevoUserPasswordConfirmacion">Repita password</label><br>
+            <input type="password" class="input-formulario" id="NuevoUserPasswordConfirmacion"
+                name="NuevoUserPasswordConfirmacion" required>
+        </p>
+        <p>
+            <label for="nombre">Nombre </label><br>
+            <input type="text" class="input-formulario" id="nombre" name="nombre" required>
+        </p>
 
+        <p>
+            <label for="apellidos" class="col-sm-2 col-form-label">Apellidos </label><br>
+            <input type="text" class="input-formulario" id="apellidos" name="apellidos" required>
+        </p>
+        <p>
+            <label for="email">Email </label><br>
+            <input type="email" class="input-formulario" id="email" name="email" required>
+        </p>
+        <p>
+            <label for="movil">Telefono </label><br>
 
+            <input type="text" class="input-formulario" id="movil" name="movil" required>
+        </p>
+
+    </form>
+    <div class="caja-botones-login">
+        <button type="button" id="enviarNuevoUser" class="boton" onclick="NuevoUser()">Login</button><br>
+        <button type="button" id="botonResetAltaUser" class="boton" onclick="LimpiarUser()">Cancelar</button>
     </div>
+</div>
 </div>
 <script src="js/scriptsLogin.js">
 

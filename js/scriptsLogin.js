@@ -7,6 +7,7 @@ function enviarANuevoUsuario(){
 
 }
 
+
 function logearUsuario(){
     
         console.log('en login');       
@@ -219,4 +220,8 @@ function NuevoUser() {
 
         });
     }
+}
+function LimpiarUser(){
+    document.querySelector('#formularioNuevoUsuario').reset();
+    $("#respuestaLogin").html("");
 }
