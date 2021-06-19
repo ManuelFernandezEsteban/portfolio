@@ -63,7 +63,11 @@ class apiUsuarios {
                     'idUsuario'=> $fila['idUsuario'],
                     'usuario'=>$fila['usuario'],
                     'password'=>$fila['password'],
-                    'role' => $fila['role']                    
+                    'role' => $fila['role'],  
+                    'nombre'=>$fila['nombre'],
+                    'apellidos'=>$fila['apellidos'],
+                    'email'=>$fila['email'],
+                    'telefono'=>$fila['telefono']
                 );
                 array_push($usuarios,$item);
             }

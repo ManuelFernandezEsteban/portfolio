@@ -568,8 +568,19 @@ legend{
     align-self: flex-end;
 }
 /*fin caja bienvenida*/
-
-
+.caja-contenido-usuarios{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+.caja-botones{
+    display: inline-flex;
+}
+.caja-botones .boton{
+    width: 100%;
+    margin: 5px;
+}
 
 /*media querys*/
 /*tamaño ipad*/

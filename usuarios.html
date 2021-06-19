@@ -1,1 +1,43 @@
-<h1>Hola usuario</h1>
+
+<div class="caja-contenido-usuarios">
+<div class="caja-botones">
+    <input type="button" class="boton" value="Perfil" id="btnPerfil" onclick="cargarPerfil()">
+    <input type="button" class="boton" value="Citas" id="btnCitas">
+    <input type="button" class="boton" value="Admin" id="btnAdmin">
+</div>
+
+<div>
+
+    <form method="POST" class="formularioLogin" id="formularioPerfilUsuario">
+
+        <p>
+            <label for="usuarioPerfil">Usuario </label><br>
+            <input type="text" class="input-formulario" id="usuarioPerfil" name="usuarioPerfil" readonly>            
+        </p>        
+        <p>
+            <label for="nombrePerfil">Nombre </label><br>
+            <input type="text" class="input-formulario" id="nombrePerfil" name="nombrePerfil" required>
+        </p>
+
+        <p>
+            <label for="apellidosPerfil" class="col-sm-2 col-form-label">Apellidos </label><br>
+            <input type="text" class="input-formulario" id="apellidosPerfil" name="apellidosPerfil" required>
+        </p>
+        <p>
+            <label for="emailPerfil">Email </label><br>
+            <input type="email" class="input-formulario" id="emailPerfil" name="emailPerfil" required>
+        </p>
+        <p>
+            <label for="movilPerfil">Telefono </label><br>
+            <input type="text" class="input-formulario" id="movilPerfil" name="movilPerfil" required>
+        </p>
+
+    </form>
+    <div class="caja-botones-login">
+        <button type="button" id="enviarNuevoUser" class="boton" onclick="enviarCambiosPerfil()">Enviar</button><br>
+        <button type="button" id="botonResetAltaUser" class="boton" onclick="resetCambiosPerfil()">Cancelar</button>
+    </div>
+
+</div>
+
+</div>

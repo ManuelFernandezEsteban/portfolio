@@ -1,70 +1,61 @@
 
 
 
-function enviarANuevoUsuario(){
+function enviarANuevoUsuario() {
 
     navega('nuevoUser.html');
 
 }
 
 
-function logearUsuario(){
-    
-        console.log('en login');       
-        let datos = $('#formularioLogin').serialize();
-        console.log(datos);
-        let url = "verificarLogin.php";
-        let dataType = "json";
-        const cajaRespuesta = document.querySelector('#caja-login');
-       
-        let enlace;
-        //let parrafo;
+function logearUsuario() {
 
-        $.ajax({
+    console.log('en login');
+    let datos = $('#formularioLogin').serialize();
+    console.log(datos);
+    let url = "verificarLogin.php";
+    let dataType = "json";
+    const cajaRespuesta = document.querySelector('#caja-login');
 
-            type: "POST",
-            url: url,
-            data: datos,
+    let enlace;
+    //let parrafo;
 
-            success: function(data) {
-                if (data.status == 'ok') {
-                
-                    console.log('logado');
-                    $('#Usuario').val('');
-                    $('#Password').val('');
-                    let usuario = data.result.usuario;
-                    let rol = data.result.role;
-                    user = new UsuarioLogado(usuario,rol);
-                    let respuesta = `Hola ${user.nombreUsuario} estas registrado como ${user.roleLog}   `;
-                                             
-                    parrafo = document.createElement('span');
-                    
-                    
-                    parrafo.setAttribute('style','color:white');
-                    parrafo.innerText=respuesta;
-                    
-                    cajaRespuesta.appendChild(parrafo);
-                    enlace = document.createElement('a');
-                    enlace.setAttribute('href','cerrarSesion.php');
-                    enlace.setAttribute('title','salir de la sesión');
-                    enlace.innerText='Salir';
-                    cajaRespuesta.appendChild(enlace);
-                    
-                    if (user.roleLog=='usuario'){
-                        navega('usuarios.html');      
-                    }else{
-                        navega('administrador.html');
-                    }                  
-                }
-            },
-            error: function() {
-                console.log("error");
-            },
-            dataType: dataType
+    $.ajax({
 
-        });
+        type: "POST",
+        url: url,
+        data: datos,
 
-   
+        success: function (data) {
+            if (data.status == 'ok') {
+
+                console.log('logado');
+                $('#Usuario').val('');
+                $('#Password').val('');
+                let usuario = data.result.usuario;
+                let rol = data.result.role;
+                user = new UsuarioLogado(usuario, rol);
+                let respuesta = `Hola ${user.nombreUsuario} estas registrado como ${user.roleLog}   `;
+                parrafo = document.createElement('span');
+                parrafo.setAttribute('style', 'color:white');
+                parrafo.innerText = respuesta;
+                cajaRespuesta.appendChild(parrafo);
+                enlace = document.createElement('a');
+                enlace.setAttribute('href', 'cerrarSesion.php');
+                enlace.setAttribute('title', 'salir de la sesión');
+                enlace.innerText = 'Salir';
+                cajaRespuesta.appendChild(enlace);
+                navega('usuarios.html');
+            }
+        },
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+
+    });
+
+
 }
 
 function ComprobarUser() {
@@ -107,7 +98,7 @@ function ComprobarUser() {
 
 }
 
-function validarDatosFormulario() {    
+function validarDatosFormulario() {
     const nombre = $('#nombre');
     const apellidos = $('#apellidos');
     const email = $('#email');
@@ -117,12 +108,12 @@ function validarDatosFormulario() {
     if (usuario.val() == '') {
         alert("Indique un usuario");
         return false;
-    } 
+    }
 
     if (apellidos.val() == '') {
         alert("Indique los apellidos");
         return false;
-    } 
+    }
 
     if (nombre.val() == '') {
         alert("Indique un nombre");
@@ -221,7 +212,81 @@ function NuevoUser() {
         });
     }
 }
-function LimpiarUser(){
+function LimpiarUser() {
     document.querySelector('#formularioNuevoUsuario').reset();
     $("#respuestaLogin").html("");
+}
+
+
+
+function cargarPerfil() {
+
+    let dataType = "html";
+    let datos = "NombreUsuario=" + user.nombreUsuario;
+    datos += "&operacion=datosUsuario";
+    console.log(datos);
+    let url = "peticionesUsuarios.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            console.log(data);  
+            datos = JSON.parse(data);            
+            $('#usuarioPerfil').val(datos[0].usuario);
+            $('#nombrePerfil').val(datos[0].nombre);
+            $('#apellidosPerfil').val(datos[0].apellidos);
+            $('#emailPerfil').val(datos[0].email);
+            $('#movilPerfil').val(datos[0].telefono);
+            
+        },
+
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+
+    });
+   
+
+}
+function resetCambiosPerfil(){
+    document.querySelector('#formularioPerfilUsuario').reset();
+    
+}
+
+function enviarCambiosPerfil(){
+    if (validarDatosFormulario()) {
+        
+        
+            datos = $('#formularioPerfilUsuario').serialize();
+            datos += "&operacion=modificarPerfil";
+            console.log(datos);
+       
+        //let idCliente = grabarNuevoCliente();
+        console.log(datos);
+        let url = "peticionesUsuarios.php";
+        let dataType = "html";
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: datos,
+            success: function (data) {
+                if (data == 'ok') {
+                    $('#formularioPerfilUsuario').reset();
+                    alert('Datos modificados')
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            error: function () {
+                console.log("error");
+            },
+            dataType: dataType
+
+        });
+    }
+
 }
