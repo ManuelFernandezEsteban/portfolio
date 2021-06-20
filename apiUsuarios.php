@@ -22,7 +22,7 @@ class apiUsuarios {
             while ($fila=$resultado->fetch_assoc()){
                 $item=array(
                     'idUsuario'=> $fila['idUsuario'],
-                    'nombreUsuario'=>$fila['usuario'],
+                    'usuario'=>$fila['usuario'],
                     'role' => $fila['role'],
                     
                 );
@@ -43,7 +43,7 @@ class apiUsuarios {
             while ($fila=$resultado->fetch_assoc()){
                 $item=array(
                     'idUsuario'=> $fila['idUsuario'],
-                    'nombreUsuario'=>$fila['usuario'],
+                    'usuario'=>$fila['usuario'],
                     'role' => $fila['role']                    
                 );
                 array_push($usuarios,$item);
@@ -77,14 +77,20 @@ class apiUsuarios {
         return $usuarios;
     }
 
+    function update($user){
+        $resultado = $this->conexion->updateUsuario($user);
+        echo $resultado;
+    }
+
+
     function insert($user){        
         
         $resultado= $this->conexion->insertUsuario($user);
-        //echo $resultado;
+        echo $resultado;
     }
 
     function delete($idUser){
-        $resultado= $this->conexion->insertUsuario($idUser);
+        $resultado= $this->conexion->deleteUsuario($idUser);
     }
 
 

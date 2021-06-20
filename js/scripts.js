@@ -84,16 +84,16 @@ function validar(formularioPresupuesto) {     // valida el formulario de contact
         return false;
     }
     listacaracteres = /^[_a-z0-9-]+(.[a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,3})$/
-    if (!listacaracteres.test(document.getElementById('email').value)) {
+    if (!listacaracteres.test(formularioPresupuesto.email.value)) {
         alert("Debe indicar un email valido");
         return false;
     }
-    if (formularioPresupuesto.movil.value.length == 0) {
+    if (formularioPresupuesto.telefono.value.length == 0) {
         alert("Indique un movil de contacto");
         return false;
     }
     listacaracteres = /^[0-9]{9}$/
-    if (!listacaracteres.test(document.getElementById('movil').value)) {
+    if (!listacaracteres.test(formularioPresupuesto.telefono.value)) {
         alert("Debe indicar un movil valido");
         return false;
     }

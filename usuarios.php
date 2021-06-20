@@ -49,8 +49,8 @@ class Usuarios extends Conexion{
     function updateUsuario($user){
 
         $SQL=" UPDATE `usuarios` SET ";
-        $SQL.=" `role`='$user->role',`nombre`='$user->nombre',`apellidos`='$user->apellidos',`email`='$user->email',`telefono`='$user->telefono' WHERE 1";
-        $SQL.=" `usuario`=`$user->usuario`";
+        $SQL.=" `role`='$user->role',`nombre`='$user->nombre',`apellidos`='$user->apellidos',`email`='$user->email',`telefono`='$user->telefono' WHERE 1 AND ";
+        $SQL.=" `usuario`='$user->user'";
         $query = $this -> crearConexion()->query($SQL);
     }
 }

@@ -1,17 +1,17 @@
 <div class="contenedor-login">
     <h1>Alta de usuarios</h1>
 
-    <form method="POST" class="formularioLogin" id="formularioNuevoUsuario">
+    <form method="POST" class="formularioLogin" id="formularioNuevoUsuario" name="formularioNuevoUser">
 
         <p>
             <label for="NuevoUsuario">Usuario </label><br>
-            <input type="text" class="input-formulario" id="NuevoUsuario" name="NuevoUsuario" required
+            <input type="text" class="input-formulario" id="NuevoUsuario" name="usuario" required
                 onblur="ComprobarUser()">
             <span id="respuestaLogin"></span>
         </p>
         <p>
             <label for="NuevoUserPassword">Password</label><br>
-            <input type="password" class="input-formulario" id="NuevoUserPassword" name="NuevoUserPassword" required>
+            <input type="password" class="input-formulario" id="NuevoUserPassword" name="password" required>
         </p>
         <p>
             <label for="NuevoUserPasswordConfirmacion">Repita password</label><br>
@@ -34,7 +34,7 @@
         <p>
             <label for="movil">Telefono </label><br>
 
-            <input type="text" class="input-formulario" id="movil" name="movil" required>
+            <input type="text" class="input-formulario" id="movil" name="telefono" required>
         </p>
 
     </form>

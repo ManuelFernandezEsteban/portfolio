@@ -65,7 +65,7 @@ function ComprobarUser() {
     let nombreNuevoUser = $('#NuevoUsuario').val();
     if (nombreNuevoUser.trim() != '') {
 
-        let datos = "NombreUsuario=" + nombreNuevoUser;
+        let datos = "usuario=" + nombreNuevoUser;
         datos += "&operacion=consultaNombreUsuario";
         console.log(datos);
         let url = "peticionesUsuarios.php";
@@ -98,79 +98,12 @@ function ComprobarUser() {
 
 }
 
-function validarDatosFormulario() {
-    const nombre = $('#nombre');
-    const apellidos = $('#apellidos');
-    const email = $('#email');
-    const movil = $('#movil');
-    const usuario = $('#NuevoUsuario');
 
-    if (usuario.val() == '') {
-        alert("Indique un usuario");
-        return false;
-    }
-
-    if (apellidos.val() == '') {
-        alert("Indique los apellidos");
-        return false;
-    }
-
-    if (nombre.val() == '') {
-        alert("Indique un nombre");
-        return false;
-    }
-    if (email.val() == '') {
-        alert("Indique un email");
-        return false;
-    }
-    let listacaracteres = /^[_a-z0-9-]+(.[a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,3})$/
-    if (!listacaracteres.test(email.val())) {
-        alert("Debe indicar un email valido");
-        return false;
-    }
-    if (movil.val() == '') {
-        alert("Indique un movil de contacto");
-        return false;
-    }
-    listacaracteres = /^[0-9]{9}$/
-    if (!listacaracteres.test(movil.val())) {
-        alert("Debe indicar un movil valido");
-        return false;
-    }
-    return true;
-}
-
-/*function grabarNuevoCliente(){
-
-    datosCliente = "nombre="+nombre.val()+"&apellidos="+apellidos.val()+"&email="+email.val()+"&movil="+movil.val();
-    let url = "grabarCliente.php";
-    let dataType = "html";
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: datosCliente,
-        success: function (data) {
-            if (data == 0) { //error
-                
-            }
-            else {//nuevo cliente
-                
-            }
-        },
-        error: function () {
-            console.log("error");
-        },
-        dataType: dataType
-
-    });
-
-    return data; // el id del cliente o 0 si error
-}*/
 
 function NuevoUser() {
 
 
-    if (validarDatosFormulario()) {
+    if (validar(document.formularioNuevoUser)) {
 
         console.log('en nuevo login');
         let datos;
@@ -222,7 +155,7 @@ function LimpiarUser() {
 function cargarPerfil() {
 
     let dataType = "html";
-    let datos = "NombreUsuario=" + user.nombreUsuario;
+    let datos = "usuario=" + user.nombreUsuario;
     datos += "&operacion=datosUsuario";
     console.log(datos);
     let url = "peticionesUsuarios.php";
@@ -231,14 +164,14 @@ function cargarPerfil() {
         url: url,
         data: datos,
         success: function (data) {
-            console.log(data);  
-            datos = JSON.parse(data);            
+            console.log(data);
+            datos = JSON.parse(data);
             $('#usuarioPerfil').val(datos[0].usuario);
             $('#nombrePerfil').val(datos[0].nombre);
             $('#apellidosPerfil').val(datos[0].apellidos);
             $('#emailPerfil').val(datos[0].email);
             $('#movilPerfil').val(datos[0].telefono);
-            
+
         },
 
         error: function () {
@@ -247,24 +180,24 @@ function cargarPerfil() {
         dataType: dataType
 
     });
-   
+
 
 }
-function resetCambiosPerfil(){
+function resetCambiosPerfil() {
     document.querySelector('#formularioPerfilUsuario').reset();
-    
+
 }
 
-function enviarCambiosPerfil(){
-    if (validarDatosFormulario()) {
-        
-        
-            datos = $('#formularioPerfilUsuario').serialize();
-            datos += "&operacion=modificarPerfil";
-            console.log(datos);
-       
-        //let idCliente = grabarNuevoCliente();
+function enviarCambiosPerfil() {
+    if (validar(document.formularioPerfilUser)) {
+
+
+        datos = $('#formularioPerfilUsuario').serialize();
+        datos += "&operacion=modificarPerfil";
         console.log(datos);
+
+        //let idCliente = grabarNuevoCliente();
+        //console.log(datos);
         let url = "peticionesUsuarios.php";
         let dataType = "html";
 
@@ -274,7 +207,7 @@ function enviarCambiosPerfil(){
             data: datos,
             success: function (data) {
                 if (data == 'ok') {
-                    $('#formularioPerfilUsuario').reset();
+                    document.querySelector('#formularioPerfilUsuario').reset();
                     alert('Datos modificados')
                 }
                 else {
