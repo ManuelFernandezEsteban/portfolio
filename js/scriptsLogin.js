@@ -1,4 +1,73 @@
 
+function dibujarTabla(datos){
+
+    //let data = JSON.parse(datos);
+    let cuerpoTabla = document.createElement('div');
+    cuerpoTabla.classList.add("divTableBody");
+    let filaCabecera = document.createElement('div');
+    filaCabecera.classList.add('divTableRow');    
+    let celdaCabeceraFecha= document.createElement('div');
+    let celdaCabeceraMotivo= document.createElement('div');
+    celdaCabeceraFecha.classList.add('divTableCell');
+    celdaCabeceraMotivo.classList.add('divTableCell');
+    filaCabecera.appendChild(celdaCabeceraFecha);
+    celdaCabeceraFecha.innerText="Fecha";
+    celdaCabeceraMotivo.innerText="Motivo de la cita";
+    filaCabecera.appendChild(celdaCabeceraMotivo);
+    cuerpoTabla.appendChild(filaCabecera);
+    document.querySelector('.divTable').appendChild(cuerpoTabla);
+    let fila;
+    let celdaFecha,celdaMotivo;
+    for (var i in datos){
+        fila = document.createElement('div');
+        fila.classList.add('divTableRow');
+        celdaFecha = document.createElement('div');
+        celdaFecha.classList.add('divTableCell');
+        celdaMotivo = document.createElement('div');
+        celdaMotivo.classList.add('divTableCell');
+        celdaFecha.innerText= datos[i].fecha;
+        celdaMotivo.innerText= datos[i].motivo;
+        fila.appendChild(celdaFecha);
+        fila.appendChild(celdaMotivo);
+        cuerpoTabla.appendChild(fila);
+    }
+
+
+
+}/*
+<div class="divTableBody">
+<div class="divTableRow">
+<div class="divTableCell">&nbsp;</div>
+<div class="divTableCell">&nbsp;</div>
+</div>
+</div>
+*/
+
+function cargarCitas() {
+    console.log('citas');
+    let dataType = "json";
+
+    let datos = "usuario=" + user.idUsuario;
+    datos += "&operacion=traerCitasUsuario";
+    console.log(datos);
+    let url = "peticionesCitas.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            console.log(data);
+            dibujarTabla(data);
+        },
+
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+
+    });
+
+}
 
 
 function enviarANuevoUsuario() {
@@ -32,9 +101,11 @@ function logearUsuario() {
                 console.log('logado');
                 $('#Usuario').val('');
                 $('#Password').val('');
+                let idUsuario = data.result.idUsuario;
                 let usuario = data.result.usuario;
                 let rol = data.result.role;
-                user = new UsuarioLogado(usuario, rol);
+                user = new UsuarioLogado(idUsuario,usuario, rol);
+                console.log(user);
                 let respuesta = `Hola ${user.nombreUsuario} estas registrado como ${user.roleLog}   `;
                 parrafo = document.createElement('span');
                 parrafo.setAttribute('style', 'color:white');
@@ -223,3 +294,4 @@ function enviarCambiosPerfil() {
     }
 
 }
+

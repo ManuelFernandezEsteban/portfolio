@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <table id="citas" class="display">
+        <thead>
+            <tr>
+                <th>idCita</th>
+                <th>Fecha</th>
+                <th>Motivo</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>idCita</th>
+                <th>Fecha</th>
+                <th>Motivo</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+   
+  
+
+    <script>
+        $(document).ready(function () {
+            let dataType = "json";
+            var citasDelUsuario;
+            let datos = "usuario=" + "28";
+            datos += "&operacion=traerCitasUsuario";
+            console.log(datos);
+            let url = "peticionesCitas.php";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: datos,
+                success: function (data) {
+                    console.log(data);
+                    let citas = {
+                        "data": [
+                            {
+                                "id": "1",
+                                "name": "Tiger Nixon",
+                                "position": "System Architect",
+                                "salary": "$320,800",
+                                "start_date": "2011/04/25",
+                                "office": "Edinburgh",
+                                "extn": "5421"
+                            },
+                            {
+                                "id": "2",
+                                "name": "Garrett Winters",
+                                "position": "Accountant",
+                                "salary": "$170,750",
+                                "start_date": "2011/07/25",
+                                "office": "Tokyo",
+                                "extn": "8422"
+                            },
+                    ]};
+                    $('#citas').DataTable({
+                        "ajax": citas,
+                        "columns": [
+                            { "data": "name" },
+                            { "data": "position" },
+                            { "data": "office" },
+                            { "data": "extn" },
+                            { "data": "start_date" },
+                            { "data": "salary" }
+                        ]
+                    });
+                },
+
+                error: function () {
+                    console.log("error");
+                },
+                dataType: dataType
+
+            });
+
+
+        });
+
+    </script>
+    
+
+</body>
+
+</html>

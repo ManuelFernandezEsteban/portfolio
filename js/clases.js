@@ -13,7 +13,8 @@ class Cliente {
 }
 
 class UsuarioLogado{
-    constructor(nombreUsuario,roleLog){
+    constructor(idUsuario,nombreUsuario,roleLog){
+        this.idUsuario = idUsuario;
         this.nombreUsuario=nombreUsuario;
         this.roleLog=roleLog;
     }
