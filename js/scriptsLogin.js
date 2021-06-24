@@ -1,47 +1,64 @@
 
+function cargarCita(){
+    const select = document.querySelector('#selectCitas');
+    let idCita= select.options[select.selectedIndex].value;
+    console.log(idCita);
+}
+
+
 function dibujarTabla(datos){
 
     //let data = JSON.parse(datos);
     let cuerpoTabla = document.createElement('div');
     cuerpoTabla.classList.add("divTableBody");
     let filaCabecera = document.createElement('div');
-    filaCabecera.classList.add('divTableRow');    
+    filaCabecera.classList.add('divTableRow');
+    filaCabecera.classList.add('divTableHeading');
     let celdaCabeceraFecha= document.createElement('div');
     let celdaCabeceraMotivo= document.createElement('div');
+    let celdaSeleccion= document.createElement('div');
     celdaCabeceraFecha.classList.add('divTableCell');
     celdaCabeceraMotivo.classList.add('divTableCell');
+    celdaSeleccion.classList.add('divTableCell');
     filaCabecera.appendChild(celdaCabeceraFecha);
     celdaCabeceraFecha.innerText="Fecha";
-    celdaCabeceraMotivo.innerText="Motivo de la cita";
-    filaCabecera.appendChild(celdaCabeceraMotivo);
+    celdaCabeceraMotivo.innerText="Motivo de la cita";   
+    filaCabecera.appendChild(celdaCabeceraMotivo);   
     cuerpoTabla.appendChild(filaCabecera);
     document.querySelector('.divTable').appendChild(cuerpoTabla);
     let fila;
-    let celdaFecha,celdaMotivo;
+    let celdaFecha,celdaMotivo;    
     for (var i in datos){
-        fila = document.createElement('div');
+        fila = document.createElement('div');        
+        fila.setAttribute('idCita',datos[i].idCita);
         fila.classList.add('divTableRow');
         celdaFecha = document.createElement('div');
         celdaFecha.classList.add('divTableCell');
         celdaMotivo = document.createElement('div');
-        celdaMotivo.classList.add('divTableCell');
+        celdaMotivo.classList.add('divTableCell');                
         celdaFecha.innerText= datos[i].fecha;
         celdaMotivo.innerText= datos[i].motivo;
         fila.appendChild(celdaFecha);
-        fila.appendChild(celdaMotivo);
+        fila.appendChild(celdaMotivo);        
         cuerpoTabla.appendChild(fila);
+        
+    }
+}
+
+
+function cargarSelect(){
+    const select = document.querySelector('#selectCitas');
+    if (user.citas.length>0){
+        for (let i in user.citas){
+            let option = document.createElement('option');
+            option.value=user.citas[i].idCita;
+            option.innerText=user.citas[i].fecha+"-"+user.citas[i].motivo;
+            select.appendChild(option);
+        }
     }
 
 
-
-}/*
-<div class="divTableBody">
-<div class="divTableRow">
-<div class="divTableCell">&nbsp;</div>
-<div class="divTableCell">&nbsp;</div>
-</div>
-</div>
-*/
+}
 
 function cargarCitas() {
     console.log('citas');
@@ -58,6 +75,9 @@ function cargarCitas() {
         success: function (data) {
             console.log(data);
             dibujarTabla(data);
+            
+            user.citas=data;   
+            cargarSelect();         
         },
 
         error: function () {
@@ -108,10 +128,12 @@ function logearUsuario() {
                 console.log(user);
                 let respuesta = `Hola ${user.nombreUsuario} estas registrado como ${user.roleLog}   `;
                 parrafo = document.createElement('span');
-                parrafo.setAttribute('style', 'color:white');
-                parrafo.innerText = respuesta;
+                parrafo.classList.add('estiloLogin');
+                //parrafo.setAttribute('style', 'color:white');
+                parrafo.innerText = respuesta;                
                 cajaRespuesta.appendChild(parrafo);
                 enlace = document.createElement('a');
+                enlace.classList.add('estiloLogin');
                 enlace.setAttribute('href', 'cerrarSesion.php');
                 enlace.setAttribute('title', 'salir de la sesión');
                 enlace.innerText = 'Salir';

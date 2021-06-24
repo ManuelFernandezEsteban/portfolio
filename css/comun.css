@@ -53,6 +53,12 @@
 
 /*fin aside noticias*/
 /*estilos contenedor principal*/
+.estiloLogin{
+    color: white;
+    font-family: 'Ubuntu';
+    font-size: 0.8rem;
+}
+
 .contenedor-secundario{
     flex:4;
 }
@@ -507,6 +513,7 @@ legend{
 }
 .formularioLogin{
     width: 100%;
+    margin-bottom: 30px;
 }
 
 .caja-botones-login{
@@ -584,26 +591,27 @@ legend{
 /*caja citas*/
 .divTable{
 	display: table;
-	width: 90%;
+	width: 100%;
     font-family: 'Ubuntu';
     text-align: center;
 }
 .divTableRow {
 	display: table-row;
 }
-.divTableHeading {
+/*.divTableHeading {
 	background-color: #EEE;
 	display: table-header-group;
-}
+}*/
 .divTableCell, .divTableHead {
 	border: 1px solid #999999;
 	display: table-cell;
 	padding: 3px 10px;
 }
 .divTableHeading {
-	background-color: #EEE;
-	display: table-header-group;
-	font-weight: bold;
+	background-color: black;
+    color: white;
+    
+    font-weight: bold;
 }
 .divTableFoot {
 	background-color: #EEE;
@@ -613,6 +621,21 @@ legend{
 .divTableBody {
 	display: table-row-group;
 }
+
+.boxCitas , .boxPerfil{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.enlaceCitas{
+    display: block;
+    text-decoration: none;
+}
+
 /*fin caja citas*/ 
 /*media querys*/
 /*tamaño ipad*/

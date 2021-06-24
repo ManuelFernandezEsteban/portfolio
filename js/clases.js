@@ -1,14 +1,13 @@
-class Cliente {
+class Usuarios {
 
-    constructor(idCliente,nombreCliente,apellidosCliente,DNI,emailCliente,telefonoCliente,fechaAlta,nombreUsuario="",password=""){
-        this.idCliente=idCliente;
-        this.nombreCliente=nombreCliente;
-        this.apellidosCliente=apellidosCliente;
-        this.DNI=DNI;
-        this.emailCliente=emailCliente;
-        this.telefonoCliente=telefonoCliente;
-        this.fechaAlta=fechaAlta;
-
+    constructor(idUsuario,nombre,apellidos,email,telefono,nombreUsuario,role){
+        this.idUsuario=idUsuario;
+        this.nombre=nombre;
+        this.apellidos=apellidos;        
+        this.email=email;
+        this.telefono=telefono;
+        this.role=role;
+        this.nombreUsuario=nombreUsuario;
     }
 }
 
@@ -17,6 +16,7 @@ class UsuarioLogado{
         this.idUsuario = idUsuario;
         this.nombreUsuario=nombreUsuario;
         this.roleLog=roleLog;
+        this.citas=Array();
     }
 }
 
