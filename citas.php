@@ -14,7 +14,7 @@ class Citas extends Conexion{
 
     function getCitaById($idCita){
 
-        $SQL="SELECT usuario,fecha,motivo FROM `citas` WHERE `idcita`=`$idCita`";        
+        $SQL="SELECT usuario,fecha,motivo FROM `citas` WHERE `idcita`=$idCita";        
         $query = $this -> crearConexion()->query($SQL);
         return $query;
     }

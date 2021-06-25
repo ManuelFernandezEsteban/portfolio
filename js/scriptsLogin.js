@@ -1,8 +1,50 @@
+function resetCitaUser(){
+    document.querySelector('#formulariocitasUsuario').reset();
+    document.querySelector('#editarCitaUser').disabled=true;
+    document.querySelector('#enviarCitaUser').disabled=false;
+}
+
+
+function leerCita(idCita){
+    
+    let dataType = "html";
+    let datos = "idCita=" + idCita;
+    datos += "&operacion=traerCita";
+    console.log(datos);
+    let url = "peticionesCitas.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            console.log(data);
+            let resultado = JSON.parse(data);
+            cita = new Cita(idCita,resultado[0].fecha,resultado[0].motivo,resultado[0].usuario);
+            console.log(cita);
+            document.formularioCitasUser.fechaCita.value=cita.fecha;
+            document.formularioCitasUser.motivoCita.value=cita.motivo;
+            
+        },
+
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+    });
+}
+
+
 
 function cargarCita(){
+    
     const select = document.querySelector('#selectCitas');
     let idCita= select.options[select.selectedIndex].value;
-    console.log(idCita);
+    leerCita(idCita);  
+    document.querySelector('#editarCitaUser').disabled=false;
+    document.querySelector('#enviarCitaUser').disabled=true;
+    
+    console.log(user);
+
 }
 
 
@@ -56,8 +98,6 @@ function cargarSelect(){
             select.appendChild(option);
         }
     }
-
-
 }
 
 function cargarCitas() {

@@ -15,16 +15,18 @@ switch ($peticion) {
         $user = new Usuario(0, $_POST['usuario'], $passCript, "usuario", $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $_POST['telefono']);
         $apiUser->insert($user);
         $data = 'ok';
-        break;
-
-    case 'consultaNombreUsuario':
-        $rest = $apiUser->getByName($_POST['usuario']);
-        if (sizeof($rest) > 0) {
-            $data = 0;
-        } else {
-            $data = 1;
-        }
         break;*/
+
+    case 'traerCita':
+        $rest = $apiCita->getById($_POST['idCita']);
+            if (sizeof($rest)>0){
+                $data = ($rest);
+            }else{
+                $data = array();
+            }
+                        
+       
+        break;
     case 'traerCitasUsuario':
         $rest = $apiCita->getAll($_POST['usuario']);
             if (sizeof($rest)>0){

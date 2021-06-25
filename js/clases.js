@@ -20,3 +20,11 @@ class UsuarioLogado{
     }
 }
 
+class Cita {
+    constructor(idCita,fecha,motivo,usuario){
+        this.idCita=idCita;
+        this.fecha=fecha;
+        this.motivo=motivo;
+        this.usuario=usuario;
+    }
+}

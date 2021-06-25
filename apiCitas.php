@@ -36,21 +36,22 @@ class apiCitas {
 
     function getById($idCita){
 
-        $citas = array();        
+        $cita = array();        
         $resultado= $this-> conexion->getCitaById($idCita);
         if($resultado->num_rows>0){
             while ($fila=$resultado->fetch_assoc()){
                 $item=array(
-                    'fecha'=> $fila['fecha'],
-                    'usuario'=>$fila['usuario'],
-                    'motivo' => $fila['motivo']                    
+                    'fecha'=> $fila['fecha'],                    
+                    'motivo' => $fila['motivo'],
+                    'usuario'=>$fila['usuario']                
                 );
-                array_push($citas,$item);
+                array_push($cita,$item);
             }
-            echo json_encode($citas);
+            //echo json_encode($cita);
         }else{
             echo json_encode(array('mensajes'=>'No hay citas'));
         }
+        return $cita;
     }
 
   /*  function getByName($nameUser){

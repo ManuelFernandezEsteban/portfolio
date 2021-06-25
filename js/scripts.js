@@ -6,6 +6,7 @@ var fuera = false;
 var saludo;
 var objetoHttp = null;
 let user = null;
+let cita = null;
 
 
 function navega(enlace) {
