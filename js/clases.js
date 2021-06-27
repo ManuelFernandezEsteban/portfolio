@@ -27,4 +27,9 @@ class Cita {
         this.motivo=motivo;
         this.usuario=usuario;
     }
+
+    serialize() {
+        return "idCita="+this.idCita+"&fechaCita="+this.fecha+"&motivo="+this.motivo+"&usuario="+this.usuario;
+
+    }
 }

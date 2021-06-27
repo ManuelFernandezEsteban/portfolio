@@ -32,7 +32,7 @@
             </p>
 
         </form>
-        <div class="caja-botones-login">
+        <div class="caja-botones-login enFila">
             <button type="button" id="enviarNuevoUser" class="boton" onclick="enviarCambiosPerfil()">Enviar</button><br>
             <button type="button" id="botonResetAltaUser" class="boton" onclick="resetCambiosPerfil()">Cancelar</button>
         </div>
@@ -50,7 +50,9 @@
 
             <p>
                 <label for="selectCitas">Seleccione una cita para editar</label>
-                <select name="selectCitas" id="selectCitas" onchange="cargarCita()"></select>
+                <select name="selectCitas" id="selectCitas" onchange="cargarCita()">
+                    <option value="-1">Selecciona una cita</option>
+                </select>
             </p>
 
             <p>
@@ -58,13 +60,18 @@
                 <input type="date" class="input-formulario" id="fechaCita" name="fechaCita">
             </p>
             <p>
+                <label for="horaCita">Hora de la cita</label>
+                <input type="datetime-local" name="horaCita" id="horaCita">
+            </p>
+            <p>
                 <label for="motivoCita">Motivo</label>
                 <input type="text" class="input-formulario" name="motivoCita" id="motivoCita">
             </p>
         </form>
-        <div class="caja-botones-login">
+        <div class="caja-botones-login enFila">
             <button type="button" id="enviarCitaUser" class="boton" onclick="enviarCitaUser()">Enviar</button><br>
             <button type="button" id="editarCitaUser" class="boton" onclick="editarCitaUser()" disabled>Editar</button><br>
+            <button type="button" id="editarCitaUser" class="boton" onclick="eliminarCitaUser()" disabled>Eliminar</button><br>
             <button type="button" id="botonResetAltaUser" class="boton" onclick="resetCitaUser()">Cancelar</button>
         </div>
 

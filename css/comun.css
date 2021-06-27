@@ -522,6 +522,13 @@ legend{
     margin-bottom: 40px;
     justify-content: center;
 }
+.enFila{
+    flex-direction: row;
+}
+
+.caja-botones-login>.boton{
+    margin-left: 5px;
+}
 
 /*fin estilos login*/
 

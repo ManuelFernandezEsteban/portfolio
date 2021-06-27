@@ -10,12 +10,12 @@ $peticion = $_POST["operacion"];
 
 
 switch ($peticion) {
-   /* case 'insert':
-        $passCript = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $user = new Usuario(0, $_POST['usuario'], $passCript, "usuario", $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $_POST['telefono']);
-        $apiUser->insert($user);
-        $data = 'ok';
-        break;*/
+    case 'insert':
+        
+        $cita = new Cita(0, $_POST['usuario'], $_POST['fechaCita'], $_POST['motivo']);
+        $resultado = $apiCita->insert($cita);
+        $data='ok';
+        break;
 
     case 'traerCita':
         $rest = $apiCita->getById($_POST['idCita']);

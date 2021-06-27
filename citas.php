@@ -27,7 +27,7 @@ class Citas extends Conexion{
         $SQL.= "VALUES (NULL, '".$cita->usuario."', '";
         $SQL .= "$cita->fecha', '$cita->motivo')";
         $query = $this -> crearConexion()->query($SQL);
-        //return $query;
+        return $query;
 
     }
 

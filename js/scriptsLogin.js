@@ -1,12 +1,64 @@
-function resetCitaUser(){
+function resetCitaUser() {
     document.querySelector('#formulariocitasUsuario').reset();
-    document.querySelector('#editarCitaUser').disabled=true;
-    document.querySelector('#enviarCitaUser').disabled=false;
+    document.querySelector('#editarCitaUser').disabled = true;
+    document.querySelector('#enviarCitaUser').disabled = false;
+}
+
+function validarCita(form){
+
+    if ((form.fechaCita.value=='')||(form.motivoCita.value=='')){
+        return false;
+    }
+    let fechaActual = new Date();
+
+    if (form.fechaCita.value<fechaActual){
+        return false;
+    }
+    return true;
+
 }
 
 
-function leerCita(idCita){
-    
+function enviarCitaUser() { // nueva cita
+
+    //enviar ajax con datos de cita(formulario)
+    console.log('grabando cita....');
+    if (validarCita(document.formularioCitasUser)) {
+        let cita = new Cita(0, formularioCitasUser.fechaCita.value, formularioCitasUser.motivoCita.value, user.idUsuario);
+
+        console.log('grabando cita....');
+        let datos;
+        datos = cita.serialize();
+        //datos = $('#formularioCitasUser').serialize();
+        datos += "&operacion=insert";
+        console.log(datos);
+        let url = "peticionesCitas.php";
+        let dataType = "html";
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: datos,
+            success: function (data) {                
+                
+                    console.log(data);
+                    resetCitaUser();
+                    cargarCitas();
+               
+            },
+            error: function () {
+                console.log("error");
+            },
+            dataType: dataType
+
+        });
+
+
+    }
+}
+
+function leerCita(idCita) {
+
     let dataType = "html";
     let datos = "idCita=" + idCita;
     datos += "&operacion=traerCita";
@@ -19,11 +71,11 @@ function leerCita(idCita){
         success: function (data) {
             console.log(data);
             let resultado = JSON.parse(data);
-            cita = new Cita(idCita,resultado[0].fecha,resultado[0].motivo,resultado[0].usuario);
+            cita = new Cita(idCita, resultado[0].fecha, resultado[0].motivo, resultado[0].usuario);
             console.log(cita);
-            document.formularioCitasUser.fechaCita.value=cita.fecha;
-            document.formularioCitasUser.motivoCita.value=cita.motivo;
-            
+            document.formularioCitasUser.fechaCita.value = cita.fecha;
+            document.formularioCitasUser.motivoCita.value = cita.motivo;
+
         },
 
         error: function () {
@@ -35,20 +87,23 @@ function leerCita(idCita){
 
 
 
-function cargarCita(){
-    
+function cargarCita() {
+
     const select = document.querySelector('#selectCitas');
-    let idCita= select.options[select.selectedIndex].value;
-    leerCita(idCita);  
-    document.querySelector('#editarCitaUser').disabled=false;
-    document.querySelector('#enviarCitaUser').disabled=true;
-    
-    console.log(user);
+    let idCita = select.options[select.selectedIndex].value;
+    console.log(idCita);
+    if (idCita != -1) {
+        leerCita(idCita);
+        document.querySelector('#editarCitaUser').disabled = false;
+        document.querySelector('#enviarCitaUser').disabled = true;
+
+        console.log(user);
+    }
 
 }
 
 
-function dibujarTabla(datos){
+function dibujarTabla(datos) {
 
     //let data = JSON.parse(datos);
     let cuerpoTabla = document.createElement('div');
@@ -56,45 +111,45 @@ function dibujarTabla(datos){
     let filaCabecera = document.createElement('div');
     filaCabecera.classList.add('divTableRow');
     filaCabecera.classList.add('divTableHeading');
-    let celdaCabeceraFecha= document.createElement('div');
-    let celdaCabeceraMotivo= document.createElement('div');
-    let celdaSeleccion= document.createElement('div');
+    let celdaCabeceraFecha = document.createElement('div');
+    let celdaCabeceraMotivo = document.createElement('div');
+    let celdaSeleccion = document.createElement('div');
     celdaCabeceraFecha.classList.add('divTableCell');
     celdaCabeceraMotivo.classList.add('divTableCell');
     celdaSeleccion.classList.add('divTableCell');
     filaCabecera.appendChild(celdaCabeceraFecha);
-    celdaCabeceraFecha.innerText="Fecha";
-    celdaCabeceraMotivo.innerText="Motivo de la cita";   
-    filaCabecera.appendChild(celdaCabeceraMotivo);   
+    celdaCabeceraFecha.innerText = "Fecha";
+    celdaCabeceraMotivo.innerText = "Motivo de la cita";
+    filaCabecera.appendChild(celdaCabeceraMotivo);
     cuerpoTabla.appendChild(filaCabecera);
     document.querySelector('.divTable').appendChild(cuerpoTabla);
     let fila;
-    let celdaFecha,celdaMotivo;    
-    for (var i in datos){
-        fila = document.createElement('div');        
-        fila.setAttribute('idCita',datos[i].idCita);
+    let celdaFecha, celdaMotivo;
+    for (var i in datos) {
+        fila = document.createElement('div');
+        fila.setAttribute('idCita', datos[i].idCita);
         fila.classList.add('divTableRow');
         celdaFecha = document.createElement('div');
         celdaFecha.classList.add('divTableCell');
         celdaMotivo = document.createElement('div');
-        celdaMotivo.classList.add('divTableCell');                
-        celdaFecha.innerText= datos[i].fecha;
-        celdaMotivo.innerText= datos[i].motivo;
+        celdaMotivo.classList.add('divTableCell');
+        celdaFecha.innerText = datos[i].fecha;
+        celdaMotivo.innerText = datos[i].motivo;
         fila.appendChild(celdaFecha);
-        fila.appendChild(celdaMotivo);        
+        fila.appendChild(celdaMotivo);
         cuerpoTabla.appendChild(fila);
-        
+
     }
 }
 
 
-function cargarSelect(){
+function cargarSelect() {
     const select = document.querySelector('#selectCitas');
-    if (user.citas.length>0){
-        for (let i in user.citas){
+    if (user.citas.length > 0) {
+        for (let i in user.citas) {
             let option = document.createElement('option');
-            option.value=user.citas[i].idCita;
-            option.innerText=user.citas[i].fecha+"-"+user.citas[i].motivo;
+            option.value = user.citas[i].idCita;
+            option.innerText = user.citas[i].fecha + "-" + user.citas[i].motivo;
             select.appendChild(option);
         }
     }
@@ -115,9 +170,9 @@ function cargarCitas() {
         success: function (data) {
             console.log(data);
             dibujarTabla(data);
-            
-            user.citas=data;   
-            cargarSelect();         
+
+            user.citas = data;
+            cargarSelect();
         },
 
         error: function () {
@@ -164,13 +219,13 @@ function logearUsuario() {
                 let idUsuario = data.result.idUsuario;
                 let usuario = data.result.usuario;
                 let rol = data.result.role;
-                user = new UsuarioLogado(idUsuario,usuario, rol);
+                user = new UsuarioLogado(idUsuario, usuario, rol);
                 console.log(user);
                 let respuesta = `Hola ${user.nombreUsuario} estas registrado como ${user.roleLog}   `;
                 parrafo = document.createElement('span');
                 parrafo.classList.add('estiloLogin');
                 //parrafo.setAttribute('style', 'color:white');
-                parrafo.innerText = respuesta;                
+                parrafo.innerText = respuesta;
                 cajaRespuesta.appendChild(parrafo);
                 enlace = document.createElement('a');
                 enlace.classList.add('estiloLogin');
