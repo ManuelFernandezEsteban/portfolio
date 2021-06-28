@@ -1,8 +1,10 @@
 function resetCitaUser() {
     document.querySelector('#formulariocitasUsuario').reset();
     document.querySelector('#editarCitaUser').disabled = true;
+    document.querySelector('#eliminarCitaUser').disabled = true;
     document.querySelector('#enviarCitaUser').disabled = false;
 }
+
 
 function validarCita(form){
 
@@ -18,44 +20,85 @@ function validarCita(form){
 
 }
 
+function enviarCita(datos){
+    let url = "peticionesCitas.php";
+    let dataType = "html";
 
-function enviarCitaUser() { // nueva cita
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {                   
+            console.log(data);
+            let resultado = JSON.parse(data);
+            console.log(resultado);
+            if (resultado["result"]=="ok"){
+                resetCitaUser();
+                cargarCitas();
+            }
+        },
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
 
-    //enviar ajax con datos de cita(formulario)
-    console.log('grabando cita....');
-    if (validarCita(document.formularioCitasUser)) {
-        let cita = new Cita(0, formularioCitasUser.fechaCita.value, formularioCitasUser.motivoCita.value, user.idUsuario);
+    });
+}
 
-        console.log('grabando cita....');
+function editarCitaUser(){ //editar cita existente
+    console.log(formularioCitasUser.fechaCita.value);
+
+
+    if (validarCita(document.formularioCitasUser)) {           
         let datos;
+        cita.fecha=formularioCitasUser.fechaCita.value;
+        cita.motivo=formularioCitasUser.motivoCita.value;
         datos = cita.serialize();
-        //datos = $('#formularioCitasUser').serialize();
-        datos += "&operacion=insert";
-        console.log(datos);
-        let url = "peticionesCitas.php";
-        let dataType = "html";
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: datos,
-            success: function (data) {                
-                
-                    console.log(data);
-                    resetCitaUser();
-                    cargarCitas();
-               
-            },
-            error: function () {
-                console.log("error");
-            },
-            dataType: dataType
-
-        });
-
-
+        datos += "&operacion=update";
+        enviarCita(datos);       
     }
 }
+
+function enviarCitaUser() { // nueva cita
+    
+    console.log('grabando cita....');
+    if (validarCita(document.formularioCitasUser)) {
+        let cita = new Cita(0, resultado[0].fecha, formularioCitasUser.motivoCita.value, user.idUsuario);    
+        let datos;
+        datos = cita.serialize();        
+        datos += "&operacion=insert";
+        console.log(datos);
+        enviarCita(datos);
+    }
+}
+
+function formatearFecha(fecha){
+    
+    f = new Date(fecha);
+    let year = f.getFullYear();
+    let month = f.getMonth();
+    month++;
+    if (month in [1,2,3,4,5,6,7,8,9]){
+        
+        month = '0'+month +"";
+    }
+    let day = f.getDate();
+    if (day in [1,2,3,4,5,6,7,8,9]){
+        day = '0'+day+"";
+    }
+    let hour=f.getHours();
+    if (hour in [0,1,2,3,4,5,6,7,8,9]){
+        hour = '0'+hour+"";
+    }
+    
+    let minutes=f.getMinutes();
+    if (minutes in [0,1,2,3,4,5,6,7,8,9]){
+        minutes = '0'+minutes+"";
+    }    
+    let fechaFormateada=year+"-"+month+"-"+day+"T"+hour+":"+minutes;
+    return fechaFormateada;
+}
+
 
 function leerCita(idCita) {
 
@@ -68,12 +111,11 @@ function leerCita(idCita) {
         type: "POST",
         url: url,
         data: datos,
-        success: function (data) {
-            console.log(data);
-            let resultado = JSON.parse(data);
-            cita = new Cita(idCita, resultado[0].fecha, resultado[0].motivo, resultado[0].usuario);
-            console.log(cita);
-            document.formularioCitasUser.fechaCita.value = cita.fecha;
+        success: function (data) {            
+            let resultado = JSON.parse(data);            
+            cita = new Cita(idCita,resultado[0].fecha , resultado[0].motivo, resultado[0].usuario);    
+            let fecha = formatearFecha(resultado[0].fecha);
+            document.formularioCitasUser.fechaCita.value = fecha;
             document.formularioCitasUser.motivoCita.value = cita.motivo;
 
         },
@@ -90,14 +132,12 @@ function leerCita(idCita) {
 function cargarCita() {
 
     const select = document.querySelector('#selectCitas');
-    let idCita = select.options[select.selectedIndex].value;
-    console.log(idCita);
+    let idCita = select.options[select.selectedIndex].value;    
     if (idCita != -1) {
         leerCita(idCita);
         document.querySelector('#editarCitaUser').disabled = false;
         document.querySelector('#enviarCitaUser').disabled = true;
-
-        console.log(user);
+        document.querySelector('#eliminarCitaUser').disabled = true;        
     }
 
 }
@@ -122,6 +162,7 @@ function dibujarTabla(datos) {
     celdaCabeceraMotivo.innerText = "Motivo de la cita";
     filaCabecera.appendChild(celdaCabeceraMotivo);
     cuerpoTabla.appendChild(filaCabecera);
+    document.querySelector('.divTable').innerHTML='';
     document.querySelector('.divTable').appendChild(cuerpoTabla);
     let fila;
     let celdaFecha, celdaMotivo;
@@ -145,9 +186,14 @@ function dibujarTabla(datos) {
 
 function cargarSelect() {
     const select = document.querySelector('#selectCitas');
+    select.innerHTML='';
+    let option = document.createElement('option');
+    option.value = -1;
+    option.innerText = "Seleccione una cita";
+    select.appendChild(option);
     if (user.citas.length > 0) {
         for (let i in user.citas) {
-            let option = document.createElement('option');
+            option = document.createElement('option');
             option.value = user.citas[i].idCita;
             option.innerText = user.citas[i].fecha + "-" + user.citas[i].motivo;
             select.appendChild(option);
@@ -155,10 +201,8 @@ function cargarSelect() {
     }
 }
 
-function cargarCitas() {
-    console.log('citas');
+function cargarCitas() {    
     let dataType = "json";
-
     let datos = "usuario=" + user.idUsuario;
     datos += "&operacion=traerCitasUsuario";
     console.log(datos);
@@ -170,7 +214,6 @@ function cargarCitas() {
         success: function (data) {
             console.log(data);
             dibujarTabla(data);
-
             user.citas = data;
             cargarSelect();
         },
@@ -192,18 +235,13 @@ function enviarANuevoUsuario() {
 }
 
 
-function logearUsuario() {
-
-    console.log('en login');
+function logearUsuario() {    
     let datos = $('#formularioLogin').serialize();
     console.log(datos);
     let url = "verificarLogin.php";
     let dataType = "json";
     const cajaRespuesta = document.querySelector('#caja-login');
-
-    let enlace;
-    //let parrafo;
-
+    let enlace;    
     $.ajax({
 
         type: "POST",
@@ -224,7 +262,6 @@ function logearUsuario() {
                 let respuesta = `Hola ${user.nombreUsuario} estas registrado como ${user.roleLog}   `;
                 parrafo = document.createElement('span');
                 parrafo.classList.add('estiloLogin');
-                //parrafo.setAttribute('style', 'color:white');
                 parrafo.innerText = respuesta;
                 cajaRespuesta.appendChild(parrafo);
                 enlace = document.createElement('a');
@@ -255,14 +292,14 @@ function ComprobarUser() {
 
         let datos = "usuario=" + nombreNuevoUser;
         datos += "&operacion=consultaNombreUsuario";
-        console.log(datos);
+        
         let url = "peticionesUsuarios.php";
         $.ajax({
             type: "POST",
             url: url,
             data: datos,
             success: function (data) {
-                console.log(data);
+        
                 if (data == 1) {
                     $("#respuestaLogin").html("El usuario esta disponible");
                     console.log(data);
@@ -289,11 +326,7 @@ function ComprobarUser() {
 
 
 function NuevoUser() {
-
-
     if (validar(document.formularioNuevoUser)) {
-
-        console.log('en nuevo login');
         let datos;
         if ($('#NuevoUsuario').val().trim() != '' && $('#NuevoUserPassword').val().trim() != '' && ($('#NuevoUserPassword').val() == $('#NuevoUserPasswordConfirmacion').val())) {
 
@@ -304,8 +337,6 @@ function NuevoUser() {
         else {
             alert("faltan datos");
         }
-        //let idCliente = grabarNuevoCliente();
-        console.log(datos);
         let url = "peticionesUsuarios.php";
         let dataType = "html";
 
@@ -318,13 +349,9 @@ function NuevoUser() {
                     $('#NuevoUsuario').val('');
                     $('#NuevoUserPassword').val('');
                     $('#NuevoUserPasswordConfirmacion').val('');
-                    document.querySelector('#formularioNuevoUsuario').reset();
-                    console.log(data);
+                    document.querySelector('#formularioNuevoUsuario').reset();         
                 }
-                else {
-                    console.log(data);
-                }
-            },
+            },            
             error: function () {
                 console.log("error");
             },
@@ -344,15 +371,13 @@ function cargarPerfil() {
 
     let dataType = "html";
     let datos = "usuario=" + user.nombreUsuario;
-    datos += "&operacion=datosUsuario";
-    console.log(datos);
+    datos += "&operacion=datosUsuario";    
     let url = "peticionesUsuarios.php";
     $.ajax({
         type: "POST",
         url: url,
         data: datos,
-        success: function (data) {
-            console.log(data);
+        success: function (data) {            
             datos = JSON.parse(data);
             $('#usuarioPerfil').val(datos[0].usuario);
             $('#nombrePerfil').val(datos[0].nombre);
@@ -378,17 +403,10 @@ function resetCambiosPerfil() {
 
 function enviarCambiosPerfil() {
     if (validar(document.formularioPerfilUser)) {
-
-
         datos = $('#formularioPerfilUsuario').serialize();
         datos += "&operacion=modificarPerfil";
-        console.log(datos);
-
-        //let idCliente = grabarNuevoCliente();
-        //console.log(datos);
         let url = "peticionesUsuarios.php";
         let dataType = "html";
-
         $.ajax({
             type: "POST",
             url: url,
@@ -397,10 +415,7 @@ function enviarCambiosPerfil() {
                 if (data == 'ok') {
                     document.querySelector('#formularioPerfilUsuario').reset();
                     alert('Datos modificados')
-                }
-                else {
-                    console.log(data);
-                }
+                }                
             },
             error: function () {
                 console.log("error");

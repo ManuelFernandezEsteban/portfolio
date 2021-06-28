@@ -427,9 +427,15 @@ img.icono{
     color: white;
     font-family: 'Tillana';
     border-radius: 0;
-    border: 0;
-    
+    border: 0;    
 }
+
+input[type="button"]:disabled{
+    background-color: #999999;
+
+}
+
+
 .botones{        
     padding: 5%;
 }

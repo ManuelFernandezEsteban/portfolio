@@ -6,8 +6,8 @@ include_once('cita.php');
 class Citas extends Conexion{
     
     function getAllCitasUsuario($idUser){
-        //$id= intval($idUser);
-        $SQL="SELECT idCita,fecha,motivo FROM `citas` WHERE `usuario`=$idUser";
+        $fecha72 = date("Y-m-d H:i:s",mktime(72));
+        $SQL="SELECT idCita,fecha,motivo FROM `citas` WHERE `usuario`=$idUser AND (`fecha` > '$fecha72') ORDER BY `fecha`" ;
         $query = $this -> crearConexion()->query($SQL);
         return $query;
     }
@@ -36,14 +36,16 @@ class Citas extends Conexion{
         $SQL = "DELETE FROM `citas` ";
         $SQL.="WHERE `idCita` = '".$idCita."'";
         $query = $this -> crearConexion()->query($SQL);
-        //return $query;
+        return $query;
     }
 
     function updateCita($cita){
 
         $SQL=" UPDATE `citas` SET ";
-        $SQL.=" `fecha`='$cita->fecha',`motivo`='$cita->motivo'";        
+        $SQL.=" `fecha`='$cita->fecha',`motivo`='$cita->motivo'";  
+        $SQL.="WHERE `idCita` = ".$cita->idCita;      
         $query = $this -> crearConexion()->query($SQL);
+        return $query;
     }
 }
 

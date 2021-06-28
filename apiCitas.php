@@ -27,7 +27,7 @@ class apiCitas {
                 );
                 array_push($citas,$item);
             }
-            //echo json_encode($resultado);
+            
         }else{
             echo json_encode(array('mensajes'=>'No hay citas'));
         }
@@ -47,50 +47,28 @@ class apiCitas {
                 );
                 array_push($cita,$item);
             }
-            //echo json_encode($cita);
+            
         }else{
             echo json_encode(array('mensajes'=>'No hay citas'));
         }
         return $cita;
     }
-
-  /*  function getByName($nameUser){
-        $usuarios = array();        
-        $resultado= $this-> conexion->getUsuarioByName($nameUser);
-        if($resultado->num_rows>0){
-            while ($fila=$resultado->fetch_assoc()){
-                $item=array(
-                    'idUsuario'=> $fila['idUsuario'],
-                    'usuario'=>$fila['usuario'],
-                    'password'=>$fila['password'],
-                    'role' => $fila['role'],  
-                    'nombre'=>$fila['nombre'],
-                    'apellidos'=>$fila['apellidos'],
-                    'email'=>$fila['email'],
-                    'telefono'=>$fila['telefono']
-                );
-                array_push($usuarios,$item);
-            }
-            
-           
-        }
-        return $usuarios;
-    }*/
+ 
 
     function update($cita){
         $resultado = $this->conexion->updateCita($cita);
-        echo $resultado;
+        //echo $resultado;
     }
 
 
-    function insert($cita){        
-        
+    function insert($cita){               
         $resultado= $this->conexion->insertCita($cita);
-        echo $resultado;
+        //echo $resultado;
     }
 
     function delete($idCita){
         $resultado= $this->conexion->deleteCita($idCita);
+        //echo $resultado;
     }
 
 

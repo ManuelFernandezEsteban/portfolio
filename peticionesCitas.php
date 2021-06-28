@@ -7,16 +7,17 @@ $apiCita = new apiCitas();
 
 $peticion = $_POST["operacion"];
 
-
+$data = array();
 
 switch ($peticion) {
     case 'insert':
         
         $cita = new Cita(0, $_POST['usuario'], $_POST['fechaCita'], $_POST['motivo']);
         $resultado = $apiCita->insert($cita);
-        $data='ok';
+        $data['result']='ok';
+        $data['datos']=$resultado;
         break;
-
+        
     case 'traerCita':
         $rest = $apiCita->getById($_POST['idCita']);
             if (sizeof($rest)>0){
@@ -24,8 +25,6 @@ switch ($peticion) {
             }else{
                 $data = array();
             }
-                        
-       
         break;
     case 'traerCitasUsuario':
         $rest = $apiCita->getAll($_POST['usuario']);
@@ -37,41 +36,16 @@ switch ($peticion) {
                         
        
         break;
-    /*case 'modificarPerfil':
-        $user = new Usuario(null, $_POST['usuario'], null, "usuario", $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $_POST['telefono']);
-        $apiUser->update($user);
-        $data = 'ok';
-        break;*/
+    case 'update':
+        $cita = new Cita($_POST['idCita'], $_POST['usuario'], $_POST['fechaCita'], $_POST['motivo']);
+        $resultado = $apiCita->update($cita);        
+        $data['result']='ok';
+        $data['datos']=$resultado;
+        break;
     default:
         break;
 }
 
 echo json_encode($data);
 
-
-/*
-
-if ($_POST["operacion"]=="insert"){
-
-   $passCript=password_hash($_POST['NuevoUserPassword'],PASSWORD_BCRYPT);
-
-   $user = new Usuario(0, $_POST['NuevoUsuario'],$passCript,"usuario",$_POST['nombre'],$_POST['apellidos'],$_POST['email'],$_POST['movil']);
-
-   $apiUser->insert($user);
-   $data='ok';
-   //$data['result']=  $res ;
-
-}
-
-
-
-if ($_POST["operacion"]=="consultaNombreUsuario"){
-    $rest = $apiUser->getByName($_POST['NombreUsuario']);
-    if (sizeof($rest)>0) {
-        $data = 0;        
-    }else{
-        $data = 1;
-    }    
-}
-echo ($data);*/
 ?>
