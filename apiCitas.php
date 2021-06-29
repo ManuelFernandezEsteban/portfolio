@@ -14,10 +14,11 @@ class apiCitas {
 
     }
 
-    function getAll($idUser){
+    function getAll($idUser,$fecha){
         
-        $citas = array();        
-        $resultado= $this-> conexion->getAllCitasUsuario($idUser);
+        $citas = array();     
+           
+        $resultado= $this-> conexion->getAllCitasUsuario($idUser,$fecha);
         if($resultado->num_rows>0){
             while ($fila=$resultado->fetch_assoc()){
                 $item=array(
@@ -68,7 +69,7 @@ class apiCitas {
 
     function delete($idCita){
         $resultado= $this->conexion->deleteCita($idCita);
-        //echo $resultado;
+        return $resultado;
     }
 
 

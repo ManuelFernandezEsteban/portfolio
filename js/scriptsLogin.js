@@ -60,43 +60,32 @@ function editarCitaUser(){ //editar cita existente
 }
 
 function enviarCitaUser() { // nueva cita
-    
+
     console.log('grabando cita....');
     if (validarCita(document.formularioCitasUser)) {
-        let cita = new Cita(0, resultado[0].fecha, formularioCitasUser.motivoCita.value, user.idUsuario);    
+        let cita = new Cita(0, formularioCitasUser.fechaCita.value, formularioCitasUser.motivoCita.value, user.idUsuario);
         let datos;
-        datos = cita.serialize();        
+        datos = cita.serialize();
         datos += "&operacion=insert";
         console.log(datos);
         enviarCita(datos);
     }
 }
+function agregarCero(numero) {
+    const digitos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    if (numero in digitos) {
+        return '0' + numero;
+    }else{
+        return numero+'';
+    }
+}
+function formatearFecha(fecha) {
 
-function formatearFecha(fecha){
-    
     f = new Date(fecha);
-    let year = f.getFullYear();
-    let month = f.getMonth();
-    month++;
-    if (month in [1,2,3,4,5,6,7,8,9]){
-        
-        month = '0'+month +"";
-    }
-    let day = f.getDate();
-    if (day in [1,2,3,4,5,6,7,8,9]){
-        day = '0'+day+"";
-    }
-    let hour=f.getHours();
-    if (hour in [0,1,2,3,4,5,6,7,8,9]){
-        hour = '0'+hour+"";
-    }
+    let res = f.getFullYear() + "-" + agregarCero(f.getMonth() + 1) + "-" + agregarCero(f.getDate()) + "T" + agregarCero(f.getHours()) + ":" + agregarCero(f.getMinutes());
     
-    let minutes=f.getMinutes();
-    if (minutes in [0,1,2,3,4,5,6,7,8,9]){
-        minutes = '0'+minutes+"";
-    }    
-    let fechaFormateada=year+"-"+month+"-"+day+"T"+hour+":"+minutes;
-    return fechaFormateada;
+    return res;
+    
 }
 
 
@@ -137,7 +126,7 @@ function cargarCita() {
         leerCita(idCita);
         document.querySelector('#editarCitaUser').disabled = false;
         document.querySelector('#enviarCitaUser').disabled = true;
-        document.querySelector('#eliminarCitaUser').disabled = true;        
+        document.querySelector('#eliminarCitaUser').disabled = false;        
     }
 
 }
@@ -182,26 +171,51 @@ function dibujarTabla(datos) {
 
     }
 }
-
-
-function cargarSelect() {
+function cargarCitas(){
+    cargarCitasTabla();
+    cargarCitasSelect();
+}
+function cargarSelect(datos) {
     const select = document.querySelector('#selectCitas');
-    select.innerHTML='';
+    select.innerHTML = '';
     let option = document.createElement('option');
     option.value = -1;
     option.innerText = "Seleccione una cita";
     select.appendChild(option);
-    if (user.citas.length > 0) {
-        for (let i in user.citas) {
+    if (datos.length > 0) {
+        for (let i in datos) {
             option = document.createElement('option');
-            option.value = user.citas[i].idCita;
-            option.innerText = user.citas[i].fecha + "-" + user.citas[i].motivo;
+            option.value = datos[i].idCita;
+            option.innerText = datos[i].fecha + "-" + datos[i].motivo;
             select.appendChild(option);
         }
     }
 }
+function cargarCitasSelect() {
+    let dataType = "json";
+    let datos = "usuario=" + user.idUsuario;
+    datos += "&operacion=traerCitasUsuarioEditable";
+    console.log(datos);
+    let url = "peticionesCitas.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            console.log(data);
+            cargarSelect(data);            
+        },
 
-function cargarCitas() {    
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+
+    });
+
+}
+
+function cargarCitasTabla() {
     let dataType = "json";
     let datos = "usuario=" + user.idUsuario;
     datos += "&operacion=traerCitasUsuario";
@@ -215,7 +229,6 @@ function cargarCitas() {
             console.log(data);
             dibujarTabla(data);
             user.citas = data;
-            cargarSelect();
         },
 
         error: function () {
@@ -226,6 +239,37 @@ function cargarCitas() {
     });
 
 }
+function eliminarCitaUser(){
+    console.log('eliminado....')
+    const select = document.querySelector('#selectCitas');
+    let dataType = "json";
+    let idCita = select.options[select.selectedIndex].value;
+    let datos = "idCita=" + idCita;
+    datos += "&operacion=delete";
+    console.log(datos);
+    let url = "peticionesCitas.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            console.log(data);
+            //let resultado = JSON.parse(data);
+            //console.log(resultado);
+            if(data["result"]=="ok"){
+                cargarCita();
+                resetCitaUser();
+            }
+
+        },
+
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+    });
+}
+
 
 
 function enviarANuevoUsuario() {
