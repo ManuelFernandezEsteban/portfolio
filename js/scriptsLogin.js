@@ -100,13 +100,15 @@ function leerCita(idCita) {
         type: "POST",
         url: url,
         data: datos,
-        success: function (data) {            
-            let resultado = JSON.parse(data);            
-            cita = new Cita(idCita,resultado[0].fecha , resultado[0].motivo, resultado[0].usuario);    
-            let fecha = formatearFecha(resultado[0].fecha);
-            document.formularioCitasUser.fechaCita.value = fecha;
-            document.formularioCitasUser.motivoCita.value = cita.motivo;
-
+        success: function (data) { 
+            let resultado = JSON.parse(data);
+            if (resultado.result=="ok"){           
+                console.log(resultado);
+                cita = new Cita(idCita,resultado.datos[0].fecha , resultado.datos[0].motivo, resultado.datos[0].usuario);    
+                let fecha = formatearFecha(cita.fecha);
+                document.formularioCitasUser.fechaCita.value = fecha;
+                document.formularioCitasUser.motivoCita.value = cita.motivo;
+            }
         },
 
         error: function () {
@@ -134,7 +136,6 @@ function cargarCita() {
 
 function dibujarTabla(datos) {
 
-    //let data = JSON.parse(datos);
     let cuerpoTabla = document.createElement('div');
     cuerpoTabla.classList.add("divTableBody");
     let filaCabecera = document.createElement('div');
@@ -156,6 +157,7 @@ function dibujarTabla(datos) {
     let fila;
     let celdaFecha, celdaMotivo;
     for (var i in datos) {
+        
         fila = document.createElement('div');
         fila.setAttribute('idCita', datos[i].idCita);
         fila.classList.add('divTableRow');
@@ -184,6 +186,7 @@ function cargarSelect(datos) {
     select.appendChild(option);
     if (datos.length > 0) {
         for (let i in datos) {
+            
             option = document.createElement('option');
             option.value = datos[i].idCita;
             option.innerText = datos[i].fecha + "-" + datos[i].motivo;
@@ -192,7 +195,7 @@ function cargarSelect(datos) {
     }
 }
 function cargarCitasSelect() {
-    let dataType = "json";
+    let dataType = "html";
     let datos = "usuario=" + user.idUsuario;
     datos += "&operacion=traerCitasUsuarioEditable";
     console.log(datos);
@@ -202,8 +205,12 @@ function cargarCitasSelect() {
         url: url,
         data: datos,
         success: function (data) {
-            console.log(data);
-            cargarSelect(data);            
+           
+            let resultado = JSON.parse(data);
+            if (resultado.result=="ok"){
+           
+                cargarSelect(resultado.datos);       
+            }     
         },
 
         error: function () {
@@ -216,7 +223,7 @@ function cargarCitasSelect() {
 }
 
 function cargarCitasTabla() {
-    let dataType = "json";
+    let dataType = "html";
     let datos = "usuario=" + user.idUsuario;
     datos += "&operacion=traerCitasUsuario";
     console.log(datos);
@@ -226,9 +233,14 @@ function cargarCitasTabla() {
         url: url,
         data: datos,
         success: function (data) {
-            console.log(data);
-            dibujarTabla(data);
-            user.citas = data;
+           
+            let resultado = JSON.parse(data);
+            if (resultado.result=="ok"){
+           
+                dibujarTabla(resultado.datos);
+                user.citas = resultado.datos;       
+            }
+            
         },
 
         error: function () {
@@ -242,7 +254,7 @@ function cargarCitasTabla() {
 function eliminarCitaUser(){
     console.log('eliminado....')
     const select = document.querySelector('#selectCitas');
-    let dataType = "json";
+    let dataType = "html";
     let idCita = select.options[select.selectedIndex].value;
     let datos = "idCita=" + idCita;
     datos += "&operacion=delete";
@@ -254,10 +266,10 @@ function eliminarCitaUser(){
         data: datos,
         success: function (data) {
             console.log(data);
-            //let resultado = JSON.parse(data);
-            //console.log(resultado);
-            if(data["result"]=="ok"){
-                cargarCita();
+            let resultado = JSON.parse(data);
+            
+            if(resultado.result=="ok"){
+                cargarCitas();
                 resetCitaUser();
             }
 

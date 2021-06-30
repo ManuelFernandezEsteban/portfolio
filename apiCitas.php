@@ -58,13 +58,13 @@ class apiCitas {
 
     function update($cita){
         $resultado = $this->conexion->updateCita($cita);
-        //echo $resultado;
+        return $resultado;
     }
 
 
     function insert($cita){               
         $resultado= $this->conexion->insertCita($cita);
-        //echo $resultado;
+        return $resultado;
     }
 
     function delete($idCita){
