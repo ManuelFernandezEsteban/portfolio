@@ -48,15 +48,16 @@
     <div class="boxCitas">
         <form method="POST" class="formularioLogin" id="formulariocitasUsuario" name="formularioCitasUser">
 
-            <p>
+           <!-- <p>
                 <label for="selectCitas">Seleccione una cita para editar</label>
                 <select name="selectCitas" id="selectCitas" onchange="cargarCita()">
                     <option value="-1">Selecciona una cita</option>
                 </select>
-            </p>           
-            <p>
-                <label for="horaCita">Fecha y hora de la cita</label>
-                <input type="datetime-local" name="fechaCita" id="fechaCita">
+            </p>    -->       
+            <p>Horario de citas L-V 10:00-13:00 y 17:00 19:00 </p>
+             <p>   <label for="horaCita">Fecha y hora de la cita</label>
+                
+                <input type="datetime-local" name="fechaCita" id="fechaCita" step=1800>
             </p>
             <p>
                 <label for="motivoCita">Motivo</label>

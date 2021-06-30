@@ -635,6 +635,11 @@ legend{
 	display: table-row-group;
 }
 
+.divTableCell:hover{
+    cursor: pointer;
+    background-color: #999999;
+}
+
 .boxCitas , .boxPerfil{
     display: flex;
     flex-direction: column;

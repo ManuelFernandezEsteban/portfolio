@@ -79,12 +79,13 @@ $(document).ready(function () {
         }
         $('.menuresponsive').children('input').prop('checked', false);
         if (destino=='cuerpoLogin.html'){
+            console.log(user);
             if (user!=null){
                 
                 let datos = user;
                 let url = "verificarSiLogado.php";
                 let dataType = "text";               
-
+                console.log("comnprobar si logado");
                 $.ajax({
 
                     type: "POST",
@@ -95,7 +96,7 @@ $(document).ready(function () {
                         if (data=='ok'){
 
                             console.log(user.roleLog);
-                            if (user.roleLog=='usuario'){
+                            if (user.roleLog=='usuarios'){
                                 destino='usuarios.html';
                                 console.log(destino);
                             }
