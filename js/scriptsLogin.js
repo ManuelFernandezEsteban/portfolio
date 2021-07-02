@@ -43,7 +43,7 @@ function logearUsuario() {
                 enlace.setAttribute('title', 'salir de la sesión');
                 enlace.innerText = 'Salir';
                 cajaRespuesta.appendChild(enlace);
-                navega('usuarios.html');
+                navega('usuariosAdmin.html');
             }
         },
         error: function () {

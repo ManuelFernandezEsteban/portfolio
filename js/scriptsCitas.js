@@ -210,7 +210,6 @@ function dibujarTabla(datos) {
     cuerpoTabla.appendChild(filaCabecera);
     document.querySelector('.divTable').innerHTML = '';
     document.querySelector('.divTable').appendChild(cuerpoTabla);
-
     for (var i in datos) {
         let fila;
         let celdaFecha, celdaMotivo;
@@ -227,9 +226,9 @@ function dibujarTabla(datos) {
         fila.appendChild(celdaMotivo);
         fila.addEventListener('click', clickEnTabla);
         cuerpoTabla.appendChild(fila);
-
     }
 }
+
 function cargarCitas() {
     cargarCitasTabla();
     

@@ -1,4 +1,4 @@
-class Usuarios {
+class Usuario {
 
     constructor(idUsuario,nombre,apellidos,email,telefono,nombreUsuario,role){
         this.idUsuario=idUsuario;
@@ -8,8 +8,11 @@ class Usuarios {
         this.telefono=telefono;
         this.role=role;
         this.nombreUsuario=nombreUsuario;
+        this.citas=Array();
     }
 }
+
+
 
 class UsuarioLogado{
     constructor(idUsuario,nombreUsuario,roleLog){

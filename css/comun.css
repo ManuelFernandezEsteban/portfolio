@@ -602,7 +602,7 @@ legend{
     margin: 5px;
 }
 /*caja citas*/
-.divTable{
+.divTableUsuarios{
 	display: table;
 	width: 100%;
     font-family: 'Ubuntu';
@@ -615,7 +615,7 @@ legend{
 	background-color: #EEE;
 	display: table-header-group;
 }*/
-.divTableCell, .divTableHead {
+.divTableCell, .divTableHead,.divTableCellHeader {
 	border: 1px solid #999999;
 	display: table-cell;
 	padding: 3px 10px;
@@ -640,7 +640,7 @@ legend{
     background-color: #999999;
 }
 
-.boxCitas , .boxPerfil{
+.boxCitasContent , .boxPerfilContent{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

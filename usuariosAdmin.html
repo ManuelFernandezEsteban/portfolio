@@ -2,14 +2,16 @@
     <div class="caja-botones">
         <input type="button" class="boton" value="Perfil" id="btnPerfil" onclick="cargarPerfil()">
         <input type="button" class="boton" value="Citas" id="btnCitas" onclick="cargarCitas()">
-        <input type="button" class="boton" value="Admin" id="btnAdmin">
+        <input type="button" class="boton" value="Admin" id="btnAdmin" onclick="cargarUsuarios()">
     </div>
+
+    <div class="divTableUsuarios">
+    </div>
+
     <div class="boxPerfil">
-        <h1>Perfil</h1>
+        <h2>Perfil</h2>
         <div class="boxPerfilContent">
-
             <form method="POST" class="formularioLogin" id="formularioPerfilUsuario" name="formularioPerfilUser">
-
                 <p>
                     <label for="usuarioPerfil">Usuario </label><br>
                     <input type="text" class="input-formulario" id="usuarioPerfil" name="usuario" readonly>
@@ -42,11 +44,13 @@
 
         </div>
     </div>
-    <div class="boxCitas">
-        <h1>Citas</h1>
-        <div class="divTable">
 
+
+    <div class="boxCitas">
+        <h2>Citas</h2>
+        <div class="divTableCitas">
         </div>
+
         <div class="boxCitasContent">
             <form method="POST" class="formularioLogin" id="formulariocitasUsuario" name="formularioCitasUser">
                 
@@ -68,56 +72,9 @@
                     disabled>Eliminar</button><br>
                 <button type="button" id="botonResetAltaUser" class="boton" onclick="resetCitaUser()">Cancelar</button>
             </div>
-
         </div>
     </div>
-    <div class="boxAdmin">
-        <h1>Administrador</h1>
-        <div class="divTablaUsuarios">
 
-        </div>
-        <div class="boxPerfil">
-            <h1 id="cabeceraPerfil">Perfil </h1>
-            <div class="boxPerfilContent">
-    
-                <form method="POST" class="formularioLogin" id="formularioPerfilAdmin" name="formularioPerfilAdmin">
-                    <p>
-                        <label for="idUsuario">Id Usuario </label><br>
-                        <input type="text" class="input-formulario" id="idUsuario" name="idusuario" readonly>
-                    </p>
-                    <p>
-                        <label for="usuarioAdmin">Usuario </label><br>
-                        <input type="text" class="input-formulario" id="usuarioAdmin" name="usuario" readonly>
-                    </p>
-                    <p>
-                        <label for="nombreAdmin">Nombre </label><br>
-                        <input type="text" class="input-formulario" id="nombreAdmin" name="nombre" required>
-                    </p>
-    
-                    <p>
-                        <label for="apellidosAdmin" class="col-sm-2 col-form-label">Apellidos </label><br>
-                        <input type="text" class="input-formulario" id="apellidosAdmin" name="apellidos" required>
-                    </p>
-                    <p>
-                        <label for="emailAdmin">Email </label><br>
-                        <input type="email" class="input-formulario" id="emailAdmin" name="email" required>
-                    </p>
-                    <p>
-                        <label for="movilAdmin">Telefono </label><br>
-                        <input type="text" class="input-formulario" id="movilAdmin" name="telefono" required>
-                    </p>
-    
-                </form>
-                <div class="caja-botones-login enFila">
-                    <button type="button" id="editarPerfiAdmin" class="boton"
-                        onclick="enviarCambiosPerfilAdmin()">Editar</button><br>
-                    <button type="button" id="botonResetAltaUser" class="boton"
-                        onclick="resetCambiosPerfil()">Cancelar</button>
-                </div>
-    
-            </div>
-        </div>
-
-    </div>
 
 </div>
+
