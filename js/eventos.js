@@ -95,16 +95,8 @@ $(document).ready(function () {
                         
                         if (data=='ok'){
 
-                            console.log(user.roleLog);
-                            if (user.roleLog=='usuarios'){
-                                destino='usuarios.html';
-                                console.log(destino);
-                            }
-                            else if (user.roleLog=='administrador'){
-                                destino='administrador.html';
-                                console.log(destino);
-                            }
-                            
+                            console.log(user.roleLog);                            
+                            destino="usuariosAdmin.html";
                         }
                         navega(destino);
                     },

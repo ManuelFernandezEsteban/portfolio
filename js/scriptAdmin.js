@@ -1,37 +1,7 @@
-let usuarios = Array();
-let usuarioSeleccionado;
+//let usuarios = Array();
+let usuario;
 
-function cargarPerfil(idUsuario) {
 
-    let dataType = "html";
-    let datos = "usuario=" + idUsuario;
-    datos += "&operacion=datosUsuario";
-    console.log(datos)    ;
-    let url = "peticionesUsuarios.php";
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: datos,
-        success: function (data) {  
-
-            let resultado = JSON.parse(data);
-            if (resultado.result == "ok") {
-                console.log(resultado);
-                usuarioSeleccionado = new Usuario(resultado.datos[0].idUsuario,resultado.datos[0].nombre,resultado.datos[0].apellidos,resultado.datos[0].email,resultado.datos[0].telefono,resultado.datos[0].usuario,resultado.datos[0].role);                
-                document.formularioPerfilUser.usuario.value=usuarioSeleccionado.nombreUsuario;
-                document.formularioPerfilUser.nombre.value=usuarioSeleccionado.nombre;
-                document.formularioPerfilUser.apellidos.value=usuarioSeleccionado.apellidos;
-                document.formularioPerfilUser.email.value=usuarioSeleccionado.email;
-                document.formularioPerfilUser.telefono.value=usuarioSeleccionado.telefono;
-            }
-        },
-        error: function () {
-            console.log("error");
-        },
-        dataType: dataType
-
-    });
-}
 function dibujarTablaCitas(datos) {
 
     let cuerpoTabla = document.createElement('div');
@@ -51,6 +21,8 @@ function dibujarTablaCitas(datos) {
     filaCabecera.appendChild(celdaCabeceraMotivo);
     cuerpoTabla.appendChild(filaCabecera);
     document.querySelector('.divTableCitas').innerHTML = '';
+    document.querySelector('.divTableCitas').classList.add('divTableCitas');
+    document.querySelector('.divTableCitas').style.display="table";
     document.querySelector('.divTableCitas').appendChild(cuerpoTabla);
     for (var i in datos) {
         let fila;
@@ -70,7 +42,7 @@ function dibujarTablaCitas(datos) {
         cuerpoTabla.appendChild(fila);
     }
 }
-function traerCitas(idUsuario) {
+function traerCitasUsuario(idUsuario) {
     let dataType = "html";
     let datos = "usuario=" + idUsuario;
     datos += "&operacion=traerCitasUsuario";
@@ -85,11 +57,15 @@ function traerCitas(idUsuario) {
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
 
-                //dibujarTabla(resultado.datos);
-                console.log(usuarioSeleccionado);
-                usuarioSeleccionado.citas = resultado.datos;
-                console.log(usuarioSeleccionado);
-                dibujarTablaCitas(usuarioSeleccionado.citas);
+                usuario.citas = resultado.datos;
+                
+                console.log(usuario);
+                
+                   dibujarTablaCitas(usuario.citas);
+                
+               
+                
+                
             }
 
         },
@@ -104,9 +80,13 @@ function traerCitas(idUsuario) {
 }
 
 function seleccionUsuario(ev){
-    let id = ev.target.parentNode.getAttribute("idUsuario");
-    cargarPerfil(id);
-    traerCitas(id);
+
+    document.querySelector('#formulariocitasUsuario').reset();
+    document.querySelector('#formularioPerfilUsuario').reset();
+    document.querySelector('.divTableCitas').innerHTML = '';
+    let id = ev.target.parentNode.getAttribute("idUsuario");    
+    cargarPerfilUsuario(id);  
+    traerCitasUsuario(id);
     
 }
 
@@ -154,8 +134,9 @@ function dibujarTablaUsuarios(datos){
     cuerpoTabla.appendChild(filaCabecera);
     document.querySelector('.divTableUsuarios').classList.add('divTableUsuarios');
     document.querySelector('.divTableUsuarios').innerHTML = '';
-
+    document.querySelector('.divTableUsuarios').style.display="table";
     document.querySelector('.divTableUsuarios').appendChild(cuerpoTabla);
+    
     for (var i in datos) {
         let fila;
         let celdaUsuario,celdaNombre,celdaRole,celdaApellidos;
@@ -201,7 +182,7 @@ function cargarTablaUsuarios(){
             if (resultado.result == "ok") {
 
                 dibujarTablaUsuarios(resultado.datos);
-                usuarios = resultado.datos;
+                //usuarios = resultado.datos;
             }
 
         },
@@ -214,10 +195,177 @@ function cargarTablaUsuarios(){
     });
 
 }
+function cargarPerfilUsuario(idUsuario) {
+
+    let dataType = "html";
+    let datos = "usuario=" + idUsuario;
+    datos += "&operacion=datosUsuario";
+    console.log(datos)    ;
+    let url = "peticionesUsuarios.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {  
+
+            let resultado = JSON.parse(data);
+            if (resultado.result == "ok") {
+                console.log(resultado);
+                usuario = new Usuario(resultado.datos[0].idUsuario,resultado.datos[0].nombre,resultado.datos[0].apellidos,resultado.datos[0].email,resultado.datos[0].telefono,resultado.datos[0].usuario,resultado.datos[0].role);                
+                document.formularioPerfilUser.usuario.value=usuario.nombreUsuario;
+                document.formularioPerfilUser.nombre.value=usuario.nombre;
+                document.formularioPerfilUser.apellidos.value=usuario.apellidos;
+                document.formularioPerfilUser.email.value=usuario.email;
+                document.formularioPerfilUser.telefono.value=usuario.telefono;
+            }
+        },
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+
+    });
+}
+function enviarCambiosPerfil(){
+    
+        if (validar(document.formularioPerfilUser)) {
+            datos = $('#formularioPerfilUsuario').serialize();
+            datos += "&operacion=modificarPerfil";
+            let url = "peticionesUsuarios.php";
+            let dataType = "html";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: datos,
+                success: function (data) {
+                    if (data == 'ok') {
+                        document.querySelector('#formularioPerfilUsuario').reset();
+                        alert('Datos modificados');
+                        if (user.roleLog=='admin'){
+                            cargarTablaUsuarios();
+                        }
+                    }                
+                },
+                error: function () {
+                    console.log("error");
+                },
+                dataType: dataType
+    
+            });
+        
+    
+    }
+
+}
 
 
 
+function cargarCitas(){
+    
+    cargarPerfilUsuario(user.idUsuario);
+    traerCitasUsuario(user.idUsuario);
+    
+    
+}
+function cargarCitasBtn(){
+   
+    if (user.roleLog=='usuario'){
+        console.log(user);
+        cargarCitas();
+    }else{
+        console.log(user);
+    }
+}
+function cargarPerfil() {
 
+    cargarPerfilUsuario(user.idUsuario);
+
+}
+function resetCitaUser() {//podemos enviar una cita nueva no eliminar ni editar
+    document.querySelector('#formulariocitasUsuario').reset();
+    document.querySelector('#editarCitaUser').disabled = true;
+    document.querySelector('#eliminarCitaUser').disabled = true;
+    document.querySelector('#enviarCitaUser').disabled = false;
+}
+
+
+function validarCita(form) {
+
+    if ((form.fechaCita.value == '') || (form.motivoCita.value == '')) {
+        return false;
+    }
+    let fechaActual = new Date();
+    let fechaCita = new Date(form.fechaCita.value);
+    let hora = fechaCita.getHours();
+    let dia = fechaCita.getDay();
+    
+    if (fechaCita < fechaActual) {
+        return false;
+    }
+    if ((dia == 0) || (dia == 6)) {//fin de semana
+        return false;
+    }
+    if ((hora < 10) || (hora > 13)) { //horario mañana
+        if ((hora < 17) || (hora > 18)) {//horario tarde
+            return false;
+        }
+    }
+    return true;
+}
+
+function enviarCita(datos) {
+    let url = "peticionesCitas.php";
+    let dataType = "html";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            console.log(data);
+            let resultado = JSON.parse(data);
+            console.log(resultado);
+            if (resultado["result"] == "ok") {
+                resetCitaUser();
+                cargarCitas();
+            }
+        },
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+
+    });
+}
+function editarCitaUser() { //editar cita existente
+    console.log(formularioCitasUser.fechaCita.value);
+
+    if (validarCita(document.formularioCitasUser)) {
+        let datos;
+
+        cita.fecha = formularioCitasUser.fechaCita.value;
+        cita.motivo = formularioCitasUser.motivoCita.value;
+        datos = cita.serialize();
+        datos += "&operacion=update";
+        enviarCita(datos);
+    } else {
+        alert("Cita no valida");
+    }
+}
+function enviarCitaUser() { // nueva cita
+
+    console.log('grabando cita....');
+    if (validarCita(document.formularioCitasUser)) {
+        let cita = new Cita(0, formularioCitasUser.fechaCita.value, formularioCitasUser.motivoCita.value, usuario.idUsuario);
+        let datos;
+        datos = cita.serialize();
+        datos += "&operacion=insert";
+        console.log(datos);
+        enviarCita(datos);
+    }
+    else {
+        alert("Cita no válida");
+    }
+}
 function cargarUsuarios(){
 
     if (user.roleLog=='admin'){
@@ -228,3 +376,138 @@ function cargarUsuarios(){
     }
 }
 
+function agregarCero(numero) {
+    const digitos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    if (numero in digitos) {
+        return '0' + numero;
+    } else {
+        return numero + '';
+    }
+}
+function formatearFecha(fecha) {
+
+    f = new Date(fecha);
+    let res = f.getFullYear() + "-" + agregarCero(f.getMonth() + 1) + "-" + agregarCero(f.getDate()) + "T" + agregarCero(f.getHours()) + ":" + agregarCero(f.getMinutes());
+
+    return res;
+
+}
+
+
+function leerCita(idCita) {
+
+    let dataType = "html";
+    let datos = "idCita=" + idCita;
+    datos += "&operacion=traerCita";
+    console.log(datos);
+    let url = "peticionesCitas.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            let resultado = JSON.parse(data);
+            if (resultado.result == "ok") {
+                console.log(resultado);
+                cita = new Cita(idCita, resultado.datos[0].fecha, resultado.datos[0].motivo, resultado.datos[0].usuario);
+                let fecha = formatearFecha(cita.fecha);
+                document.formularioCitasUser.fechaCita.value = fecha;
+                document.formularioCitasUser.motivoCita.value = cita.motivo;
+                return resultado;
+            }
+        },
+
+        error: function () {
+            console.log("error");
+            return null;
+        },
+        dataType: dataType
+    });
+}
+
+
+
+function cargarCita(idCita) {
+    
+    if (idCita != -1) {//podemos editar y borrar
+        leerCita(idCita);
+        document.querySelector('#editarCitaUser').disabled = false;
+        document.querySelector('#enviarCitaUser').disabled = true;
+        document.querySelector('#eliminarCitaUser').disabled = false;
+
+    }
+}
+
+
+function comprobarFechaCita(id) {
+    if (id != -1) {
+        let dataType = "html";
+        let datos = "idCita=" + id;
+        datos += "&operacion=traerCita";
+        console.log(datos);
+        let url = "peticionesCitas.php";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: datos,
+            success: function (data) {
+                let resultado = JSON.parse(data);
+                if (resultado.result == "ok") {
+                    console.log(resultado);
+                    fecha = new Date(resultado.datos[0].fecha);
+                    let hoy = new Date();                    
+                    let diferencia = fecha - hoy;
+                    console.log(diferencia+'-'+hoy);
+                    if (diferencia > 259200000) { // 72 horas
+                        cargarCita(id);
+                    }
+                    else {
+                        alert("Esa cita no es editable");
+                    }
+                }
+            },
+            error: function () {
+                console.log("error");
+                
+            },
+            dataType: dataType
+        });        
+    } 
+}
+
+function clickEnTabla(ev) {
+
+    let id = ev.target.parentNode.getAttribute("idcita");
+    comprobarFechaCita(id);
+}
+
+function eliminarCitaUser() {
+    console.log('eliminado....')
+    
+    let dataType = "html";
+    let idCita = cita.idCita;
+    let datos = "idCita=" + idCita;
+    datos += "&operacion=delete";
+    console.log(datos);
+    let url = "peticionesCitas.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            console.log(data);
+            let resultado = JSON.parse(data);
+
+            if (resultado.result == "ok") {
+                cargarCitas();
+                resetCitaUser();
+            }
+
+        },
+
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+    });
+}

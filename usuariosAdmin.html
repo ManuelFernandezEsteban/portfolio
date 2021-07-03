@@ -1,14 +1,18 @@
 <div class="caja-contenido-usuarios">
-    <div class="caja-botones">
-        <input type="button" class="boton" value="Perfil" id="btnPerfil" onclick="cargarPerfil()">
-        <input type="button" class="boton" value="Citas" id="btnCitas" onclick="cargarCitas()">
-        <input type="button" class="boton" value="Admin" id="btnAdmin" onclick="cargarUsuarios()">
-    </div>
-
-    <div class="divTableUsuarios">
-    </div>
-
-    <div class="boxPerfil">
+    
+    <aside class="aside-botenes">
+        <div class="caja-botones">
+            <input type="button" class="boton" value="Perfil" id="btnPerfil" onclick="cargarPerfil()">
+            <input type="button" class="boton" value="Citas" id="btnCitas" onclick="cargarCitasBtn()">
+            <input type="button" class="boton" value="Admin" id="btnAdmin" onclick="cargarUsuarios()">
+        </div>
+    </aside>
+    <div class="contenidoAdmin">
+    
+        <div class="divTableUsuarios">
+        </div>
+<div class="contenedorCajasAdmin">
+    <section class="boxPerfil">
         <h2>Perfil</h2>
         <div class="boxPerfilContent">
             <form method="POST" class="formularioLogin" id="formularioPerfilUsuario" name="formularioPerfilUser">
@@ -22,7 +26,7 @@
                 </p>
 
                 <p>
-                    <label for="apellidosPerfil" class="col-sm-2 col-form-label">Apellidos </label><br>
+                    <label for="apellidosPerfil">Apellidos </label><br>
                     <input type="text" class="input-formulario" id="apellidosPerfil" name="apellidos" required>
                 </p>
                 <p>
@@ -43,17 +47,17 @@
             </div>
 
         </div>
-    </div>
+    </section>
 
 
-    <div class="boxCitas">
+    <section class="boxCitas">
         <h2>Citas</h2>
         <div class="divTableCitas">
         </div>
 
         <div class="boxCitasContent">
             <form method="POST" class="formularioLogin" id="formulariocitasUsuario" name="formularioCitasUser">
-                
+
                 <p>Horario de citas L-V 10:00-13:00 y 17:00 19:00 </p>
                 <p> <label for="horaCita">Fecha y hora de la cita</label>
 
@@ -73,8 +77,8 @@
                 <button type="button" id="botonResetAltaUser" class="boton" onclick="resetCitaUser()">Cancelar</button>
             </div>
         </div>
+    </section>
     </div>
-
-
 </div>
 
+</div>

@@ -588,25 +588,44 @@ legend{
     align-self: flex-end;
 }
 /*fin caja bienvenida*/
+
+
 .caja-contenido-usuarios{
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
 }
+.contenidoAdmin{
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+}
+.aside-botenes{
+
+    display: flex;
+    flex-direction: row;
+}
 .caja-botones{
     display: inline-flex;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
 }
 .caja-botones .boton{
     width: 100%;
     margin: 5px;
 }
 /*caja citas*/
-.divTableUsuarios{
-	display: table;
+
+
+.divTableUsuarios,.divTableCitas{
+	display: none;
 	width: 100%;
     font-family: 'Ubuntu';
     text-align: center;
+    
 }
 .divTableRow {
 	display: table-row;
@@ -639,7 +658,11 @@ legend{
     cursor: pointer;
     background-color: #999999;
 }
-
+.boxPerfil,.boxCitas{
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+}
 .boxCitasContent , .boxPerfilContent{
     display: flex;
     flex-direction: column;
@@ -704,6 +727,10 @@ legend{
 
 /*tamaño laptop*/
 @media only screen and (min-width:1024px){
+    .divTableUsuarios{
+        margin-top: 20px;
+        margin-left: 10px;
+    }
     .contenedor-login{
         justify-content: space-between;
         width: 60%;
@@ -712,8 +739,36 @@ legend{
     .caja-login{
         color: #f2f2f2;
     }
-    
-
+    .caja-contenido-usuarios{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+    .aside-botenes{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    .caja-botones{
+        display: flex;
+        width: 100%;
+        margin-top: 20px;
+        flex-direction: column;
+        margin-bottom: 20px;
+        flex: 1;
+    }
+    .contenidoAdmin{
+        display: flex;
+        flex-direction: column;
+        flex: 3;
+    }
+    .contenedorCajasAdmin{
+        display: flex;
+        justify-content: space-around;
+        align-items: baseline;
+        width: 100%;
+    }
     .trabajo{
         flex-direction: row;
     }

@@ -140,63 +140,11 @@ function LimpiarUser() {
 
 
 
-function cargarPerfil() {
 
-    let dataType = "html";
-    let datos = "usuario=" + user.nombreUsuario;
-    datos += "&operacion=datosUsuario";    
-    let url = "peticionesUsuarios.php";
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: datos,
-        success: function (data) {            
-            datos = JSON.parse(data);
-            $('#usuarioPerfil').val(datos[0].usuario);
-            $('#nombrePerfil').val(datos[0].nombre);
-            $('#apellidosPerfil').val(datos[0].apellidos);
-            $('#emailPerfil').val(datos[0].email);
-            $('#movilPerfil').val(datos[0].telefono);
-
-        },
-
-        error: function () {
-            console.log("error");
-        },
-        dataType: dataType
-
-    });
-
-
-}
 function resetCambiosPerfil() {
     document.querySelector('#formularioPerfilUsuario').reset();
 
 }
 
-function enviarCambiosPerfil() {
-    if (validar(document.formularioPerfilUser)) {
-        datos = $('#formularioPerfilUsuario').serialize();
-        datos += "&operacion=modificarPerfil";
-        let url = "peticionesUsuarios.php";
-        let dataType = "html";
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: datos,
-            success: function (data) {
-                if (data == 'ok') {
-                    document.querySelector('#formularioPerfilUsuario').reset();
-                    alert('Datos modificados')
-                }                
-            },
-            error: function () {
-                console.log("error");
-            },
-            dataType: dataType
 
-        });
-    }
-
-}
 

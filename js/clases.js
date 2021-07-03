@@ -18,8 +18,7 @@ class UsuarioLogado{
     constructor(idUsuario,nombreUsuario,roleLog){
         this.idUsuario = idUsuario;
         this.nombreUsuario=nombreUsuario;
-        this.roleLog=roleLog;
-        this.citas=Array();
+        this.roleLog=roleLog;        
     }
 }
 
