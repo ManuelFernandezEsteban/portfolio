@@ -56,27 +56,17 @@ function traerCitasUsuario(idUsuario) {
 
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
-
-                usuario.citas = resultado.datos;
-                
-                console.log(usuario);
-                
-                   dibujarTablaCitas(usuario.citas);
-                
-               
-                
-                
+                usuario.citas = resultado.datos;                
+                console.log(usuario);                
+                dibujarTablaCitas(usuario.citas);
             }
-
         },
-
         error: function () {
             console.log("error");
         },
         dataType: dataType
 
     });
-
 }
 
 function seleccionUsuario(ev){
@@ -366,12 +356,20 @@ function enviarCitaUser() { // nueva cita
         alert("Cita no válida");
     }
 }
+
+function habilitarBotonesAdmin(){
+    document.querySelector('#btnProyectos').disabled=false;
+    document.querySelector('#btnNoticias').disabled=false;
+}
+
 function cargarUsuarios(){
 
     if (user.roleLog=='admin'){
         cargarTablaUsuarios();
+        habilitarBotonesAdmin();
     }
     else{
+      
         alert('No tiene permiso');
     }
 }
@@ -510,4 +508,99 @@ function eliminarCitaUser() {
         },
         dataType: dataType
     });
+}
+
+function seleccionProyecto(ev){
+
+}
+
+function dibujarTablaProyectos(datos){
+
+    console.log(datos);
+    let cuerpoTabla = document.createElement('div');
+    cuerpoTabla.classList.add("divTableBody");
+    let filaCabecera = document.createElement('div');
+    filaCabecera.classList.add('divTableRow');
+    filaCabecera.classList.add('divTableHeading');    
+    
+    let celdaCabeceraNombre = document.createElement('div');   
+    let celdaCabeceraTecnologia = document.createElement('div');
+    let celdaCabeceraDuracion = document.createElement('div');
+    
+    celdaCabeceraTecnologia.classList.add('divTableCellHeader');
+    celdaCabeceraDuracion.classList.add('divTableCellHeader');    
+    celdaCabeceraNombre.classList.add('divTableCellHeader');
+
+    celdaCabeceraTecnologia.innerText = "Tecnologia";
+    celdaCabeceraDuracion.innerText = "Duracion";
+    celdaCabeceraNombre.innerText = "Nombre";
+   
+    
+    filaCabecera.appendChild(celdaCabeceraNombre);
+    filaCabecera.appendChild(celdaCabeceraTecnologia);
+    filaCabecera.appendChild(celdaCabeceraDuracion);
+    
+    cuerpoTabla.appendChild(filaCabecera);
+    document.querySelector('.divTableProyectos').classList.add('divTableProyectos');
+    document.querySelector('.divTableProyectos').innerHTML = '';
+    document.querySelector('.divTableProyectos').style.display="table";
+    document.querySelector('.divTableProyectos').appendChild(cuerpoTabla);
+    
+    for (var i in datos) {
+        let fila;
+        let celdaNombre,celdaDuracion,celdaTecnologia;
+        fila = document.createElement('div');
+        fila.setAttribute('idProyecto', datos[i].idProyecto);
+        fila.classList.add('divTableRow');
+
+        celdaDuracion = document.createElement('div');
+        celdaDuracion.classList.add('divTableCell');
+        celdaNombre = document.createElement('div');
+        celdaNombre.classList.add('divTableCell');
+        celdaTecnologia = document.createElement('div');
+        celdaTecnologia.classList.add('divTableCell');       
+        
+        celdaNombre.innerText = datos[i].nombre;
+        celdaDuracion.innerText = datos[i].duracion;
+        celdaCabeceraTecnologia.innerText = datos[i].tecnologia;    
+        
+        fila.appendChild(celdaNombre);
+        fila.appendChild(celdaDuracion);
+        fila.appendChild(celdaCabeceraTecnologia);
+        fila.addEventListener('click', seleccionProyecto);
+        cuerpoTabla.appendChild(fila);
+    }
+}
+
+function leerProyectos(){
+    let dataType = "html";
+    
+    let datos = "&operacion=traerProyectos";
+    console.log(datos);
+    let url = "peticionesProyectos.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+
+            let resultado = JSON.parse(data);
+            if (resultado.result == "ok") {
+                                
+                console.log(resultado);                
+                dibujarTablaProyectos(resultado.datos);
+            }
+        },
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+
+    });
+}
+
+function cargarProyectos(){
+    
+    leerProyectos();
+
 }

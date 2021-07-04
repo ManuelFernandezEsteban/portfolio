@@ -620,7 +620,7 @@ legend{
 /*caja citas*/
 
 
-.divTableUsuarios,.divTableCitas{
+.divTableUsuarios,.divTableCitas,.divTableProyectos{
 	display: none;
 	width: 100%;
     font-family: 'Ubuntu';
