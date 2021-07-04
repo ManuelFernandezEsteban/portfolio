@@ -658,18 +658,20 @@ legend{
     cursor: pointer;
     background-color: #999999;
 }
-.boxPerfil,.boxCitas{
+.boxPerfil,.boxCitas, .boxProyectos{
     display: flex;
     flex-flow: column;
     flex: 1;
 }
-.boxCitasContent , .boxPerfilContent{
+.boxCitasContent , .boxPerfilContent, .boxProyectoContent{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;    
 }
 
 .enlaceCitas{
@@ -761,10 +763,11 @@ legend{
     .contenidoAdmin{
         display: flex;
         flex-direction: column;
-        flex: 3;
+        flex: 8;
     }
     .contenedorCajasAdmin{
         display: flex;
+        flex-flow: row wrap;
         justify-content: space-around;
         align-items: baseline;
         width: 100%;

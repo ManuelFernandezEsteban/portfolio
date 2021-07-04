@@ -12,6 +12,16 @@ class Usuario {
     }
 }
 
+class Proyecto{
+    constructor(idProyecto,nombre,descripcion,tecnologia,duracion,foto){
+        this.idProyecto=idProyecto;
+        this.nombre=nombre;
+        this.descripcion=descripcion;
+        this.tecnologia=tecnologia;
+        this.duracion=duracion;
+        this.foto=foto;
+    }
+}
 
 
 class UsuarioLogado{

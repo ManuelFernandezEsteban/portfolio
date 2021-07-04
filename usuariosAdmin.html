@@ -84,7 +84,42 @@
         <h2>Proyectos</h2>
         <div class="divTableProyectos">
         </div>
+        <div class="boxProyectoContent">
+            <form method="POST" class="formularioLogin" id="formularioProyecto" name="formularioProyecto">
+                
+                <p>
+                    <label for="nombre">Nombre </label><br>
+                    <input type="text" class="input-formulario" id="nombre" name="nombre" required>
+                </p>
+                <p>
+                    <label for="tecnologia">Tecnologías </label><br>
+                    <input type="text" class="input-formulario" id="tecnologia" name="tecnologia" required>
+                </p>
 
+                <p>
+                    <label for="duracion">Duración </label><br>
+                    <input type="text" class="input-formulario" id="duracion" name="duracion" required>
+                </p>
+                <p>
+                    <label for="foto">Foto </label><br>
+                    <input type="file" class="input-formulario" id="foto" name="foto">
+                </p>
+                <p>
+                    <label for="descripcion">Descripción </label><br>
+                    <textarea id="descripcion" name="descripcion" cols="30" rows="8" required></textarea>
+                </p>
+
+            </form>
+            <div class="caja-botones-login enFila">
+                <button type="button" id="enviarProyecto" class="boton" onclick="enviarProyecto()">Enviar</button><br>
+                <button type="button" id="editarProyecto" class="boton" onclick="editarProyecto()"
+                    disabled="disabled">Editar</button><br>
+                <button type="button" id="eliminarProyecto" class="boton" onclick="eliminarProyecto()"
+                    disabled>Eliminar</button><br>
+                <button type="button" id="resetProyecto" class="boton" onclick="resetProyecto()">Cancelar</button>
+            </div>
+
+        </div>
         
     </section>
     </div>

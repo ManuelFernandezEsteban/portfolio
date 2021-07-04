@@ -1,5 +1,6 @@
 //let usuarios = Array();
 let usuario;
+let proyecto;
 
 
 function dibujarTablaCitas(datos) {
@@ -510,8 +511,52 @@ function eliminarCitaUser() {
     });
 }
 
-function seleccionProyecto(ev){
+function leerProyecto(idProyecto){
+    let dataType = "html";
+    let datos = "idProyecto=" + idProyecto;
+    datos += "&operacion=traerProyecto";
+    console.log(datos);
+    let url = "peticionesProyectos.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            let resultado = JSON.parse(data);
+            if (resultado.result == "ok") {
+                console.log(resultado);
+                proyecto = new Proyecto(idProyecto, resultado.datos[0].nombre, resultado.datos[0].descripcion, resultado.datos[0].tecnologia,resultado.datos[0].duracion,resultado.datos[0].foto);
+                
+                document.formularioProyecto.nombre.value = proyecto.nombre;
+                document.formularioProyecto.tecnologia.value = proyecto.tecnologia;
+                document.formularioProyecto.duracion.value = proyecto.duracion;
+                document.formularioProyecto.foto.value = proyecto.foto;
+                document.formularioProyecto.descripcion.value = proyecto.descripcion;
+                
+            }
+        },
 
+        error: function () {
+            console.log("error");
+            return null;
+        },
+        dataType: dataType
+    });
+}
+
+function cargarProyecto(idProyecto){
+if (idProyecto != -1) {//podemos editar y borrar
+    leerProyecto(idProyecto);
+    document.querySelector('#editarProyecto').disabled = false;
+    document.querySelector('#enviarProyecto').disabled = true;
+    document.querySelector('#eliminarProyecto').disabled = false;
+
+}
+}
+
+function seleccionProyecto(ev){
+    let id = ev.target.parentNode.getAttribute("idcita");
+    cargarProyecto(id);
 }
 
 function dibujarTablaProyectos(datos){
@@ -562,11 +607,11 @@ function dibujarTablaProyectos(datos){
         
         celdaNombre.innerText = datos[i].nombre;
         celdaDuracion.innerText = datos[i].duracion;
-        celdaCabeceraTecnologia.innerText = datos[i].tecnologia;    
+        celdaTecnologia.innerText = datos[i].tecnologia;    
         
-        fila.appendChild(celdaNombre);
+        fila.appendChild(celdaNombre);        
+        fila.appendChild(celdaTecnologia);
         fila.appendChild(celdaDuracion);
-        fila.appendChild(celdaCabeceraTecnologia);
         fila.addEventListener('click', seleccionProyecto);
         cuerpoTabla.appendChild(fila);
     }
