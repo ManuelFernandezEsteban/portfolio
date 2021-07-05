@@ -23,7 +23,7 @@ function dibujarTablaCitas(datos) {
     cuerpoTabla.appendChild(filaCabecera);
     document.querySelector('.divTableCitas').innerHTML = '';
     document.querySelector('.divTableCitas').classList.add('divTableCitas');
-    document.querySelector('.divTableCitas').style.display="table";
+    document.querySelector('.divTableCitas').style.display = "table";
     document.querySelector('.divTableCitas').appendChild(cuerpoTabla);
     for (var i in datos) {
         let fila;
@@ -57,8 +57,8 @@ function traerCitasUsuario(idUsuario) {
 
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
-                usuario.citas = resultado.datos;                
-                console.log(usuario);                
+                usuario.citas = resultado.datos;
+                console.log(usuario);
                 dibujarTablaCitas(usuario.citas);
             }
         },
@@ -70,20 +70,20 @@ function traerCitasUsuario(idUsuario) {
     });
 }
 
-function seleccionUsuario(ev){
+function seleccionUsuario(ev) {
 
     document.querySelector('#formulariocitasUsuario').reset();
     document.querySelector('#formularioPerfilUsuario').reset();
     document.querySelector('.divTableCitas').innerHTML = '';
-    let id = ev.target.parentNode.getAttribute("idUsuario");    
-    cargarPerfilUsuario(id);  
+    let id = ev.target.parentNode.getAttribute("idUsuario");
+    cargarPerfilUsuario(id);
     traerCitasUsuario(id);
-    
+
 }
 
 
 
-function dibujarTablaUsuarios(datos){
+function dibujarTablaUsuarios(datos) {
 
     console.log(datos);
     let cuerpoTabla = document.createElement('div');
@@ -91,46 +91,46 @@ function dibujarTablaUsuarios(datos){
     let filaCabecera = document.createElement('div');
     filaCabecera.classList.add('divTableRow');
     filaCabecera.classList.add('divTableHeading');
-    
+
     //let celdaCabeceraId = document.createElement('div');
-    let celdaCabeceraUsuario = document.createElement('div');   
+    let celdaCabeceraUsuario = document.createElement('div');
     let celdaCabeceraRole = document.createElement('div');
     let celdaCabeceraNombre = document.createElement('div');
     let celdaCabeceraApellidos = document.createElement('div');
-   /* let celdaCabeceraEmail = document.createElement('div');
-    let celdaCabeceraTelefono = document.createElement('div');*/
+    /* let celdaCabeceraEmail = document.createElement('div');
+     let celdaCabeceraTelefono = document.createElement('div');*/
 
     //celdaCabeceraId.classList.add('divTableCellHeader');
     celdaCabeceraUsuario.classList.add('divTableCellHeader');
-    celdaCabeceraRole.classList.add('divTableCellHeader');    
+    celdaCabeceraRole.classList.add('divTableCellHeader');
     celdaCabeceraNombre.classList.add('divTableCellHeader');
     celdaCabeceraApellidos.classList.add('divTableCellHeader');
- /*   celdaCabeceraEmail.classList.add('divTableCell');
-    celdaCabeceraTelefono.classList.add('divTableCell');    */
-    
+    /*   celdaCabeceraEmail.classList.add('divTableCell');
+       celdaCabeceraTelefono.classList.add('divTableCell');    */
+
     //celdaCabeceraId.innerText = "Id User";
     celdaCabeceraUsuario.innerText = "Usuario";
     celdaCabeceraRole.innerText = "Role";
     celdaCabeceraNombre.innerText = "Nombre";
-    celdaCabeceraApellidos.innerText="Apellidos"
- /*   celdaCabeceraEmail.innerText = "Email";
-    celdaCabeceraTelefono.innerText="Teléfono"*/
-    
+    celdaCabeceraApellidos.innerText = "Apellidos"
+    /*   celdaCabeceraEmail.innerText = "Email";
+       celdaCabeceraTelefono.innerText="Teléfono"*/
+
     //filaCabecera.appendChild(celdaCabeceraId);
     filaCabecera.appendChild(celdaCabeceraUsuario);
     filaCabecera.appendChild(celdaCabeceraNombre);
     filaCabecera.appendChild(celdaCabeceraApellidos);
     filaCabecera.appendChild(celdaCabeceraRole);
-    
+
     cuerpoTabla.appendChild(filaCabecera);
     document.querySelector('.divTableUsuarios').classList.add('divTableUsuarios');
     document.querySelector('.divTableUsuarios').innerHTML = '';
-    document.querySelector('.divTableUsuarios').style.display="table";
+    document.querySelector('.divTableUsuarios').style.display = "table";
     document.querySelector('.divTableUsuarios').appendChild(cuerpoTabla);
-    
+
     for (var i in datos) {
         let fila;
-        let celdaUsuario,celdaNombre,celdaRole,celdaApellidos;
+        let celdaUsuario, celdaNombre, celdaRole, celdaApellidos;
         fila = document.createElement('div');
         fila.setAttribute('idUsuario', datos[i].idUsuario);
         fila.classList.add('divTableRow');
@@ -145,7 +145,7 @@ function dibujarTablaUsuarios(datos){
         celdaUsuario.innerText = datos[i].usuario;
         celdaNombre.innerText = datos[i].nombre;
         celdaRole.innerText = datos[i].role;
-        celdaApellidos.innerText = datos[i].apellidos;    
+        celdaApellidos.innerText = datos[i].apellidos;
         fila.appendChild(celdaUsuario);
         fila.appendChild(celdaNombre);
         fila.appendChild(celdaApellidos);
@@ -157,8 +157,8 @@ function dibujarTablaUsuarios(datos){
 
 }
 
-function cargarTablaUsuarios(){
-    let dataType = "html";    
+function cargarTablaUsuarios() {
+    let dataType = "html";
     let datos = "operacion=traerUsuarios";
     console.log(datos);
     let url = "peticionesUsuarios.php";
@@ -169,7 +169,7 @@ function cargarTablaUsuarios(){
         success: function (data) {
 
             let resultado = JSON.parse(data);
-            
+
             if (resultado.result == "ok") {
 
                 dibujarTablaUsuarios(resultado.datos);
@@ -191,23 +191,23 @@ function cargarPerfilUsuario(idUsuario) {
     let dataType = "html";
     let datos = "usuario=" + idUsuario;
     datos += "&operacion=datosUsuario";
-    console.log(datos)    ;
+    console.log(datos);
     let url = "peticionesUsuarios.php";
     $.ajax({
         type: "POST",
         url: url,
         data: datos,
-        success: function (data) {  
+        success: function (data) {
 
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
                 console.log(resultado);
-                usuario = new Usuario(resultado.datos[0].idUsuario,resultado.datos[0].nombre,resultado.datos[0].apellidos,resultado.datos[0].email,resultado.datos[0].telefono,resultado.datos[0].usuario,resultado.datos[0].role);                
-                document.formularioPerfilUser.usuario.value=usuario.nombreUsuario;
-                document.formularioPerfilUser.nombre.value=usuario.nombre;
-                document.formularioPerfilUser.apellidos.value=usuario.apellidos;
-                document.formularioPerfilUser.email.value=usuario.email;
-                document.formularioPerfilUser.telefono.value=usuario.telefono;
+                usuario = new Usuario(resultado.datos[0].idUsuario, resultado.datos[0].nombre, resultado.datos[0].apellidos, resultado.datos[0].email, resultado.datos[0].telefono, resultado.datos[0].usuario, resultado.datos[0].role);
+                document.formularioPerfilUser.usuario.value = usuario.nombreUsuario;
+                document.formularioPerfilUser.nombre.value = usuario.nombre;
+                document.formularioPerfilUser.apellidos.value = usuario.apellidos;
+                document.formularioPerfilUser.email.value = usuario.email;
+                document.formularioPerfilUser.telefono.value = usuario.telefono;
             }
         },
         error: function () {
@@ -217,53 +217,52 @@ function cargarPerfilUsuario(idUsuario) {
 
     });
 }
-function enviarCambiosPerfil(){
-    
-        if (validar(document.formularioPerfilUser)) {
-            datos = $('#formularioPerfilUsuario').serialize();
-            datos += "&operacion=modificarPerfil";
-            let url = "peticionesUsuarios.php";
-            let dataType = "html";
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: datos,
-                success: function (data) {
-                    if (data == 'ok') {
-                        document.querySelector('#formularioPerfilUsuario').reset();
-                        alert('Datos modificados');
-                        if (user.roleLog=='admin'){
-                            cargarTablaUsuarios();
-                        }
-                    }                
-                },
-                error: function () {
-                    console.log("error");
-                },
-                dataType: dataType
-    
-            });
-        
-    
+function enviarCambiosPerfil() {
+
+    if (validar(document.formularioPerfilUser)) {
+        datos = $('#formularioPerfilUsuario').serialize();
+        datos += "&operacion=modificarPerfil";
+        let url = "peticionesUsuarios.php";
+        let dataType = "html";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: datos,
+            success: function (data) {
+                if (data == 'ok') {
+                    document.querySelector('#formularioPerfilUsuario').reset();
+                    alert('Datos modificados');
+                    if (user.roleLog == 'admin') {
+                        cargarTablaUsuarios();
+                    }
+                }
+            },
+            error: function () {
+                console.log("error");
+            },
+            dataType: dataType
+
+        });
+
+
     }
 
 }
 
 
+function cargarCitas() {
 
-function cargarCitas(){
-    
     cargarPerfilUsuario(user.idUsuario);
     traerCitasUsuario(user.idUsuario);
-    
-    
+
+
 }
-function cargarCitasBtn(){
-   
-    if (user.roleLog=='usuario'){
+function cargarCitasBtn() {
+
+    if (user.roleLog == 'usuario') {
         console.log(user);
         cargarCitas();
-    }else{
+    } else {
         console.log(user);
     }
 }
@@ -289,7 +288,7 @@ function validarCita(form) {
     let fechaCita = new Date(form.fechaCita.value);
     let hora = fechaCita.getHours();
     let dia = fechaCita.getDay();
-    
+
     if (fechaCita < fechaActual) {
         return false;
     }
@@ -358,19 +357,19 @@ function enviarCitaUser() { // nueva cita
     }
 }
 
-function habilitarBotonesAdmin(){
-    document.querySelector('#btnProyectos').disabled=false;
-    document.querySelector('#btnNoticias').disabled=false;
+function habilitarBotonesAdmin() {
+    document.querySelector('#btnProyectos').disabled = false;
+    document.querySelector('#btnNoticias').disabled = false;
 }
 
-function cargarUsuarios(){
+function cargarUsuarios() {
 
-    if (user.roleLog=='admin'){
+    if (user.roleLog == 'admin') {
         cargarTablaUsuarios();
         habilitarBotonesAdmin();
     }
-    else{
-      
+    else {
+
         alert('No tiene permiso');
     }
 }
@@ -427,7 +426,7 @@ function leerCita(idCita) {
 
 
 function cargarCita(idCita) {
-    
+
     if (idCita != -1) {//podemos editar y borrar
         leerCita(idCita);
         document.querySelector('#editarCitaUser').disabled = false;
@@ -454,9 +453,9 @@ function comprobarFechaCita(id) {
                 if (resultado.result == "ok") {
                     console.log(resultado);
                     fecha = new Date(resultado.datos[0].fecha);
-                    let hoy = new Date();                    
+                    let hoy = new Date();
                     let diferencia = fecha - hoy;
-                    console.log(diferencia+'-'+hoy);
+                    console.log(diferencia + '-' + hoy);
                     if (diferencia > 259200000) { // 72 horas
                         cargarCita(id);
                     }
@@ -467,11 +466,11 @@ function comprobarFechaCita(id) {
             },
             error: function () {
                 console.log("error");
-                
+
             },
             dataType: dataType
-        });        
-    } 
+        });
+    }
 }
 
 function clickEnTabla(ev) {
@@ -482,7 +481,7 @@ function clickEnTabla(ev) {
 
 function eliminarCitaUser() {
     console.log('eliminado....')
-    
+
     let dataType = "html";
     let idCita = cita.idCita;
     let datos = "idCita=" + idCita;
@@ -511,7 +510,7 @@ function eliminarCitaUser() {
     });
 }
 
-function leerProyecto(idProyecto){
+function leerProyecto(idProyecto) {
     let dataType = "html";
     let datos = "idProyecto=" + idProyecto;
     datos += "&operacion=traerProyecto";
@@ -522,17 +521,19 @@ function leerProyecto(idProyecto){
         url: url,
         data: datos,
         success: function (data) {
+            console.log(data);
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
                 console.log(resultado);
-                proyecto = new Proyecto(idProyecto, resultado.datos[0].nombre, resultado.datos[0].descripcion, resultado.datos[0].tecnologia,resultado.datos[0].duracion,resultado.datos[0].foto);
-                
+                proyecto = new Proyecto(idProyecto, resultado.datos[0].nombre, resultado.datos[0].descripcion, resultado.datos[0].tecnologia, resultado.datos[0].duracion, resultado.datos[0].foto);
+                console.log(proyecto);
                 document.formularioProyecto.nombre.value = proyecto.nombre;
                 document.formularioProyecto.tecnologia.value = proyecto.tecnologia;
                 document.formularioProyecto.duracion.value = proyecto.duracion;
                 document.formularioProyecto.foto.value = proyecto.foto;
-                document.formularioProyecto.descripcion.value = proyecto.descripcion;
-                
+
+                document.querySelector("#descripcion").value = proyecto.descripcion;
+
             }
         },
 
@@ -544,56 +545,56 @@ function leerProyecto(idProyecto){
     });
 }
 
-function cargarProyecto(idProyecto){
-if (idProyecto != -1) {//podemos editar y borrar
-    leerProyecto(idProyecto);
-    document.querySelector('#editarProyecto').disabled = false;
-    document.querySelector('#enviarProyecto').disabled = true;
-    document.querySelector('#eliminarProyecto').disabled = false;
+function cargarProyecto(idProyecto) {
+    if (idProyecto != -1) {//podemos editar y borrar
+        leerProyecto(idProyecto);
+        document.querySelector('#editarProyecto').disabled = false;
+        document.querySelector('#enviarProyecto').disabled = true;
+        document.querySelector('#eliminarProyecto').disabled = false;
 
-}
+    }
 }
 
-function seleccionProyecto(ev){
-    let id = ev.target.parentNode.getAttribute("idcita");
+function seleccionProyecto(ev) {
+    let id = ev.target.parentNode.getAttribute("idProyecto");    
     cargarProyecto(id);
 }
 
-function dibujarTablaProyectos(datos){
+function dibujarTablaProyectos(datos) {
 
     console.log(datos);
     let cuerpoTabla = document.createElement('div');
     cuerpoTabla.classList.add("divTableBody");
     let filaCabecera = document.createElement('div');
     filaCabecera.classList.add('divTableRow');
-    filaCabecera.classList.add('divTableHeading');    
-    
-    let celdaCabeceraNombre = document.createElement('div');   
+    filaCabecera.classList.add('divTableHeading');
+
+    let celdaCabeceraNombre = document.createElement('div');
     let celdaCabeceraTecnologia = document.createElement('div');
     let celdaCabeceraDuracion = document.createElement('div');
-    
+
     celdaCabeceraTecnologia.classList.add('divTableCellHeader');
-    celdaCabeceraDuracion.classList.add('divTableCellHeader');    
+    celdaCabeceraDuracion.classList.add('divTableCellHeader');
     celdaCabeceraNombre.classList.add('divTableCellHeader');
 
     celdaCabeceraTecnologia.innerText = "Tecnologia";
     celdaCabeceraDuracion.innerText = "Duracion";
     celdaCabeceraNombre.innerText = "Nombre";
-   
-    
+
+
     filaCabecera.appendChild(celdaCabeceraNombre);
     filaCabecera.appendChild(celdaCabeceraTecnologia);
     filaCabecera.appendChild(celdaCabeceraDuracion);
-    
+
     cuerpoTabla.appendChild(filaCabecera);
     document.querySelector('.divTableProyectos').classList.add('divTableProyectos');
     document.querySelector('.divTableProyectos').innerHTML = '';
-    document.querySelector('.divTableProyectos').style.display="table";
+    document.querySelector('.divTableProyectos').style.display = "table";
     document.querySelector('.divTableProyectos').appendChild(cuerpoTabla);
-    
+
     for (var i in datos) {
         let fila;
-        let celdaNombre,celdaDuracion,celdaTecnologia;
+        let celdaNombre, celdaDuracion, celdaTecnologia;
         fila = document.createElement('div');
         fila.setAttribute('idProyecto', datos[i].idProyecto);
         fila.classList.add('divTableRow');
@@ -603,13 +604,13 @@ function dibujarTablaProyectos(datos){
         celdaNombre = document.createElement('div');
         celdaNombre.classList.add('divTableCell');
         celdaTecnologia = document.createElement('div');
-        celdaTecnologia.classList.add('divTableCell');       
-        
+        celdaTecnologia.classList.add('divTableCell');
+
         celdaNombre.innerText = datos[i].nombre;
         celdaDuracion.innerText = datos[i].duracion;
-        celdaTecnologia.innerText = datos[i].tecnologia;    
-        
-        fila.appendChild(celdaNombre);        
+        celdaTecnologia.innerText = datos[i].tecnologia;
+
+        fila.appendChild(celdaNombre);
         fila.appendChild(celdaTecnologia);
         fila.appendChild(celdaDuracion);
         fila.addEventListener('click', seleccionProyecto);
@@ -617,9 +618,9 @@ function dibujarTablaProyectos(datos){
     }
 }
 
-function leerProyectos(){
+function leerProyectos() {
     let dataType = "html";
-    
+
     let datos = "&operacion=traerProyectos";
     console.log(datos);
     let url = "peticionesProyectos.php";
@@ -631,8 +632,8 @@ function leerProyectos(){
 
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
-                                
-                console.log(resultado);                
+
+                console.log(resultado);
                 dibujarTablaProyectos(resultado.datos);
             }
         },
@@ -644,8 +645,147 @@ function leerProyectos(){
     });
 }
 
-function cargarProyectos(){
+function validarProyecto(form){
+        // valida el formulario de proyecto
     
+        if (form.nombre.value.length == 0) {
+            alert("Indique un nombre para el proyecto");
+            return false;
+        }
+       /* if (form.descripcion.innerText == '') {
+            alert("Indique una descripcion del proyecto");
+            return false;
+        }   */     
+        if (form.tecnologia.value.length == 0) {
+            alert("Indique al menos una tecnología empleada");
+            return false;
+        }
+        listacaracteres = /^\d+$/
+        if (!listacaracteres.test(form.duracion.value)) {
+            alert("Indique la duración del proyecto en semanas");
+            return false;
+        }
+        alert("Formulario correcto");
+        //formularioPresupuesto.submit();
+        return true;
+    }
+
+
+function enviarProyecto() {
+    if (validarProyecto(document.formularioProyecto)) {
+        //datos = $('#formularioProyecto').serialize();
+        let descripcion = document.querySelector("#descripcion").value;
+        let proyecto = new Proyecto(0, document.formularioProyecto.nombre.value, descripcion, document.formularioProyecto.tecnologia.value, document.formularioProyecto.duracion.value, "");
+        datos = proyecto.serialize();
+        datos += "&operacion=insert";
+        let url = "peticionesProyectos.php";
+        let dataType = "html";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: datos,
+            success: function (data) {
+                let resultado = JSON.parse(data);
+                if (resultado['result'] == 'ok') {
+                    document.querySelector('#formularioProyecto').reset();
+                    alert('Proyecto añadido');
+                    leerProyectos();
+                }
+            },
+            error: function () {
+                console.log("error");
+            },
+            dataType: dataType
+
+        });
+
+
+    }
+}
+
+
+
+function resetProyecto(){
+    document.formularioProyecto.reset();
+    document.formularioProyecto.descripcion.innerText='';
+    proyecto=null;
+    document.querySelector('#editarProyecto').disabled=true;
+    document.querySelector('#eliminarProyecto').disabled=true;
+    document.querySelector('#enviarProyecto').disabled=false;
+
+}
+
+function eliminarProyecto(){
+    console.log('eliminado....')
+
+    let dataType = "html";
+    let idProyecto = proyecto.idProyecto;
+    let datos = "idProyecto=" + idProyecto;
+    datos += "&operacion=delete";
+    console.log(datos);
+    let url = "peticionesProyectos.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            console.log(data);
+            let resultado = JSON.parse(data);
+
+            if (resultado.result == "ok") {
+                leerProyectos();
+                resetProyecto();
+            }
+
+        },
+
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+    });
+}
+
+function editarProyecto(){
+    if (validarProyecto(document.formularioProyecto)) {
+        
+        let descripcion = document.querySelector("#descripcion").value;
+        proyecto.nombre=document.formularioProyecto.nombre.value;
+        proyecto.duracion=document.formularioProyecto.duracion.value;
+        proyecto.tecnologia=document.formularioProyecto.tecnologia.value;
+        proyecto.descripcion=descripcion;  
+        datos = proyecto.serialize();
+        datos += "&operacion=update";
+        let url = "peticionesProyectos.php";
+        console.log(datos);
+        let dataType = "html";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: datos,
+            success: function (data) {
+                let resultado = JSON.parse(data);
+                if (resultado['result'] == 'ok') {
+                    document.querySelector('#formularioProyecto').reset();
+                    alert('Proyecto modificado');
+                    leerProyectos();
+                }else{
+                    console.log(resultado);
+                }
+            },
+            error: function () {
+                console.log("error");
+            },
+            dataType: dataType
+
+        });
+
+
+    }
+}
+
+function cargarProyectos() {
+
     leerProyectos();
 
 }

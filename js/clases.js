@@ -21,6 +21,10 @@ class Proyecto{
         this.duracion=duracion;
         this.foto=foto;
     }
+    serialize() {
+        return "idProyecto="+this.idProyecto+"&nombre="+this.nombre+"&descripcion="+this.descripcion+"&tecnologia="+this.tecnologia+"&duracion="+this.duracion+"&foto="+this.foto;
+
+    }
 }
 
 

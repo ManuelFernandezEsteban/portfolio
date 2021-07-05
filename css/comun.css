@@ -428,11 +428,21 @@ img.icono{
     font-family: 'Tillana';
     border-radius: 0;
     border: 0;    
+    box-shadow: 1px 1px 0.5px #999999;
+}
+
+.boton:hover{
+    box-shadow: none;
+    background-color: white;
+    color: black;
+}
+.boton:active{
+    background-color: #EEE;
+    color: black;
 }
 
 input[type="button"]:disabled{
     background-color: #999999;
-
 }
 
 
@@ -446,7 +456,13 @@ input[type="button"]:disabled{
     border-left: none;
     border-right: none;
     font-family: Ubuntu;
+    color: #999999;
+    font-style: italic;
 }
+.input-formulario:focus{
+    color: black;
+}
+
 
 .contenedor-formulario-contacto{
     display: flex;
@@ -670,8 +686,8 @@ legend{
     align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 5px;
-    margin-right: 5px;    
+    margin-left: 10px; 
+    margin-right: 10px;  
 }
 
 .enlaceCitas{
@@ -732,6 +748,12 @@ legend{
     .divTableUsuarios{
         margin-top: 20px;
         margin-left: 10px;
+
+    }
+    .divTableProyectos,.divTableCitas{
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 10px;
     }
     .contenedor-login{
         justify-content: space-between;

@@ -45,9 +45,9 @@ class Proyectos extends Conexion{
     function updateProyecto($proyecto){
 
         $SQL=" UPDATE `proyectos` SET ";
-        $SQL.=" `nombre`='$proyecto->nombre',`descripcion`='$proyecto->descripcion'"; 
-        $SQL.="`tecnologia`='$proyecto->tecnologia',`duracion`='$proyecto->duracion',`foto`='$proyecto->foto'"; 
-        $SQL.=" WHERE `idProyecto` = ".$proyecto->idProyecto ;      
+        $SQL.=" `nombre`='$proyecto->nombre',`descripcion`='$proyecto->descripcion',"; 
+        $SQL.="`tecnologia`='$proyecto->tecnologia',`duracion`='$proyecto->duracion',`foto`='$proyecto->foto' "; 
+        $SQL.="WHERE `idProyecto`=".$proyecto->idProyecto;      
         $conexion = $this -> crearConexion();
         mysqli_query($conexion,$SQL); 
         $resultado = mysqli_affected_rows($conexion);

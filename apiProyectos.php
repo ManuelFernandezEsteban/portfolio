@@ -32,7 +32,7 @@ class apiProyectos {
             }
             return ($proyectos);
         }else{
-            return (array('mensajes'=>'No hay proyectos'));
+            return (array());
         }
 
     }
@@ -43,8 +43,7 @@ class apiProyectos {
         $resultado= $this-> conexion->getProyectoById($idProyecto);
         if($resultado->num_rows>0){
             while ($fila=$resultado->fetch_assoc()){
-                $item=array(
-                    'idProyecto'=> $fila['idProyecto'],
+                $item=array(                    
                     'nombre'=>$fila['nombre'],
                     'descripcion' => $fila['descripcion'],  
                     'tecnologia'=>$fila['tecnologia'],
@@ -55,7 +54,7 @@ class apiProyectos {
             }
             
         }else{
-            return (array('mensajes'=>'No hay proyectos'));
+            return (array());
         }
         return($proyectos);
     }    
