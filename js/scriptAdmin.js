@@ -672,19 +672,29 @@ function validarProyecto(form){
 
 
 function enviarProyecto() {
+    
     if (validarProyecto(document.formularioProyecto)) {
-        //datos = $('#formularioProyecto').serialize();
-        let descripcion = document.querySelector("#descripcion").value;
-        let proyecto = new Proyecto(0, document.formularioProyecto.nombre.value, descripcion, document.formularioProyecto.tecnologia.value, document.formularioProyecto.duracion.value, "");
+        let datos = new FormData(formularioProyecto);
+      /*  let descripcion = document.querySelector("#descripcion").value;
+        let proyecto = new Proyecto(0, document.formularioProyecto.nombre.value, descripcion, document.formularioProyecto.tecnologia.value, document.formularioProyecto.duracion.value, document.formularioProyecto.foto.value);
         datos = proyecto.serialize();
-        datos += "&operacion=insert";
+        */
+        let files= document.querySelector('#foto').files;
+        console.log(files);
+        datos.append('operacion','insert');
+
+        //datos += "&operacion=insert";
+        console.log(datos);
         let url = "peticionesProyectos.php";
-        let dataType = "html";
+        //let dataType = "html";
         $.ajax({
             type: "POST",
             url: url,
             data: datos,
+            processData:false,
+            contentType:false,
             success: function (data) {
+                console.log(data);
                 let resultado = JSON.parse(data);
                 if (resultado['result'] == 'ok') {
                     document.querySelector('#formularioProyecto').reset();
@@ -695,12 +705,12 @@ function enviarProyecto() {
             error: function () {
                 console.log("error");
             },
-            dataType: dataType
+            //dataType: dataType
 
         });
 
 
-    }
+}
 }
 
 
@@ -754,6 +764,7 @@ function editarProyecto(){
         proyecto.duracion=document.formularioProyecto.duracion.value;
         proyecto.tecnologia=document.formularioProyecto.tecnologia.value;
         proyecto.descripcion=descripcion;  
+        proyecto.foto=document.formularioProyecto.foto.value;
         datos = proyecto.serialize();
         datos += "&operacion=update";
         let url = "peticionesProyectos.php";
@@ -764,6 +775,7 @@ function editarProyecto(){
             url: url,
             data: datos,
             success: function (data) {
+                console.log(data);
                 let resultado = JSON.parse(data);
                 if (resultado['result'] == 'ok') {
                     document.querySelector('#formularioProyecto').reset();
