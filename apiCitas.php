@@ -14,10 +14,10 @@ class apiCitas {
 
     }
 
-    function getAll($idUser){
+    function getAll($idUser,$fecha){
         
         $citas = array();        
-        $resultado= $this-> conexion->getAllCitasUsuario($idUser);
+        $resultado= $this-> conexion->getAllCitasUsuario($idUser,$fecha);
         if($resultado->num_rows>0){
             while ($fila=$resultado->fetch_assoc()){
                 $item=array(
