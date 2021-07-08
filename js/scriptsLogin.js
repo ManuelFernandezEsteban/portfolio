@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function resetCitaUser() {
     document.querySelector('#formulariocitasUsuario').reset();
     document.querySelector('#editarCitaUser').disabled = true;
@@ -239,6 +240,10 @@ function cargarCitasTabla() {
 
 }
 
+=======
+
+
+>>>>>>> 873602a5d5dedfe8b7a71c66405cfd7b47e01cec
 
 function enviarANuevoUsuario() {
 
@@ -282,7 +287,7 @@ function logearUsuario() {
                 enlace.setAttribute('title', 'salir de la sesión');
                 enlace.innerText = 'Salir';
                 cajaRespuesta.appendChild(enlace);
-                navega('usuarios.html');
+                navega('usuariosAdmin.html');
             }
         },
         error: function () {
@@ -379,8 +384,8 @@ function LimpiarUser() {
 
 
 
-function cargarPerfil() {
 
+<<<<<<< HEAD
     let dataType = "html";
     let datos = "usuario=" + user.nombreUsuario;
     datos += "&operacion=datosUsuario";
@@ -408,11 +413,14 @@ function cargarPerfil() {
 
 
 }
+=======
+>>>>>>> 873602a5d5dedfe8b7a71c66405cfd7b47e01cec
 function resetCambiosPerfil() {
     document.querySelector('#formularioPerfilUsuario').reset();
 
 }
 
+<<<<<<< HEAD
 function enviarCambiosPerfil() {
     if (validar(document.formularioPerfilUser)) {
         datos = $('#formularioPerfilUsuario').serialize();
@@ -433,9 +441,7 @@ function enviarCambiosPerfil() {
                 console.log("error");
             },
             dataType: dataType
+=======
+>>>>>>> 873602a5d5dedfe8b7a71c66405cfd7b47e01cec
 
-        });
-    }
-
-}
 

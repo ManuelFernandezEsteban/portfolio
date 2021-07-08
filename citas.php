@@ -5,7 +5,12 @@ include_once('cita.php');
 
 class Citas extends Conexion{
     
+<<<<<<< HEAD
     function getAllCitasUsuario($idUser,$fecha){        
+=======
+    function getAllCitasUsuario($idUser,$fecha){
+        
+>>>>>>> 873602a5d5dedfe8b7a71c66405cfd7b47e01cec
         $SQL="SELECT idCita,fecha,motivo FROM `citas` WHERE `usuario`=$idUser AND (`fecha` > '$fecha') ORDER BY `fecha`" ;
         $query = $this -> crearConexion()->query($SQL);
         return $query;
@@ -25,17 +30,21 @@ class Citas extends Conexion{
         $SQL = "INSERT INTO `citas` (`idCita`, `usuario`, `fecha`, `motivo`) ";
         $SQL.= "VALUES (NULL, '".$cita->usuario."', '";
         $SQL .= "$cita->fecha', '$cita->motivo')";
-        $query = $this -> crearConexion()->query($SQL);
-        return $query;
+        $conexion = $this -> crearConexion();
+        mysqli_query($conexion,$SQL); 
+        $resultado = mysqli_affected_rows($conexion);
+        return $resultado;
 
     }
 
     function deleteCita($idCita){
         
-        $SQL = "DELETE FROM `citas` ";
-        $SQL.="WHERE `idCita` = '".$idCita."'";
-        $query = $this -> crearConexion()->query($SQL);
-        return $query;
+        $SQL = "DELETE FROM `citas` WHERE `idCita` = $idCita";
+        //$query = $this -> crearConexion()->query($SQL);
+        $conexion = $this -> crearConexion();
+        mysqli_query($conexion,$SQL); 
+        $resultado = mysqli_affected_rows($conexion);
+        return $resultado;
     }
 
     function updateCita($cita){
@@ -43,8 +52,10 @@ class Citas extends Conexion{
         $SQL=" UPDATE `citas` SET ";
         $SQL.=" `fecha`='$cita->fecha',`motivo`='$cita->motivo'";  
         $SQL.="WHERE `idCita` = ".$cita->idCita;      
-        $query = $this -> crearConexion()->query($SQL);
-        return $query;
+        $conexion = $this -> crearConexion();
+        mysqli_query($conexion,$SQL); 
+        $resultado = mysqli_affected_rows($conexion);
+        return $resultado;
     }
 }
 

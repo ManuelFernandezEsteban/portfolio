@@ -23,14 +23,17 @@ class apiUsuarios {
                 $item=array(
                     'idUsuario'=> $fila['idUsuario'],
                     'usuario'=>$fila['usuario'],
-                    'role' => $fila['role'],
-                    
+                    'role' => $fila['role'],  
+                    'nombre'=>$fila['nombre'],
+                    'apellidos'=>$fila['apellidos'],
+                    'email'=>$fila['email'],
+                    'telefono'=>$fila['telefono']                    
                 );
                 array_push($usuarios,$item);
             }
-            echo json_encode($usuarios);
+            return ($usuarios);
         }else{
-            echo json_encode(array('mensajes'=>'No hay usuarios'));
+            return (array('mensajes'=>'No hay usuarios'));
         }
 
     }
@@ -43,15 +46,20 @@ class apiUsuarios {
             while ($fila=$resultado->fetch_assoc()){
                 $item=array(
                     'idUsuario'=> $fila['idUsuario'],
-                    'usuario'=>$fila['usuario'],
-                    'role' => $fila['role']                    
+                    'usuario'=>$fila['usuario'],                    
+                    'role' => $fila['role'],  
+                    'nombre'=>$fila['nombre'],
+                    'apellidos'=>$fila['apellidos'],
+                    'email'=>$fila['email'],
+                    'telefono'=>$fila['telefono']                    
                 );
                 array_push($usuarios,$item);
             }
-            echo json_encode($usuarios);
+            
         }else{
             echo json_encode(array('mensajes'=>'No hay usuarios'));
         }
+        return($usuarios);
     }
 
     function getByName($nameUser){
@@ -79,18 +87,19 @@ class apiUsuarios {
 
     function update($user){
         $resultado = $this->conexion->updateUsuario($user);
-        echo $resultado;
+        return $resultado;
     }
 
 
     function insert($user){        
         
         $resultado= $this->conexion->insertUsuario($user);
-        echo $resultado;
+        return $resultado;
     }
 
     function delete($idUser){
         $resultado= $this->conexion->deleteUsuario($idUser);
+        return $resultado;
     }
 
 

@@ -33,8 +33,10 @@ class Usuarios extends Conexion{
         $SQL = "INSERT INTO `usuarios` (`idUsuario`, `usuario`, `password`, `role`, `nombre`, `apellidos`, `email`, `telefono`) ";
         $SQL.= "VALUES (NULL, '".$user->user."', '";
         $SQL .= "$user->password', '$user->role', '$user->nombre','$user->apellidos','$user->email','$user->telefono')";
-        $query = $this -> crearConexion()->query($SQL);
-        //return $query;
+        $conexion = $this -> crearConexion();
+        mysqli_query($conexion,$SQL); 
+        $resultado = mysqli_affected_rows($conexion);
+        return $resultado;       
 
     }
 
@@ -42,8 +44,10 @@ class Usuarios extends Conexion{
         
         $SQL = "DELETE FROM `usuarios` ";
         $SQL.="WHERE `idUsuario` = '".$idUsuario."'";
-        $query = $this -> crearConexion()->query($SQL);
-        //return $query;
+        $conexion = $this -> crearConexion();
+        mysqli_query($conexion,$SQL); 
+        $resultado = mysqli_affected_rows($conexion);
+        return $resultado;
     }
 
     function updateUsuario($user){
@@ -51,7 +55,10 @@ class Usuarios extends Conexion{
         $SQL=" UPDATE `usuarios` SET ";
         $SQL.=" `role`='$user->role',`nombre`='$user->nombre',`apellidos`='$user->apellidos',`email`='$user->email',`telefono`='$user->telefono' WHERE 1 AND ";
         $SQL.=" `usuario`='$user->user'";
-        $query = $this -> crearConexion()->query($SQL);
+        $conexion = $this -> crearConexion();
+        mysqli_query($conexion,$SQL); 
+        $resultado = mysqli_affected_rows($conexion);
+        return $resultado;
     }
 }
 

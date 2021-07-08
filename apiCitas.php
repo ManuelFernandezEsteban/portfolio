@@ -16,7 +16,12 @@ class apiCitas {
 
     function getAll($idUser,$fecha){
         
+<<<<<<< HEAD
         $citas = array();        
+=======
+        $citas = array();     
+           
+>>>>>>> 873602a5d5dedfe8b7a71c66405cfd7b47e01cec
         $resultado= $this-> conexion->getAllCitasUsuario($idUser,$fecha);
         if($resultado->num_rows>0){
             while ($fila=$resultado->fetch_assoc()){
@@ -57,18 +62,18 @@ class apiCitas {
 
     function update($cita){
         $resultado = $this->conexion->updateCita($cita);
-        //echo $resultado;
+        return $resultado;
     }
 
 
     function insert($cita){               
         $resultado= $this->conexion->insertCita($cita);
-        //echo $resultado;
+        return $resultado;
     }
 
     function delete($idCita){
         $resultado= $this->conexion->deleteCita($idCita);
-        //echo $resultado;
+        return $resultado;
     }
 
 
