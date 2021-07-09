@@ -59,7 +59,7 @@ function traerCitasUsuario(idUsuario) {
             if (resultado.result == "ok") {
                 usuario.citas = resultado.datos;
                 console.log(usuario);
-                dibujarTablaCitas(usuario.citas);
+                dibujarTablaCitas(resultado.datos);
             }
         },
         error: function () {
@@ -269,6 +269,13 @@ function cargarCitasBtn() {
 function cargarPerfil() {
 
     cargarPerfilUsuario(user.idUsuario);
+    cargarCitas();
+    if (user.roleLog == 'usuario') {
+        console.log(user);
+        
+    } else {
+        console.log(user);
+    }
 
 }
 function resetCitaUser() {//podemos enviar una cita nueva no eliminar ni editar
@@ -530,8 +537,8 @@ function leerProyecto(idProyecto) {
                 document.formularioProyecto.nombre.value = proyecto.nombre;
                 document.formularioProyecto.tecnologia.value = proyecto.tecnologia;
                 document.formularioProyecto.duracion.value = proyecto.duracion;
-                document.formularioProyecto.foto.value = proyecto.foto;
-
+                //document.formularioProyecto.foto.value = ;
+                document.querySelector('#imgProyecto').src=proyecto.foto
                 document.querySelector("#descripcion").value = proyecto.descripcion;
 
             }
@@ -674,19 +681,12 @@ function validarProyecto(form){
 function enviarProyecto() {
     
     if (validarProyecto(document.formularioProyecto)) {
-        let datos = new FormData(formularioProyecto);
-      /*  let descripcion = document.querySelector("#descripcion").value;
-        let proyecto = new Proyecto(0, document.formularioProyecto.nombre.value, descripcion, document.formularioProyecto.tecnologia.value, document.formularioProyecto.duracion.value, document.formularioProyecto.foto.value);
-        datos = proyecto.serialize();
-        */
-        let files= document.querySelector('#foto').files;
-        console.log(files);
+        let datos = new FormData(formularioProyecto);      
         datos.append('operacion','insert');
 
-        //datos += "&operacion=insert";
         console.log(datos);
         let url = "peticionesProyectos.php";
-        //let dataType = "html";
+        let dataType = "html";
         $.ajax({
             type: "POST",
             url: url,
@@ -705,7 +705,7 @@ function enviarProyecto() {
             error: function () {
                 console.log("error");
             },
-            //dataType: dataType
+            dataType: dataType
 
         });
 
@@ -722,6 +722,7 @@ function resetProyecto(){
     document.querySelector('#editarProyecto').disabled=true;
     document.querySelector('#eliminarProyecto').disabled=true;
     document.querySelector('#enviarProyecto').disabled=false;
+    document.querySelector('#imgProyecto').src="";
 
 }
 
@@ -757,16 +758,11 @@ function eliminarProyecto(){
 }
 
 function editarProyecto(){
-    if (validarProyecto(document.formularioProyecto)) {
-        
-        let descripcion = document.querySelector("#descripcion").value;
-        proyecto.nombre=document.formularioProyecto.nombre.value;
-        proyecto.duracion=document.formularioProyecto.duracion.value;
-        proyecto.tecnologia=document.formularioProyecto.tecnologia.value;
-        proyecto.descripcion=descripcion;  
-        proyecto.foto=document.formularioProyecto.foto.value;
-        datos = proyecto.serialize();
-        datos += "&operacion=update";
+    if (validarProyecto(document.formularioProyecto)) {        
+       
+        let datos = new FormData(formularioProyecto);
+        datos.append('idProyecto',proyecto.idProyecto);
+        datos.append('operacion','update');        
         let url = "peticionesProyectos.php";
         console.log(datos);
         let dataType = "html";
@@ -774,6 +770,8 @@ function editarProyecto(){
             type: "POST",
             url: url,
             data: datos,
+            processData:false,
+            contentType:false,
             success: function (data) {
                 console.log(data);
                 let resultado = JSON.parse(data);
@@ -795,7 +793,13 @@ function editarProyecto(){
 
     }
 }
-
+function mostrarFoto(){
+    let files= document.querySelector('#foto').files;
+    console.log(files);
+    console.log(files[0].name);
+    console.log(document.querySelector('#foto').value);
+    document.querySelector('#imgProyecto').src=document.querySelector('#foto').value;
+}
 function cargarProyectos() {
 
     leerProyectos();

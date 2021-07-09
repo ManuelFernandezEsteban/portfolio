@@ -605,6 +605,14 @@ legend{
 }
 /*fin caja bienvenida*/
 
+.boxUsuarios{
+    display: flex;
+    flex-direction: column;
+}
+.boxPerfilCitas{
+    display: flex;
+    flex-direction: column;
+}
 
 .caja-contenido-usuarios{
     display: flex;
@@ -623,18 +631,22 @@ legend{
     flex-direction: row;
 }
 .caja-botones{
-    display: inline-flex;
+    display: flex;
     width: 100%;
+    flex-flow: row wrap;
     margin-top: 20px;
     margin-bottom: 20px;
 
 }
 .caja-botones .boton{
     width: 100%;
-    margin: 5px;
+    
 }
 /*caja citas*/
-
+.caja-botones>h2{
+    padding: 0px;
+    margin:5px;
+ }
 
 .divTableUsuarios,.divTableCitas,.divTableProyectos{
 	display: none;
@@ -679,6 +691,9 @@ legend{
     flex-flow: column;
     flex: 1;
 }
+.boxProyectos{
+    border-bottom: 1px solid #999999;
+}
 .boxCitasContent , .boxPerfilContent, .boxProyectoContent{
     display: flex;
     flex-direction: column;
@@ -695,10 +710,31 @@ legend{
     text-decoration: none;
 }
 
+.dosColumnas{
+    display: flex;
+    flex-direction: column;
+}
+
+.imgProyecto{
+    width: 100%;
+}
+
 /*fin caja citas*/ 
 /*media querys*/
+
+
+
 /*tamaño ipad*/
+
+
 @media only screen and (min-width:768px){
+
+    .caja-botones>h2{
+        /* font-size: 2.5em;
+         font-weight: bold;
+         */
+         margin: 5px;
+     }
     .contenedor-login{
         min-height: 600px;
     }
@@ -745,9 +781,24 @@ legend{
 
 /*tamaño laptop*/
 @media only screen and (min-width:1024px){
+    .boxUsuarios,.contenedorCajasAdmin{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content:center;
+        align-items: baseline;
+        border-bottom: 1px solid #999999;
+    }
+    
+    .boxPerfilCitas{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-top: 30px;
+    }    
+
     .divTableUsuarios{
-        margin-top: 20px;
-        margin-left: 10px;
+        margin-top: 20px;      
 
     }
     .divTableProyectos,.divTableCitas{
@@ -757,7 +808,7 @@ legend{
     }
     .contenedor-login{
         justify-content: space-between;
-        width: 60%;
+        width: 40%;
         min-height: 600px;
     }
     .caja-login{
@@ -773,6 +824,7 @@ legend{
         display: flex;
         flex-direction: column;
         flex: 1;
+        border-right: 1px solid #999999;
     }
     .caja-botones{
         display: flex;
@@ -789,7 +841,7 @@ legend{
     }
     .contenedorCajasAdmin{
         display: flex;
-        flex-flow: row wrap;
+        flex-flow: column;
         justify-content: space-around;
         align-items: baseline;
         width: 100%;
@@ -886,6 +938,18 @@ legend{
     }
     .caja-formulario:last-child{
         align-self: flex-end;
+    }
+
+    .dosColumnas{
+        display: flex;
+        flex-direction: row;
+    }
+    .unaColumna{
+        flex: 1;
+        margin: 10px;
+    }
+    .imgProyecto{
+        width: 400px;
     }
 }
 
