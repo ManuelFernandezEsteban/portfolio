@@ -4,12 +4,12 @@
         <nav class="caja-botones">
             <h2>Usuarios</h2>
             <input type="button" class="boton" value="Mis datos" id="btnPerfil" onclick="cargarPerfil()">
-      <!--      <input type="button" class="boton" value="Perfil" >
+            <!--      <input type="button" class="boton" value="Perfil" >
             <input type="button" class="boton" value="Citas" id="btnCitas" onclick="cargarCitasBtn()">-->
             <h2>Administrador</h2>
             <input type="button" class="boton" value="Usuarios" id="btnAdmin" onclick="cargarUsuarios()">
             <input type="button" class="boton" value="Proyectos" id="btnProyectos" onclick="cargarProyectos()" disabled>
-            <input type="button" class="boton" value="Noticias" id="btnNoticias" disabled>
+            <input type="button" class="boton" value="Noticias" id="btnNoticias" onclick="cargarNoticias()" disabled>
         </nav>
     </aside>
     <div class="contenidoAdmin">
@@ -25,26 +25,23 @@
                         <div class="boxPerfilContent">
                             <form method="POST" class="formularioLogin" id="formularioPerfilUsuario"
                                 name="formularioPerfilUser">
-                                
-                                    <label for="usuarioPerfil">Usuario </label><br>
-                                    <input type="text" class="input-formulario" id="usuarioPerfil" name="usuario"
-                                        readonly>
+
+                                <label for="usuarioPerfil">Usuario </label><br>
+                                <input type="text" class="input-formulario" id="usuarioPerfil" name="usuario" readonly>
                                 <br>
-                                
-                                    <label for="nombrePerfil">Nombre </label><br>
-                                    <input type="text" class="input-formulario" id="nombrePerfil" name="nombre"
-                                        required>
-                                <br>                               
-                                    <label for="apellidosPerfil">Apellidos </label><br>
-                                    <input type="text" class="input-formulario" id="apellidosPerfil" name="apellidos"
-                                        required>
-                               <br>
-                                    <label for="emailPerfil">Email </label><br>
-                                    <input type="email" class="input-formulario" id="emailPerfil" name="email" required>
+
+                                <label for="nombrePerfil">Nombre </label><br>
+                                <input type="text" class="input-formulario" id="nombrePerfil" name="nombre" required>
                                 <br>
-                                    <label for="movilPerfil">Telefono </label><br>
-                                    <input type="text" class="input-formulario" id="movilPerfil" name="telefono"
-                                        required>                                
+                                <label for="apellidosPerfil">Apellidos </label><br>
+                                <input type="text" class="input-formulario" id="apellidosPerfil" name="apellidos"
+                                    required>
+                                <br>
+                                <label for="emailPerfil">Email </label><br>
+                                <input type="email" class="input-formulario" id="emailPerfil" name="email" required>
+                                <br>
+                                <label for="movilPerfil">Telefono </label><br>
+                                <input type="text" class="input-formulario" id="movilPerfil" name="telefono" required>
 
                             </form>
                             <div class="caja-botones-login enFila">
@@ -69,8 +66,8 @@
                                 <label for="horaCita">Fecha y hora de la cita</label>
                                 <input type="datetime-local" name="fechaCita" id="fechaCita" step=1800>
                                 <br>
-                                    <label for="motivoCita">Motivo</label>
-                                    <input type="text" class="input-formulario" name="motivoCita" id="motivoCita">                                
+                                <label for="motivoCita">Motivo</label>
+                                <input type="text" class="input-formulario" name="motivoCita" id="motivoCita">
                             </form>
                             <div class="caja-botones-login enFila">
                                 <button type="button" id="enviarCitaUser" class="boton"
@@ -92,31 +89,33 @@
                 </div>
                 <div class="boxProyectoContent">
                     <form method="POST" class="formularioLogin" id="formularioProyecto" enctype="multipart/form-data"
-                        name="formularioProyecto">   
-                        <div class="dosColumnas">                     
-                        <div class="unaColumna">
-                            <label for="nombre">Nombre </label><br>
-                            <input type="text" class="input-formulario" id="nombre" name="nombre" required>
-                        <br><br>
-                            <label for="tecnologia">Tecnologías </label><br>
-                            <input type="text" class="input-formulario" id="tecnologia" name="tecnologia" required>
-                        <br><br>
-                            <label for="duracion">Duración </label><br>
-                            <input type="text" class="input-formulario" id="duracion" name="duracion" required>
-                        <br><br>
-                            <label for="descripcion">Descripción </label><br>
-                            <textarea id="descripcion" name="descripcion" cols="40" rows="8" required></textarea>
-                        <br><br>
-                        </div>
-                        <div class="unaColumna">
-                            
-                            <label for="foto"><img class="icono" src="ico/upload.svg" alt="icono upload"> </label><br><br>
+                        name="formularioProyecto">
+                        <div class="dosColumnas">
+                            <div class="unaColumna">
+                                <label for="nombre">Nombre </label><br>
+                                <input type="text" class="input-formulario" id="nombre" name="nombre" required>
+                                <br><br>
+                                <label for="tecnologia">Tecnologías </label><br>
+                                <input type="text" class="input-formulario" id="tecnologia" name="tecnologia" required>
+                                <br><br>
+                                <label for="duracion">Duración </label><br>
+                                <input type="text" class="input-formulario" id="duracion" name="duracion" required>
+                                <br><br>
+                                <label for="descripcion">Descripción </label><br>
+                                <textarea id="descripcion" name="descripcion" cols="40" rows="8" required></textarea>
+                                <br><br>
+                            </div>
+                            <div class="unaColumna">
 
-                            <input type="file" class="input-formulario" id="foto" name="foto" onchange="mostrarImgSeleccionada()" >
-                            <span id="ruta"></span>
-                        <br><br>
-                            <img id="imgProyecto" src="">
-                        </div>
+                                <label for="foto"><img class="icono" src="ico/upload.svg" alt="icono upload">
+                                </label><br><br>
+
+                                <input type="file" class="input-formulario" id="foto" name="foto"
+                                    onchange="mostrarImgSeleccionada()">
+                                <span id="ruta"></span>
+                                <br><br>
+                                <img id="imgProyecto" src="">
+                            </div>
                         </div>
                     </form>
                     <div class="caja-botones-login enFila">
@@ -133,6 +132,43 @@
                     </div>
                 </div>
 
+            </section>
+            <section class="boxNoticias">
+                <h2>Noticias</h2>
+                <div class="divTableNoticias">
+                </div>
+                <div class="boxNoticiasContent">
+                    <form method="POST" class="formularioLogin" id="formularioNoticias" name="formularioNoticias">
+                        <div class="dosColumnas">
+                            <div class="unaColumna">
+                                <label for="titular">Nombre </label><br>
+                                <input type="text" class="input-formulario" id="titular" name="titular" required>
+                                <br><br>
+                                <label for="fecha">Fecha</label>
+                                <input type="date" name="fecha" id="fecha">
+                                <br><br>
+                            </div>                        
+
+                            <div class="unaColumna">                                
+                                <label for="noticia">Noticia </label><br>
+                                <textarea id="noticia" name="noticia" cols="40" rows="8" required></textarea>
+                                <br><br>
+                            </div>
+                        </div>
+           
+                    </form>
+
+                    <div class="caja-botones-login enFila">
+
+                        <button type="button" id="enviarNoticia" class="boton" onclick="enviarNoticia()">Enviar</button>
+
+                        <button type="button" id="editarNoticia" class="boton" onclick="editarNoticia()"
+                            disabled>Editar</button><br>
+                        <button type="button" id="eliminarNoticia" class="boton" onclick="eliminarNoticia()"
+                            disabled>Eliminar</button><br>
+                        <button type="button" id="resetNoticia" class="boton" onclick="resetNoticia()">Cancelar</button>
+                    </div>
+                </div>
             </section>
         </div>
     </div>

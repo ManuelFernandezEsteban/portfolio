@@ -1,7 +1,7 @@
 //let usuarios = Array();
 let usuario;
 let proyecto;
-
+let noticia;
 
 function dibujarTablaCitas(datos) {
 
@@ -272,7 +272,7 @@ function cargarPerfil() {
     cargarCitas();
     if (user.roleLog == 'usuario') {
         console.log(user);
-        
+
     } else {
         console.log(user);
     }
@@ -537,8 +537,8 @@ function leerProyecto(idProyecto) {
                 document.formularioProyecto.nombre.value = proyecto.nombre;
                 document.formularioProyecto.tecnologia.value = proyecto.tecnologia;
                 document.formularioProyecto.duracion.value = proyecto.duracion;
-                document.querySelector('#ruta').innerHTML=proyecto.foto;
-                document.querySelector('#imgProyecto').src=proyecto.foto;
+                document.querySelector('#ruta').innerHTML = proyecto.foto;
+                document.querySelector('#imgProyecto').src = proyecto.foto;
                 document.querySelector("#descripcion").value = proyecto.descripcion;
 
             }
@@ -563,7 +563,7 @@ function cargarProyecto(idProyecto) {
 }
 
 function seleccionProyecto(ev) {
-    let id = ev.target.parentNode.getAttribute("idProyecto");    
+    let id = ev.target.parentNode.getAttribute("idProyecto");
     cargarProyecto(id);
 }
 
@@ -652,37 +652,37 @@ function leerProyectos() {
     });
 }
 
-function validarProyecto(form){
-        // valida el formulario de proyecto
-    
-        if (form.nombre.value.length == 0) {
-            alert("Indique un nombre para el proyecto");
-            return false;
-        }
-       /* if (form.descripcion.innerText == '') {
-            alert("Indique una descripcion del proyecto");
-            return false;
-        }   */     
-        if (form.tecnologia.value.length == 0) {
-            alert("Indique al menos una tecnología empleada");
-            return false;
-        }
-        listacaracteres = /^\d+$/
-        if (!listacaracteres.test(form.duracion.value)) {
-            alert("Indique la duración del proyecto en semanas");
-            return false;
-        }
-        alert("Formulario correcto");
-        //formularioPresupuesto.submit();
-        return true;
+function validarProyecto(form) {
+    // valida el formulario de proyecto
+
+    if (form.nombre.value.length == 0) {
+        alert("Indique un nombre para el proyecto");
+        return false;
     }
+    /* if (form.descripcion.innerText == '') {
+         alert("Indique una descripcion del proyecto");
+         return false;
+     }   */
+    if (form.tecnologia.value.length == 0) {
+        alert("Indique al menos una tecnología empleada");
+        return false;
+    }
+    listacaracteres = /^\d+$/
+    if (!listacaracteres.test(form.duracion.value)) {
+        alert("Indique la duración del proyecto en semanas");
+        return false;
+    }
+    alert("Formulario correcto");
+    //formularioPresupuesto.submit();
+    return true;
+}
 
 
 function enviarProyecto() {
-    
+
     if (validarProyecto(document.formularioProyecto)) {
-        let datos = new FormData(formularioProyecto);      
-        datos.append('operacion','insert');
+        let datos = new FormData(formularioProyecto);
+        datos.append('operacion', 'insert');
 
         console.log(datos);
         let url = "peticionesProyectos.php";
@@ -691,8 +691,8 @@ function enviarProyecto() {
             type: "POST",
             url: url,
             data: datos,
-            processData:false,
-            contentType:false,
+            processData: false,
+            contentType: false,
             success: function (data) {
                 console.log(data);
                 let resultado = JSON.parse(data);
@@ -708,26 +708,24 @@ function enviarProyecto() {
             dataType: dataType
 
         });
-
-
-}
+    }
 }
 
 
 
-function resetProyecto(){
+function resetProyecto() {
     document.formularioProyecto.reset();
-    document.formularioProyecto.descripcion.innerText='';
-    document.querySelector('#ruta').innerHTML='';
-    proyecto=null;
-    document.querySelector('#editarProyecto').disabled=true;
-    document.querySelector('#eliminarProyecto').disabled=true;
-    document.querySelector('#enviarProyecto').disabled=false;
-    document.querySelector('#imgProyecto').src="";
+    document.formularioProyecto.descripcion.innerText = '';
+    document.querySelector('#ruta').innerHTML = '';
+    proyecto = null;
+    document.querySelector('#editarProyecto').disabled = true;
+    document.querySelector('#eliminarProyecto').disabled = true;
+    document.querySelector('#enviarProyecto').disabled = false;
+    document.querySelector('#imgProyecto').src = "";
 
 }
 
-function eliminarProyecto(){
+function eliminarProyecto() {
     console.log('eliminado....')
 
     let dataType = "html";
@@ -758,12 +756,12 @@ function eliminarProyecto(){
     });
 }
 
-function editarProyecto(){
-    if (validarProyecto(document.formularioProyecto)) {        
-       
+function editarProyecto() {
+    if (validarProyecto(document.formularioProyecto)) {
+
         let datos = new FormData(formularioProyecto);
-        datos.append('idProyecto',proyecto.idProyecto);
-        datos.append('operacion','update');        
+        datos.append('idProyecto', proyecto.idProyecto);
+        datos.append('operacion', 'update');
         let url = "peticionesProyectos.php";
         console.log(datos);
         let dataType = "html";
@@ -771,8 +769,8 @@ function editarProyecto(){
             type: "POST",
             url: url,
             data: datos,
-            processData:false,
-            contentType:false,
+            processData: false,
+            contentType: false,
             success: function (data) {
                 console.log(data);
                 let resultado = JSON.parse(data);
@@ -780,7 +778,7 @@ function editarProyecto(){
                     document.querySelector('#formularioProyecto').reset();
                     alert('Proyecto modificado');
                     leerProyectos();
-                }else{
+                } else {
                     console.log(resultado);
                 }
             },
@@ -794,15 +792,248 @@ function editarProyecto(){
 
     }
 }
-function mostrarImgSeleccionada(){
-    let files= document.querySelector('#foto').files;
+function mostrarImgSeleccionada() {
+    let files = document.querySelector('#foto').files;
     console.log(files);
     console.log(files[0].name);
-    document.querySelector('#ruta').innerHTML=files[0].name;  
-    document.querySelector('#imgProyecto').src='';
+    document.querySelector('#ruta').innerHTML = files[0].name;
+    document.querySelector('#imgProyecto').src = '';
 }
 function cargarProyectos() {
-
+    document.querySelector('.boxProyectos').style.display = 'flex';
     leerProyectos();
 
+}
+function leerNoticia(idNoticia) {
+
+    let dataType = "html";
+    let datos = "idNoticia=" + idNoticia;
+    datos += "&operacion=traerNoticia";
+    console.log(datos);
+    let url = "peticionesNoticias.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            console.log(data);
+            let resultado = JSON.parse(data);
+            if (resultado.result == "ok") {
+                console.log(resultado);
+                noticia = new Noticia(idNoticia, resultado.datos[0].fecha, resultado.datos[0].titular, resultado.datos[0].noticia);
+                console.log(noticia);
+                document.formularioNoticias.titular.value = noticia.titular;
+                document.formularioNoticias.fecha.value = noticia.fecha;
+                document.querySelector("#noticia").value = noticia.noticia;
+            } else {
+                console.log(resultado);
+            }
+        },
+
+        error: function () {
+            console.log("error");
+            return null;
+        },
+        dataType: dataType
+    });
+}
+
+function cargarNoticia(idNoticia) {
+    if (idNoticia != -1) {//podemos editar y borrar
+        leerNoticia(idNoticia);
+        document.querySelector('#eliminarNoticia').disabled = false;
+        document.querySelector('#enviarNoticia').disabled = true;
+        document.querySelector('#editarNoticia').disabled = false;
+
+    }
+}
+
+function seleccionNoticia(ev) {
+    let id = ev.target.parentNode.getAttribute("idNoticia");
+    cargarNoticia(id);
+}
+
+function dibujarTablaNoticias(datos) {
+
+    console.log(datos);
+    let cuerpoTabla = document.createElement('div');
+    cuerpoTabla.classList.add("divTableBody");
+    let filaCabecera = document.createElement('div');
+    filaCabecera.classList.add('divTableRow');
+    filaCabecera.classList.add('divTableHeading');
+
+    let celdaCabeceraFecha = document.createElement('div');
+    let celdaCabeceraTitular = document.createElement('div');
+
+    celdaCabeceraFecha.classList.add('divTableCellHeader');
+    celdaCabeceraTitular.classList.add('divTableCellHeader');
+
+    celdaCabeceraFecha.innerText = "Fecha";
+    celdaCabeceraTitular.innerText = "Titular";
+
+    filaCabecera.appendChild(celdaCabeceraFecha);
+    filaCabecera.appendChild(celdaCabeceraTitular);
+
+    cuerpoTabla.appendChild(filaCabecera);
+    document.querySelector('.divTableNoticias').classList.add('divTableNoticias');
+    document.querySelector('.divTableNoticias').innerHTML = '';
+    document.querySelector('.divTableNoticias').style.display = "table";
+    document.querySelector('.divTableNoticias').appendChild(cuerpoTabla);
+
+    for (var i in datos) {
+        let fila;
+        let celdaFecha, celdaTitular;
+        fila = document.createElement('div');
+        fila.setAttribute('idNoticia', datos[i].idNoticia);
+        fila.classList.add('divTableRow');
+
+        celdaFecha = document.createElement('div');
+        celdaFecha.classList.add('divTableCell');
+        celdaTitular = document.createElement('div');
+        celdaTitular.classList.add('divTableCell');
+
+        celdaFecha.innerText = datos[i].fecha;
+        celdaTitular.innerText = datos[i].titular;
+
+        fila.appendChild(celdaFecha);
+        fila.appendChild(celdaTitular);
+
+        fila.addEventListener('click', seleccionNoticia);
+        cuerpoTabla.appendChild(fila);
+    }
+}
+
+function leerNoticias() {
+    let dataType = "html";
+
+    let datos = "&operacion=traerNoticias";
+    console.log(datos);
+    let url = "peticionesNoticias.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+
+            let resultado = JSON.parse(data);
+            if (resultado.result == "ok") {
+
+                console.log(resultado);
+                dibujarTablaNoticias(resultado.datos);
+            }
+            else {
+                console.log(resultado);
+            }
+        },
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+
+    });
+}
+
+function resetNoticia() {
+    document.formularioNoticias.reset();
+    document.formularioNoticias.noticia.innerText = '';
+    noticia = null;
+    document.querySelector('#editarNoticia').disabled = true;
+    document.querySelector('#eliminarNoticia').disabled = true;
+    document.querySelector('#enviarNoticia').disabled = false;
+
+}
+
+function validarNoticia(form) {
+    // valida el formulario de noticias
+
+    if (form.titular.value.length == 0) {
+        alert("Indique un titular para la noticia");
+        return false;
+    }
+    if (form.noticia.value == '') {
+        alert("Inserte el cuerpo de la noticia");
+        return false;
+    }   
+    if (form.fecha.value =='') {
+        alert("Seleccione la fecha para la noticia");
+        return false;
+    }    
+    alert("Formulario correcto");
+    //formularioPresupuesto.submit();
+    return true;
+}
+
+function enviarNoticia() {
+    if (validarNoticia(document.formularioNoticias)) {
+        let datos = new FormData(formularioNoticias);
+        
+        datos.append('operacion','insert');
+        console.log(datos);
+        let url = "peticionesNoticias.php";
+        let dataType = "html";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: datos,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+                let resultado = JSON.parse(data);
+                if (resultado['result'] == 'ok') {
+                    document.querySelector('#formularioNoticias').reset();
+                    alert('Noticia añadida');
+                    leerNoticias();
+                }
+            },
+            error: function () {
+                console.log("error");
+            },
+            dataType: dataType
+
+        });
+    }
+}
+
+function editarNoticia(){
+    if (validarNoticia(document.formularioNoticias)) {
+        //let datos = new FormData(formularioNoticias);
+        //datos.append('idNoticia',noticia.idNoticia);
+        //datos.append('operacion','update');
+        let datos = new Noticia(noticia.idNoticia,document.formularioNoticias.fecha.value,document.formularioNoticias.titular.value,document.formularioNoticias.noticia.value);
+        datos.serialize();
+        console.log(datos);
+        datos+="&operacion=update";
+        console.log(datos);
+        let url = "peticionesNoticias.php";
+        let dataType = "html";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: datos,
+           // processData: false,
+           // contentType: false,
+            success: function (data) {
+                console.log(data);
+                let resultado = JSON.parse(data);
+                if (resultado['result'] == 'ok') {
+                    document.querySelector('#formularioNoticias').reset();
+                    alert('Noticia modificada');
+                    leerNoticias();
+                }else{
+                    console.log(resultado);
+                }
+            },
+            error: function () {
+                console.log("error");
+            },
+            dataType: dataType
+
+        });
+    }
+}
+
+function cargarNoticias() {
+    document.querySelector('.boxNoticias').style.display = 'flex';
+    leerNoticias();
 }

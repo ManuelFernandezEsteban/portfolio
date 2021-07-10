@@ -49,3 +49,16 @@ class Cita {
 
     }
 }
+class Noticia {
+    constructor(idNoticia,fecha,titular,noticia){
+        this.idNoticia=idNoticia;
+        this.fecha=fecha;
+        this.titular=titular;
+        this.noticia=noticia;
+    }
+
+    serialize() {
+        return "idNoticia="+this.idNoticia+"&fecha="+this.fecha+"&titular="+this.titular+"&noticia="+this.noticia;
+
+    }
+}
