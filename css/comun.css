@@ -445,7 +445,15 @@ input[type="button"]:disabled{
     background-color: #999999;
 }
 
-
+textarea{
+    font-size: 1rem;
+    font-family: Ubuntu;
+    color: #999999;
+    font-style: italic;
+}
+textarea:focus{
+    color: black;
+}
 .botones{        
     padding: 5%;
 }
@@ -719,6 +727,14 @@ legend{
     width: 100%;
 }
 
+#foto{
+    display: none;
+}
+#ruta{
+    font-family: Ubuntu;
+    font-size: 1rem;
+    color: #999999;
+}
 /*fin caja citas*/ 
 /*media querys*/
 
@@ -729,6 +745,7 @@ legend{
 
 @media only screen and (min-width:768px){
 
+    
     .caja-botones>h2{
         /* font-size: 2.5em;
          font-weight: bold;

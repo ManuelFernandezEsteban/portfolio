@@ -537,8 +537,8 @@ function leerProyecto(idProyecto) {
                 document.formularioProyecto.nombre.value = proyecto.nombre;
                 document.formularioProyecto.tecnologia.value = proyecto.tecnologia;
                 document.formularioProyecto.duracion.value = proyecto.duracion;
-                //document.formularioProyecto.foto.value = ;
-                document.querySelector('#imgProyecto').src=proyecto.foto
+                document.querySelector('#ruta').innerHTML=proyecto.foto;
+                document.querySelector('#imgProyecto').src=proyecto.foto;
                 document.querySelector("#descripcion").value = proyecto.descripcion;
 
             }
@@ -718,6 +718,7 @@ function enviarProyecto() {
 function resetProyecto(){
     document.formularioProyecto.reset();
     document.formularioProyecto.descripcion.innerText='';
+    document.querySelector('#ruta').innerHTML='';
     proyecto=null;
     document.querySelector('#editarProyecto').disabled=true;
     document.querySelector('#eliminarProyecto').disabled=true;
@@ -793,12 +794,12 @@ function editarProyecto(){
 
     }
 }
-function mostrarFoto(){
+function mostrarImgSeleccionada(){
     let files= document.querySelector('#foto').files;
     console.log(files);
     console.log(files[0].name);
-    console.log(document.querySelector('#foto').value);
-    document.querySelector('#imgProyecto').src=document.querySelector('#foto').value;
+    document.querySelector('#ruta').innerHTML=files[0].name;  
+    document.querySelector('#imgProyecto').src='';
 }
 function cargarProyectos() {
 

@@ -16,12 +16,8 @@ class apiCitas {
 
     function getAll($idUser,$fecha){
         
-<<<<<<< HEAD
-        $citas = array();        
-=======
         $citas = array();     
            
->>>>>>> 873602a5d5dedfe8b7a71c66405cfd7b47e01cec
         $resultado= $this-> conexion->getAllCitasUsuario($idUser,$fecha);
         if($resultado->num_rows>0){
             while ($fila=$resultado->fetch_assoc()){

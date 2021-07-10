@@ -5,12 +5,8 @@ include_once('cita.php');
 
 class Citas extends Conexion{
     
-<<<<<<< HEAD
-    function getAllCitasUsuario($idUser,$fecha){        
-=======
     function getAllCitasUsuario($idUser,$fecha){
         
->>>>>>> 873602a5d5dedfe8b7a71c66405cfd7b47e01cec
         $SQL="SELECT idCita,fecha,motivo FROM `citas` WHERE `usuario`=$idUser AND (`fecha` > '$fecha') ORDER BY `fecha`" ;
         $query = $this -> crearConexion()->query($SQL);
         return $query;

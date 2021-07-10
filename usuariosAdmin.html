@@ -97,21 +97,24 @@
                         <div class="unaColumna">
                             <label for="nombre">Nombre </label><br>
                             <input type="text" class="input-formulario" id="nombre" name="nombre" required>
-                        <br>
+                        <br><br>
                             <label for="tecnologia">Tecnologías </label><br>
                             <input type="text" class="input-formulario" id="tecnologia" name="tecnologia" required>
-                        <br>
+                        <br><br>
                             <label for="duracion">Duración </label><br>
                             <input type="text" class="input-formulario" id="duracion" name="duracion" required>
-                        <br>
+                        <br><br>
                             <label for="descripcion">Descripción </label><br>
-                            <textarea id="descripcion" name="descripcion" cols="60" rows="8" required></textarea>
-                        <br>
+                            <textarea id="descripcion" name="descripcion" cols="40" rows="8" required></textarea>
+                        <br><br>
                         </div>
                         <div class="unaColumna">
-                            <label for="foto">Foto </label><br>
-                            <input type="file" class="input-formulario" id="foto" name="foto">
-                        <br>
+                            
+                            <label for="foto"><img class="icono" src="ico/upload.svg" alt="icono upload"> </label><br><br>
+
+                            <input type="file" class="input-formulario" id="foto" name="foto" onchange="mostrarImgSeleccionada()" >
+                            <span id="ruta"></span>
+                        <br><br>
                             <img id="imgProyecto" src="">
                         </div>
                         </div>
