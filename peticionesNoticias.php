@@ -48,7 +48,7 @@ switch ($peticion) {
             $data['datos'] = $resultado;
         } else {
             $data["result"] = "error";
-            $data["datos"] = array();
+            $data["datos"] = $resultado;
         }
         break;
     case 'delete':

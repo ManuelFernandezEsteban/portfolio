@@ -54,14 +54,13 @@ function logearUsuario() {
 
 }
 
-function ComprobarUser() {
-
+function ComprobarUser(nombreUser) {
+    
     let dataType = "html";
-    console.log('Comprobamos nuevo nombre usuario');
-    let nombreNuevoUser = $('#NuevoUsuario').val();
-    if (nombreNuevoUser.trim() != '') {
+   
+    if (nombreUser.trim() != '') {
 
-        let datos = "usuario=" + nombreNuevoUser;
+        let datos = "usuario=" + nombreUser;
         datos += "&operacion=consultaNombreUsuario";
 
         let url = "peticionesUsuarios.php";
@@ -72,13 +71,14 @@ function ComprobarUser() {
             success: function (data) {
 
                 if (data == 1) {
-                    $("#respuestaLogin").html("El usuario esta disponible");
+
+                    $(".respuestaLogin").html("El usuario esta disponible");
                     console.log(data);
                 }
                 else if (data == 0) {
-                    $("#respuestaLogin").html("El usuario no esta disponible");
-                    $('#NuevoUsuario').val('');
-                    $('#NuevoUsuario').focus();
+                    $(".respuestaLogin").html("El usuario no esta disponible");
+                    $('.NuevoUsuario').val('');
+                    $('.NuevoUsuario').focus();
                     console.log(data);
                 }
 

@@ -5,9 +5,9 @@
 
         <p>
             <label for="NuevoUsuario">Usuario </label><br>
-            <input type="text" class="input-formulario" id="NuevoUsuario" name="usuario" required
-                onblur="ComprobarUser()">
-            <span id="respuestaLogin"></span>
+            <input type="text" class="input-formulario NuevoUsuario" name="usuario" required
+                onblur="ComprobarUser(this.value)">
+            <span class="respuestaLogin"></span>
         </p>
         <p>
             <label for="NuevoUserPassword">Password</label><br>

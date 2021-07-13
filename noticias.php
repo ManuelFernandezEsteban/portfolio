@@ -46,9 +46,9 @@ class Noticias extends Conexion{
     function updateNoticia($noticia){
 
         $SQL=" UPDATE `noticias` SET ";
-        $SQL.=" `fecha`='$noticia->fecha',`titular`='$noticia->titular'";  
+        $SQL.=" `fecha`='$noticia->fecha',`titular`='$noticia->titular',";  
         $SQL.=" `noticia`='$noticia->noticia'";
-        $SQL.=" WHERE `idNoticia` = ".$noticia->idNoticia;      
+        $SQL.=" WHERE `idNoticia` = $noticia->idNoticia";      
         $conexion = $this -> crearConexion();
         mysqli_query($conexion,$SQL); 
         $resultado = mysqli_affected_rows($conexion);

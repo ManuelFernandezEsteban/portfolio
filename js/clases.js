@@ -58,7 +58,7 @@ class Noticia {
     }
 
     serialize() {
-        return "idNoticia="+this.idNoticia+"&fecha="+this.fecha+"&titular="+this.titular+"&noticia="+this.noticia;
+        return ''+"idNoticia="+this.idNoticia+"&fecha="+this.fecha+"&titular="+this.titular+"&noticia="+this.noticia;
 
     }
 }

@@ -20,7 +20,18 @@ switch ($peticion) {
             $data["datos"] = array();
         }
         break;       
-
+    case 'cambiarDatosAcceso';
+        $passCript = password_hash($_POST['cambioUserPassword'], PASSWORD_BCRYPT);
+        $user = new Usuario($_POST['idUsuario'], $_POST['nuevoUsuario'], $passCript,null,null,null,null,null);
+        $resultado = $apiUser->updateAcceso($user);
+        if ($resultado > 0) {
+            $data["result"] = "ok";
+            $data['datos'] = $resultado;
+        } else {
+            $data["result"] = "error";
+            $data["datos"] = array();
+        }
+        break;
     case 'consultaNombreUsuario':
         $rest = $apiUser->getByName($_POST['usuario']);
         if (sizeof($rest) > 0) {

@@ -270,14 +270,9 @@ function cargarPerfil() {
 
     cargarPerfilUsuario(user.idUsuario);
     cargarCitas();
-    if (user.roleLog == 'usuario') {
-        console.log(user);
-
-    } else {
-        console.log(user);
-    }
 
 }
+
 function resetCitaUser() {//podemos enviar una cita nueva no eliminar ni editar
     document.querySelector('#formulariocitasUsuario').reset();
     document.querySelector('#editarCitaUser').disabled = true;
@@ -777,6 +772,7 @@ function editarProyecto() {
                 if (resultado['result'] == 'ok') {
                     document.querySelector('#formularioProyecto').reset();
                     alert('Proyecto modificado');
+                    resetProyecto();
                     leerProyectos();
                 } else {
                     console.log(resultado);
@@ -953,11 +949,11 @@ function validarNoticia(form) {
     if (form.noticia.value == '') {
         alert("Inserte el cuerpo de la noticia");
         return false;
-    }   
-    if (form.fecha.value =='') {
+    }
+    if (form.fecha.value == '') {
         alert("Seleccione la fecha para la noticia");
         return false;
-    }    
+    }
     alert("Formulario correcto");
     //formularioPresupuesto.submit();
     return true;
@@ -966,8 +962,8 @@ function validarNoticia(form) {
 function enviarNoticia() {
     if (validarNoticia(document.formularioNoticias)) {
         let datos = new FormData(formularioNoticias);
-        
-        datos.append('operacion','insert');
+
+        datos.append('operacion', 'insert');
         console.log(datos);
         let url = "peticionesNoticias.php";
         let dataType = "html";
@@ -995,15 +991,13 @@ function enviarNoticia() {
     }
 }
 
-function editarNoticia(){
+function editarNoticia() {
     if (validarNoticia(document.formularioNoticias)) {
-        //let datos = new FormData(formularioNoticias);
-        //datos.append('idNoticia',noticia.idNoticia);
-        //datos.append('operacion','update');
-        let datos = new Noticia(noticia.idNoticia,document.formularioNoticias.fecha.value,document.formularioNoticias.titular.value,document.formularioNoticias.noticia.value);
-        datos.serialize();
-        console.log(datos);
-        datos+="&operacion=update";
+
+        let datos = new FormData(formularioNoticias);
+
+        datos.append('operacion', 'update');
+        datos.append('idNoticia', noticia.idNoticia);
         console.log(datos);
         let url = "peticionesNoticias.php";
         let dataType = "html";
@@ -1011,17 +1005,15 @@ function editarNoticia(){
             type: "POST",
             url: url,
             data: datos,
-           // processData: false,
-           // contentType: false,
+            processData: false,
+            contentType: false,
             success: function (data) {
                 console.log(data);
                 let resultado = JSON.parse(data);
                 if (resultado['result'] == 'ok') {
                     document.querySelector('#formularioNoticias').reset();
-                    alert('Noticia modificada');
+                    alert('Noticia editada');
                     leerNoticias();
-                }else{
-                    console.log(resultado);
                 }
             },
             error: function () {
@@ -1032,8 +1024,106 @@ function editarNoticia(){
         });
     }
 }
+function eliminarNoticia() {
+
+    let dataType = "html";
+    let idNoticia = noticia.idNoticia;
+    let datos = "idNoticia=" + idNoticia;
+    datos += "&operacion=delete";
+    console.log(datos);
+    let url = "peticionesNoticias.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            console.log(data);
+            let resultado = JSON.parse(data);
+
+            if (resultado.result == "ok") {
+                leerNoticias();
+                resetNoticia();
+            }
+
+        },
+
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+    });
+}
 
 function cargarNoticias() {
     document.querySelector('.boxNoticias').style.display = 'flex';
     leerNoticias();
+}
+
+function mostrarDatosAcceso() {
+
+    if (user.roleLog == 'usuario') {
+        if (document.querySelector('.boxDatosAcceso').style.display == 'none') {
+            document.querySelector('.boxDatosAcceso').style.display = 'flex';
+        }
+        else {
+            document.querySelector('.boxDatosAcceso').style.display = 'none';
+        }
+    }
+}
+
+function enviarCambiosAcceso() {
+
+
+    let nuevoUsuario = document.formularioCambioDatosAcceso.nuevoUsuario.value.trim();
+    let nuevoPassword = document.formularioCambioDatosAcceso.cambioUserPassword.value.trim();
+    let confirmacionNuevoPassword = document.formularioCambioDatosAcceso.cambioUserPasswordConfirmacion.value.trim();
+    
+    if (nuevoUsuario != '' && nuevoPassword != '' && (confirmacionNuevoPassword == nuevoPassword)) {
+        
+        let datos = new FormData(formularioCambioDatosAcceso);;
+        datos.append('idUsuario', user.idUsuario);
+        datos.append('operacion', 'cambiarDatosAcceso');
+        let url = "peticionesUsuarios.php";
+        let dataType = "html";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: datos,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+                let resultado = JSON.parse(data);
+                if (resultado['result'] == 'ok') {
+                    document.formularioCambioDatosAcceso.nuevoUsuario.value = '';
+                    document.formularioCambioDatosAcceso.cambioUserPassword.value = '';
+                    document.formularioCambioDatosAcceso.cambioUserPasswordConfirmacion.value = '';
+                    alert("Datos de acceso modificados");
+                    user.nombreUsuario = nuevoUsuario;
+                    cargarPerfil();
+                    document.querySelector('.boxDatosAcceso').style.display = 'none';
+                }
+                else{
+                    console.log("error");
+                }
+            },
+            error: function () {
+                console.log("error");
+            },
+            dataType: dataType
+
+        });
+    }
+    else {
+        alert("faltan datos");
+    }
+
+
+}
+
+function resetCambiosAcceso(){
+    document.formularioCambioDatosAcceso.nuevoUsuario.value = '';
+    document.formularioCambioDatosAcceso.cambioUserPassword.value = '';
+    document.formularioCambioDatosAcceso.cambioUserPasswordConfirmacion.value = '';    
+    
 }

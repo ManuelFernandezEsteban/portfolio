@@ -60,6 +60,15 @@ class Usuarios extends Conexion{
         $resultado = mysqli_affected_rows($conexion);
         return $resultado;
     }
+
+    function updateAccesso($user){
+        $SQL=" UPDATE `usuarios` SET  `usuario`= '".$user->user."',";
+        $SQL .= "`password`= '$user->password' WHERE `idUsuario`=".$user->idUsuario;
+        $conexion = $this -> crearConexion();
+        mysqli_query($conexion,$SQL); 
+        $resultado = mysqli_affected_rows($conexion);
+        return $resultado;
+    }
 }
 
 
