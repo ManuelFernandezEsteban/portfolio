@@ -746,6 +746,55 @@ legend{
     font-family: Ubuntu;
     font-size: 0.6rem;
 }
+
+.contenedorPrincipal{
+    width: 100%;
+}
+.contenedorProyectos{
+    display: block;
+  
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    position: relative;
+    width: 33%;
+    
+}
+.card-title{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Teko';
+    font-size: 1.5rem;
+}
+.card-title:hover{
+    cursor: pointer;
+
+}
+.card-reveal{
+    visibility: collapse;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0px;
+}
+.img-card{
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    display: block;
+}
+.card-content{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+.contenedorCard{
+    width: 100%;
+    height: auto;
+    display: block;
+}
 /*media querys*/
 
 

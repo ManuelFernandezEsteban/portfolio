@@ -64,13 +64,16 @@ $(document).ready(function () {
             case "cuerpoPortfolio.html":
                 $('#opcion').append("Portfolio");
                 break;
+            case "cuerpoProyectos.html":
+                $('#opcion').append("Proyectos");
+                break;
             case "cuerpoContacto.html":
                 $('#opcion').append("Contacto");
                 break;
             case "cuerpoPresupuesto.html":
                 $('#opcion').append("Presupuesto");
                 break;
-            case "cuerpoLogin.html":                
+            case "cuerpoLogin.html":
                 $('#opcion').append("Área usuarios");
                 break;
             default:
@@ -78,37 +81,37 @@ $(document).ready(function () {
                 break;
         }
         $('.menuresponsive').children('input').prop('checked', false);
-        if (destino=='cuerpoLogin.html'){
+        if (destino == 'cuerpoLogin.html') {
             console.log(user);
-            if (user!=null){
-                
+            if (user != null) {
+
                 let datos = user;
                 let url = "verificarSiLogado.php";
-                let dataType = "text";               
+                let dataType = "text";
                 console.log("comnprobar si logado");
                 $.ajax({
 
                     type: "POST",
                     url: url,
                     data: datos,
-                    success:function(data){
-                        
-                        if (data=='ok'){
+                    success: function (data) {
 
-                            console.log(user.roleLog);                            
-                            destino="usuariosAdmin.html";
+                        if (data == 'ok') {
+
+                            console.log(user.roleLog);
+                            destino = "usuariosAdmin.html";
                         }
                         navega(destino);
                     },
-                    error: function() {
+                    error: function () {
                         console.log("error");
                     },
                     dataType: dataType
                 });
             }
-             
+
         }
-        navega(destino);     
+        navega(destino);
 
     });
 
@@ -152,7 +155,7 @@ $(document).ready(function () {
 
     });
 
-    
 
-    
+
+
 });
