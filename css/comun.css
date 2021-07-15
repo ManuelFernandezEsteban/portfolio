@@ -77,7 +77,8 @@ header{
 
 main{
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;  
+    margin-bottom: 100px;  
 }
 /*menu responsive*/
 #opcion{
@@ -219,9 +220,9 @@ footer{
     background-color: black;
     display: flex;
     align-items: center;
-   /* position: fixed;
+    position: fixed;
     bottom: 0px;
-    left: 0px;*/
+    
 }
 .blanco {
     color: white;
@@ -749,9 +750,14 @@ legend{
 
 .contenedorPrincipal{
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .contenedorProyectos{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
   
 }
 .card{
@@ -759,14 +765,17 @@ legend{
     flex-direction: column;
     height: auto;
     position: relative;
-    width: 33%;
-    
+    width: 100%;
+    margin-bottom: 30px;
 }
 .card-title{
     display: flex;
     justify-content: space-between;
     font-family: 'Teko';
     font-size: 1.5rem;
+}
+.card-title > h4{
+    font-size: 2rem;
 }
 .card-title:hover{
     cursor: pointer;
@@ -780,14 +789,13 @@ legend{
     top: 0px;
 }
 .img-card{
-    position: absolute;
+    
     width: 100%;
-    top: 0px;
+   
     display: block;
 }
 .card-content{
-    position: absolute;
-    bottom: 0px;
+   
     width: 100%;
 }
 .contenedorCard{
@@ -857,6 +865,23 @@ legend{
 
 /*tamaño laptop*/
 @media only screen and (min-width:1024px){
+    .contenedorProyectos{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;   
+      
+    }
+    .img-card{
+    
+        width: 90%;
+       
+        display: block;
+    }
+    .card-content{
+       
+        width: 90%;
+    }
+
     .boxUsuarios,.contenedorCajasAdmin{
         display: flex;
         flex-direction: column;
