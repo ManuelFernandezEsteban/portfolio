@@ -1,19 +1,24 @@
 
-
-
-
 function mostrarOcultar(ev){
-    console.log(ev.target);
-    console.log(ev.target.parentElement.parentElement.childNodes);
-    if(ev.target.classList.contains('card-reveal')){
-        ev.target.parentElement.parentElement.childNodes[1].style.visibility='visible';
-        ev.target.parentElement.parentElement.childNodes[2].style.visibility='collapse';
-        ev.target.parentElement.parentElement.childNodes[0].style.visibility='visible';
+    
+    let elementReference=ev.target;
+    if (ev.target.nodeName!='SPAN'){
+            elementReference=ev.target.parentElement;
+    }
+    let card = elementReference.parentElement.parentElement;
+    if(elementReference.parentElement.classList.contains('card-reveal')){
         
+        elementReference.parentElement.parentElement.childNodes[1].style.visibility='visible';
+        elementReference.parentElement.parentElement.childNodes[2].style.visibility='collapse';
+        elementReference.parentElement.parentElement.childNodes[0].style.visibility='visible';
+        card.style.marginBottom='30px';
     }else{//mostramos el texto y ocultamos la imagen
-        ev.target.parentElement.parentElement.childNodes[1].style.visibility='collapse';//titulo
-        ev.target.parentElement.parentElement.childNodes[2].style.visibility='visible';//datos
-        ev.target.parentElement.parentElement.childNodes[0].style.visibility='collapse';//imagen
+        
+        elementReference.parentElement.parentElement.childNodes[1].style.visibility='collapse';//titulo
+        elementReference.parentElement.parentElement.childNodes[2].style.visibility='visible';//datos
+        elementReference.parentElement.parentElement.childNodes[0].style.visibility='collapse';//imagen
+        card.style.marginBottom='200px';
+
         
     }
 }
