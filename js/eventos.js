@@ -86,9 +86,9 @@ $(document).ready(function () {
             if (user != null) {
 
                 let datos = user;
-                let url = "verificarSiLogado.php";
+                let url = "php/verificarSiLogado.php";
                 let dataType = "text";
-                console.log("comnprobar si logado");
+                
                 $.ajax({
 
                     type: "POST",
@@ -97,8 +97,6 @@ $(document).ready(function () {
                     success: function (data) {
 
                         if (data == 'ok') {
-
-                            console.log(user.roleLog);
                             destino = "usuariosAdmin.html";
                         }
                         navega(destino);

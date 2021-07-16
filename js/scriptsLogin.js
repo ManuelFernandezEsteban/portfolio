@@ -8,8 +8,8 @@ function enviarANuevoUsuario() {
 
 function logearUsuario() {
     let datos = $('#formularioLogin').serialize();
-    console.log(datos);
-    let url = "verificarLogin.php";
+    
+    let url = "php/verificarLogin.php";
     let dataType = "json";
     const cajaRespuesta = document.querySelector('#caja-login');
     let enlace;
@@ -29,7 +29,7 @@ function logearUsuario() {
                 let usuario = data.result.usuario;
                 let rol = data.result.role;
                 user = new UsuarioLogado(idUsuario, usuario, rol);
-                console.log(user);
+                
                 let respuesta = `Hola ${user.nombreUsuario} estas registrado como ${user.roleLog}   `;
                 parrafo = document.createElement('span');
                 parrafo.classList.add('estiloLogin');
@@ -41,7 +41,7 @@ function logearUsuario() {
                 enlace.setAttribute('title', 'salir de la sesión');
                 enlace.innerText = 'Salir';
                 cajaRespuesta.appendChild(enlace);
-                navega('usuariosAdmin.html');
+                navega('php/usuariosAdmin.html');
             }
         },
         error: function () {
@@ -63,7 +63,7 @@ function ComprobarUser(nombreUser) {
         let datos = "usuario=" + nombreUser;
         datos += "&operacion=consultaNombreUsuario";
 
-        let url = "peticionesUsuarios.php";
+        let url = "php/peticionesUsuarios.php";
         $.ajax({
             type: "POST",
             url: url,
@@ -73,13 +73,12 @@ function ComprobarUser(nombreUser) {
                 if (data == 1) {
 
                     $(".respuestaLogin").html("El usuario esta disponible");
-                    console.log(data);
+                    
                 }
                 else if (data == 0) {
                     $(".respuestaLogin").html("El usuario no esta disponible");
                     $('.NuevoUsuario').val('');
-                    $('.NuevoUsuario').focus();
-                    console.log(data);
+                    $('.NuevoUsuario').focus();                   
                 }
 
             },
@@ -108,7 +107,7 @@ function NuevoUser() {
         else {
             alert("faltan datos");
         }
-        let url = "peticionesUsuarios.php";
+        let url = "php/peticionesUsuarios.php";
         let dataType = "html";
 
         $.ajax({

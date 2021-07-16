@@ -11,13 +11,13 @@ function mostrarOcultar(ev){
         elementReference.parentElement.parentElement.childNodes[1].style.visibility='visible';
         elementReference.parentElement.parentElement.childNodes[2].style.visibility='collapse';
         elementReference.parentElement.parentElement.childNodes[0].style.visibility='visible';
-        card.style.marginBottom='30px';
+        //card.style.marginBottom='30px';
     }else{//mostramos el texto y ocultamos la imagen
         
         elementReference.parentElement.parentElement.childNodes[1].style.visibility='collapse';//titulo
         elementReference.parentElement.parentElement.childNodes[2].style.visibility='visible';//datos
         elementReference.parentElement.parentElement.childNodes[0].style.visibility='collapse';//imagen
-        card.style.marginBottom='200px';
+        //card.style.marginBottom='200px';
 
         
     }
@@ -26,7 +26,7 @@ function mostrarOcultar(ev){
 function dibujarProyectos(datos){
 
     let contenedorTarjeta = document.querySelector('#contenedorProyectos')
-    console.log(datos);
+    
     for (let i in datos){
         let tarjeta = document.createElement('div');
         tarjeta.classList.add('card');
@@ -91,8 +91,8 @@ function pintarProyectos() {
     let dataType = "html";
 
     let datos = "&operacion=traerProyectos";
-    console.log(datos);
-    let url = "peticionesProyectos.php";
+    
+    let url = "php/peticionesProyectos.php";
     $.ajax({
         type: "POST",
         url: url,
@@ -101,8 +101,7 @@ function pintarProyectos() {
 
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
-
-                console.log(resultado);
+                
                 dibujarProyectos(resultado.datos);
             }
         },

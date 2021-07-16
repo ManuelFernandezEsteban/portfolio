@@ -1,4 +1,4 @@
-//let usuarios = Array();
+
 let usuario;
 let proyecto;
 let noticia;
@@ -47,8 +47,8 @@ function traerCitasUsuario(idUsuario) {
     let dataType = "html";
     let datos = "usuario=" + idUsuario;
     datos += "&operacion=traerCitasUsuario";
-    console.log(datos);
-    let url = "peticionesCitas.php";
+    
+    let url = "php/peticionesCitas.php";
     $.ajax({
         type: "POST",
         url: url,
@@ -58,7 +58,7 @@ function traerCitasUsuario(idUsuario) {
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
                 usuario.citas = resultado.datos;
-                console.log(usuario);
+                
                 dibujarTablaCitas(resultado.datos);
             }
         },
@@ -85,38 +85,29 @@ function seleccionUsuario(ev) {
 
 function dibujarTablaUsuarios(datos) {
 
-    console.log(datos);
+    
     let cuerpoTabla = document.createElement('div');
     cuerpoTabla.classList.add("divTableBody");
     let filaCabecera = document.createElement('div');
     filaCabecera.classList.add('divTableRow');
     filaCabecera.classList.add('divTableHeading');
 
-    //let celdaCabeceraId = document.createElement('div');
+    
     let celdaCabeceraUsuario = document.createElement('div');
     let celdaCabeceraRole = document.createElement('div');
     let celdaCabeceraNombre = document.createElement('div');
     let celdaCabeceraApellidos = document.createElement('div');
-    /* let celdaCabeceraEmail = document.createElement('div');
-     let celdaCabeceraTelefono = document.createElement('div');*/
-
-    //celdaCabeceraId.classList.add('divTableCellHeader');
+    
     celdaCabeceraUsuario.classList.add('divTableCellHeader');
     celdaCabeceraRole.classList.add('divTableCellHeader');
     celdaCabeceraNombre.classList.add('divTableCellHeader');
     celdaCabeceraApellidos.classList.add('divTableCellHeader');
-    /*   celdaCabeceraEmail.classList.add('divTableCell');
-       celdaCabeceraTelefono.classList.add('divTableCell');    */
-
-    //celdaCabeceraId.innerText = "Id User";
+    
     celdaCabeceraUsuario.innerText = "Usuario";
     celdaCabeceraRole.innerText = "Role";
     celdaCabeceraNombre.innerText = "Nombre";
     celdaCabeceraApellidos.innerText = "Apellidos"
-    /*   celdaCabeceraEmail.innerText = "Email";
-       celdaCabeceraTelefono.innerText="Teléfono"*/
-
-    //filaCabecera.appendChild(celdaCabeceraId);
+    
     filaCabecera.appendChild(celdaCabeceraUsuario);
     filaCabecera.appendChild(celdaCabeceraNombre);
     filaCabecera.appendChild(celdaCabeceraApellidos);
@@ -160,8 +151,8 @@ function dibujarTablaUsuarios(datos) {
 function cargarTablaUsuarios() {
     let dataType = "html";
     let datos = "operacion=traerUsuarios";
-    console.log(datos);
-    let url = "peticionesUsuarios.php";
+    
+    let url = "php/peticionesUsuarios.php";
     $.ajax({
         type: "POST",
         url: url,
@@ -173,7 +164,7 @@ function cargarTablaUsuarios() {
             if (resultado.result == "ok") {
 
                 dibujarTablaUsuarios(resultado.datos);
-                //usuarios = resultado.datos;
+    
             }
 
         },
@@ -191,8 +182,8 @@ function cargarPerfilUsuario(idUsuario) {
     let dataType = "html";
     let datos = "usuario=" + idUsuario;
     datos += "&operacion=datosUsuario";
-    console.log(datos);
-    let url = "peticionesUsuarios.php";
+    
+    let url = "php/peticionesUsuarios.php";
     $.ajax({
         type: "POST",
         url: url,
@@ -201,7 +192,7 @@ function cargarPerfilUsuario(idUsuario) {
 
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
-                console.log(resultado);
+                
                 usuario = new Usuario(resultado.datos[0].idUsuario, resultado.datos[0].nombre, resultado.datos[0].apellidos, resultado.datos[0].email, resultado.datos[0].telefono, resultado.datos[0].usuario, resultado.datos[0].role);
                 document.formularioPerfilUser.usuario.value = usuario.nombreUsuario;
                 document.formularioPerfilUser.nombre.value = usuario.nombre;
@@ -222,7 +213,7 @@ function enviarCambiosPerfil() {
     if (validar(document.formularioPerfilUser)) {
         datos = $('#formularioPerfilUsuario').serialize();
         datos += "&operacion=modificarPerfil";
-        let url = "peticionesUsuarios.php";
+        let url = "php/peticionesUsuarios.php";
         let dataType = "html";
         $.ajax({
             type: "POST",
@@ -243,34 +234,26 @@ function enviarCambiosPerfil() {
             dataType: dataType
 
         });
-
-
     }
-
 }
-
 
 function cargarCitas() {
 
     cargarPerfilUsuario(user.idUsuario);
     traerCitasUsuario(user.idUsuario);
-
-
 }
+
 function cargarCitasBtn() {
 
     if (user.roleLog == 'usuario') {
-        console.log(user);
         cargarCitas();
-    } else {
-        console.log(user);
     }
 }
+
 function cargarPerfil() {
 
     cargarPerfilUsuario(user.idUsuario);
     cargarCitas();
-
 }
 
 function resetCitaUser() {//podemos enviar una cita nueva no eliminar ni editar
@@ -306,16 +289,15 @@ function validarCita(form) {
 }
 
 function enviarCita(datos) {
-    let url = "peticionesCitas.php";
+    let url = "php/peticionesCitas.php";
     let dataType = "html";
     $.ajax({
         type: "POST",
         url: url,
         data: datos,
         success: function (data) {
-            console.log(data);
-            let resultado = JSON.parse(data);
-            console.log(resultado);
+
+            let resultado = JSON.parse(data);            
             if (resultado["result"] == "ok") {
                 resetCitaUser();
                 cargarCitas();
@@ -329,11 +311,9 @@ function enviarCita(datos) {
     });
 }
 function editarCitaUser() { //editar cita existente
-    console.log(formularioCitasUser.fechaCita.value);
-
+    
     if (validarCita(document.formularioCitasUser)) {
         let datos;
-
         cita.fecha = formularioCitasUser.fechaCita.value;
         cita.motivo = formularioCitasUser.motivoCita.value;
         datos = cita.serialize();
@@ -344,14 +324,12 @@ function editarCitaUser() { //editar cita existente
     }
 }
 function enviarCitaUser() { // nueva cita
-
-    console.log('grabando cita....');
+    
     if (validarCita(document.formularioCitasUser)) {
         let cita = new Cita(0, formularioCitasUser.fechaCita.value, formularioCitasUser.motivoCita.value, usuario.idUsuario);
         let datos;
         datos = cita.serialize();
-        datos += "&operacion=insert";
-        console.log(datos);
+        datos += "&operacion=insert";    
         enviarCita(datos);
     }
     else {
@@ -400,7 +378,7 @@ function leerCita(idCita) {
     let datos = "idCita=" + idCita;
     datos += "&operacion=traerCita";
     console.log(datos);
-    let url = "peticionesCitas.php";
+    let url = "php/peticionesCitas.php";
     $.ajax({
         type: "POST",
         url: url,
@@ -408,7 +386,7 @@ function leerCita(idCita) {
         success: function (data) {
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
-                console.log(resultado);
+                
                 cita = new Cita(idCita, resultado.datos[0].fecha, resultado.datos[0].motivo, resultado.datos[0].usuario);
                 let fecha = formatearFecha(cita.fecha);
                 document.formularioCitasUser.fechaCita.value = fecha;
@@ -443,9 +421,8 @@ function comprobarFechaCita(id) {
     if (id != -1) {
         let dataType = "html";
         let datos = "idCita=" + id;
-        datos += "&operacion=traerCita";
-        console.log(datos);
-        let url = "peticionesCitas.php";
+        datos += "&operacion=traerCita";        
+        let url = "php/peticionesCitas.php";
         $.ajax({
             type: "POST",
             url: url,
@@ -453,11 +430,11 @@ function comprobarFechaCita(id) {
             success: function (data) {
                 let resultado = JSON.parse(data);
                 if (resultado.result == "ok") {
-                    console.log(resultado);
+                    
                     fecha = new Date(resultado.datos[0].fecha);
                     let hoy = new Date();
                     let diferencia = fecha - hoy;
-                    console.log(diferencia + '-' + hoy);
+                    
                     if (diferencia > 259200000) { // 72 horas
                         cargarCita(id);
                     }
@@ -482,22 +459,20 @@ function clickEnTabla(ev) {
 }
 
 function eliminarCitaUser() {
-    console.log('eliminado....')
-
+    
     let dataType = "html";
     let idCita = cita.idCita;
     let datos = "idCita=" + idCita;
     datos += "&operacion=delete";
-    console.log(datos);
-    let url = "peticionesCitas.php";
+    
+    let url = "php/peticionesCitas.php";
     $.ajax({
         type: "POST",
         url: url,
         data: datos,
         success: function (data) {
-            console.log(data);
+            
             let resultado = JSON.parse(data);
-
             if (resultado.result == "ok") {
                 cargarCitas();
                 resetCitaUser();
@@ -516,19 +491,19 @@ function leerProyecto(idProyecto) {
     let dataType = "html";
     let datos = "idProyecto=" + idProyecto;
     datos += "&operacion=traerProyecto";
-    console.log(datos);
-    let url = "peticionesProyectos.php";
+    
+    let url = "php/peticionesProyectos.php";
     $.ajax({
         type: "POST",
         url: url,
         data: datos,
         success: function (data) {
-            console.log(data);
+    
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
-                console.log(resultado);
+    
                 proyecto = new Proyecto(idProyecto, resultado.datos[0].nombre, resultado.datos[0].descripcion, resultado.datos[0].tecnologia, resultado.datos[0].duracion, resultado.datos[0].foto);
-                console.log(proyecto);
+    
                 document.formularioProyecto.nombre.value = proyecto.nombre;
                 document.formularioProyecto.tecnologia.value = proyecto.tecnologia;
                 document.formularioProyecto.duracion.value = proyecto.duracion;
@@ -564,7 +539,7 @@ function seleccionProyecto(ev) {
 
 function dibujarTablaProyectos(datos) {
 
-    console.log(datos);
+    
     let cuerpoTabla = document.createElement('div');
     cuerpoTabla.classList.add("divTableBody");
     let filaCabecera = document.createElement('div');
@@ -624,8 +599,8 @@ function leerProyectos() {
     let dataType = "html";
 
     let datos = "&operacion=traerProyectos";
-    console.log(datos);
-    let url = "peticionesProyectos.php";
+    
+    let url = "php/peticionesProyectos.php";
     $.ajax({
         type: "POST",
         url: url,
@@ -634,8 +609,7 @@ function leerProyectos() {
 
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
-
-                console.log(resultado);
+                
                 dibujarTablaProyectos(resultado.datos);
             }
         },
@@ -654,10 +628,10 @@ function validarProyecto(form) {
         alert("Indique un nombre para el proyecto");
         return false;
     }
-    /* if (form.descripcion.innerText == '') {
+    if (form.descripcion.value == '') {
          alert("Indique una descripcion del proyecto");
          return false;
-     }   */
+    }
     if (form.tecnologia.value.length == 0) {
         alert("Indique al menos una tecnología empleada");
         return false;
@@ -668,7 +642,7 @@ function validarProyecto(form) {
         return false;
     }
     alert("Formulario correcto");
-    //formularioPresupuesto.submit();
+    
     return true;
 }
 
@@ -679,8 +653,8 @@ function enviarProyecto() {
         let datos = new FormData(formularioProyecto);
         datos.append('operacion', 'insert');
 
-        console.log(datos);
-        let url = "peticionesProyectos.php";
+    
+        let url = "php/peticionesProyectos.php";
         let dataType = "html";
         $.ajax({
             type: "POST",
@@ -689,7 +663,7 @@ function enviarProyecto() {
             processData: false,
             contentType: false,
             success: function (data) {
-                console.log(data);
+                
                 let resultado = JSON.parse(data);
                 if (resultado['result'] == 'ok') {
                     document.querySelector('#formularioProyecto').reset();
@@ -721,27 +695,24 @@ function resetProyecto() {
 }
 
 function eliminarProyecto() {
-    console.log('eliminado....')
-
+    
     let dataType = "html";
     let idProyecto = proyecto.idProyecto;
     let datos = "idProyecto=" + idProyecto;
     datos += "&operacion=delete";
-    console.log(datos);
-    let url = "peticionesProyectos.php";
+    
+    let url = "php/peticionesProyectos.php";
     $.ajax({
         type: "POST",
         url: url,
         data: datos,
         success: function (data) {
-            console.log(data);
+            
             let resultado = JSON.parse(data);
-
             if (resultado.result == "ok") {
                 leerProyectos();
                 resetProyecto();
             }
-
         },
 
         error: function () {
@@ -757,8 +728,8 @@ function editarProyecto() {
         let datos = new FormData(formularioProyecto);
         datos.append('idProyecto', proyecto.idProyecto);
         datos.append('operacion', 'update');
-        let url = "peticionesProyectos.php";
-        console.log(datos);
+        let url = "php/peticionesProyectos.php";
+        
         let dataType = "html";
         $.ajax({
             type: "POST",
@@ -767,7 +738,7 @@ function editarProyecto() {
             processData: false,
             contentType: false,
             success: function (data) {
-                console.log(data);
+        
                 let resultado = JSON.parse(data);
                 if (resultado['result'] == 'ok') {
                     document.querySelector('#formularioProyecto').reset();
@@ -790,8 +761,6 @@ function editarProyecto() {
 }
 function mostrarImgSeleccionada() {
     let files = document.querySelector('#foto').files;
-    console.log(files);
-    console.log(files[0].name);
     document.querySelector('#ruta').innerHTML = files[0].name;
     document.querySelector('#imgProyecto').src = '';
 }
@@ -805,19 +774,17 @@ function leerNoticia(idNoticia) {
     let dataType = "html";
     let datos = "idNoticia=" + idNoticia;
     datos += "&operacion=traerNoticia";
-    console.log(datos);
-    let url = "peticionesNoticias.php";
+
+    let url = "php/peticionesNoticias.php";
     $.ajax({
         type: "POST",
         url: url,
         data: datos,
         success: function (data) {
-            console.log(data);
+            
             let resultado = JSON.parse(data);
-            if (resultado.result == "ok") {
-                console.log(resultado);
-                noticia = new Noticia(idNoticia, resultado.datos[0].fecha, resultado.datos[0].titular, resultado.datos[0].noticia);
-                console.log(noticia);
+            if (resultado.result == "ok") {            
+                noticia = new Noticia(idNoticia, resultado.datos[0].fecha, resultado.datos[0].titular, resultado.datos[0].noticia);            
                 document.formularioNoticias.titular.value = noticia.titular;
                 document.formularioNoticias.fecha.value = noticia.fecha;
                 document.querySelector("#noticia").value = noticia.noticia;
@@ -850,8 +817,7 @@ function seleccionNoticia(ev) {
 }
 
 function dibujarTablaNoticias(datos) {
-
-    console.log(datos);
+    
     let cuerpoTabla = document.createElement('div');
     cuerpoTabla.classList.add("divTableBody");
     let filaCabecera = document.createElement('div');
@@ -903,8 +869,8 @@ function leerNoticias() {
     let dataType = "html";
 
     let datos = "&operacion=traerNoticias";
-    console.log(datos);
-    let url = "peticionesNoticias.php";
+
+    let url = "php/peticionesNoticias.php";
     $.ajax({
         type: "POST",
         url: url,
@@ -913,8 +879,7 @@ function leerNoticias() {
 
             let resultado = JSON.parse(data);
             if (resultado.result == "ok") {
-
-                console.log(resultado);
+                
                 dibujarTablaNoticias(resultado.datos);
             }
             else {
@@ -955,7 +920,7 @@ function validarNoticia(form) {
         return false;
     }
     alert("Formulario correcto");
-    //formularioPresupuesto.submit();
+    
     return true;
 }
 
@@ -964,8 +929,8 @@ function enviarNoticia() {
         let datos = new FormData(formularioNoticias);
 
         datos.append('operacion', 'insert');
-        console.log(datos);
-        let url = "peticionesNoticias.php";
+    
+        let url = "php/peticionesNoticias.php";
         let dataType = "html";
         $.ajax({
             type: "POST",
@@ -974,7 +939,7 @@ function enviarNoticia() {
             processData: false,
             contentType: false,
             success: function (data) {
-                console.log(data);
+                
                 let resultado = JSON.parse(data);
                 if (resultado['result'] == 'ok') {
                     document.querySelector('#formularioNoticias').reset();
@@ -998,8 +963,8 @@ function editarNoticia() {
 
         datos.append('operacion', 'update');
         datos.append('idNoticia', noticia.idNoticia);
-        console.log(datos);
-        let url = "peticionesNoticias.php";
+        
+        let url = "php/peticionesNoticias.php";
         let dataType = "html";
         $.ajax({
             type: "POST",
@@ -1008,7 +973,7 @@ function editarNoticia() {
             processData: false,
             contentType: false,
             success: function (data) {
-                console.log(data);
+        
                 let resultado = JSON.parse(data);
                 if (resultado['result'] == 'ok') {
                     document.querySelector('#formularioNoticias').reset();
@@ -1030,23 +995,20 @@ function eliminarNoticia() {
     let idNoticia = noticia.idNoticia;
     let datos = "idNoticia=" + idNoticia;
     datos += "&operacion=delete";
-    console.log(datos);
-    let url = "peticionesNoticias.php";
+    
+    let url = "php/peticionesNoticias.php";
     $.ajax({
         type: "POST",
         url: url,
         data: datos,
         success: function (data) {
-            console.log(data);
+            
             let resultado = JSON.parse(data);
-
             if (resultado.result == "ok") {
                 leerNoticias();
                 resetNoticia();
             }
-
         },
-
         error: function () {
             console.log("error");
         },
@@ -1083,7 +1045,7 @@ function enviarCambiosAcceso() {
         let datos = new FormData(formularioCambioDatosAcceso);;
         datos.append('idUsuario', user.idUsuario);
         datos.append('operacion', 'cambiarDatosAcceso');
-        let url = "peticionesUsuarios.php";
+        let url = "php/peticionesUsuarios.php";
         let dataType = "html";
         $.ajax({
             type: "POST",
@@ -1092,7 +1054,7 @@ function enviarCambiosAcceso() {
             processData: false,
             contentType: false,
             success: function (data) {
-                console.log(data);
+                
                 let resultado = JSON.parse(data);
                 if (resultado['result'] == 'ok') {
                     document.formularioCambioDatosAcceso.nuevoUsuario.value = '';
@@ -1117,13 +1079,10 @@ function enviarCambiosAcceso() {
     else {
         alert("faltan datos");
     }
-
-
 }
 
 function resetCambiosAcceso(){
     document.formularioCambioDatosAcceso.nuevoUsuario.value = '';
     document.formularioCambioDatosAcceso.cambioUserPassword.value = '';
-    document.formularioCambioDatosAcceso.cambioUserPasswordConfirmacion.value = '';    
-    
+    document.formularioCambioDatosAcceso.cambioUserPasswordConfirmacion.value = '';        
 }
