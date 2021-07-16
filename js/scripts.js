@@ -14,7 +14,9 @@ function navega(enlace) {
     REFERENCIAMAIN.load(enlace);
 }
 
-function escribir() {
+function escribir(datos) {
+
+    
 
     if (objetoHttp.readyState == 4) {
         var documento = objetoHttp.responseXML;
@@ -34,14 +36,32 @@ function escribir() {
 
 function escribirNoticia() {
 
-    if (window.XMLHttpRequest) {
-        objetoHttp = new XMLHttpRequest();
-    } else if (window.ActiveXObject) {
-        objetoHttp = new ActiveXObject("Microsoft.XMLHTTP")
-    }
-    objetoHttp.open("GET", XMLNOTICIAS, true);
-    objetoHttp.onreadystatechange = escribir;
-    objetoHttp.send(null);
+    let dataType = "html";
+
+    let datos = "&operacion=traerNoticias";
+
+    let url = "php/peticionesNoticias.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+
+            let resultado = JSON.parse(data);
+            if (resultado.result == "ok") {
+                
+                escribir(resultado.datos);
+            }
+            else {
+                console.log(resultado);
+            }
+        },
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+
+    });
 
 }
 
@@ -59,14 +79,18 @@ function mensaje() {
 function iniciar() {
 
     navega(CUERPOINICIAL);
+    if (screen.width > 768){
+    abrirPanelNoticias(); 
+    }
     $('.caja-disparador p').css("align-self", "center");
-    $('.noticias').css('flex-grow', '0');  //cualquier otro tamaño          
-    $('#cajaNoticias').css('display', 'none');
+    $('.noticias').css('flex-grow', '4');  //cualquier otro tamaño          
+    $('#cajaNoticias').css('display', 'block');
     if (screen.width < 768) { //tamaño movil        
         $('#contenedor-secundario').css('display', 'block');
     }
-    saludo = setTimeout(mensaje, 5000);
 
+    saludo = setTimeout(mensaje, 5000);
+    
 }
 
 function resetbtnSubmmit() {

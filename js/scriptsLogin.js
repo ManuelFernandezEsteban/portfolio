@@ -41,7 +41,7 @@ function logearUsuario() {
                 enlace.setAttribute('title', 'salir de la sesión');
                 enlace.innerText = 'Salir';
                 cajaRespuesta.appendChild(enlace);
-                navega('php/usuariosAdmin.html');
+                navega('usuariosAdmin.html');
             }
         },
         error: function () {

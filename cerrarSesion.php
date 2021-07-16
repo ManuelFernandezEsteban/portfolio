@@ -3,6 +3,6 @@
     session_start();
     session_destroy();
     $_SESSION=array();    
-    header('Location:index.html')
+    header('Location:index.html');
 ?>
 
