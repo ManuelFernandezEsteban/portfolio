@@ -14,6 +14,29 @@ class apiNoticias {
 
     }
 
+    function getCincoNoticias(){
+
+        $noticias = array();   
+           
+        $resultado= $this-> conexion->getAllNoticias();
+        if($resultado->num_rows>0){
+            $j = 1;
+            while (($fila=$resultado->fetch_assoc()) && ($j<= 5) ){
+                $item=array(
+                    'idNoticia'=> $fila['idNoticia'],
+                    'fecha'=>$fila['fecha'],
+                    'titular' => $fila['titular'],
+                    'noticia'=>$fila['noticia']                    
+                );
+                array_push($noticias,$item);                
+                $j=$j+1;
+            }            
+        }else{
+            echo json_encode(array('mensajes'=>'No hay noticias'));
+        }
+        return ($noticias);
+    }
+
     function getAll(){
         
         $noticias = array();     

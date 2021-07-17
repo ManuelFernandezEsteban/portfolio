@@ -7,7 +7,7 @@ class Noticias extends Conexion{
     
     function getAllNoticias(){
         
-        $SQL="SELECT idNoticia,fecha,titular,noticia FROM `noticias`";
+        $SQL="SELECT idNoticia,fecha,titular,noticia FROM `noticias` ORDER BY fecha";
         $query = $this -> crearConexion()->query($SQL);
         return $query;
     }

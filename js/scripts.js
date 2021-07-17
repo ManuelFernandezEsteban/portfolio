@@ -16,40 +16,40 @@ function navega(enlace) {
 
 function escribir(datos) {
 
+    let cajaNoticias = document.querySelector('#cajaNoticias');
+    cajaNoticias.innerHTML='';
     
+    for (let i in datos){
 
-    if (objetoHttp.readyState == 4) {
-        var documento = objetoHttp.responseXML;
-        var texto = documento.documentElement;
-        var cadenaAEscribir = "";
-        var i = 0;
-        while (i <= 6) {
-            cadenaAEscribir = cadenaAEscribir + "<div class=\"contenido-caja-noticia\"><h3>" + texto.getElementsByTagName("item")[i].childNodes[4].firstChild.nodeValue + "</h3>";
-            cadenaAEscribir = cadenaAEscribir + "<div>" + texto.getElementsByTagName("item")[i].childNodes[6].firstChild.nodeValue + "</div>";
-            cadenaAEscribir = cadenaAEscribir + "<a href=\"" + texto.getElementsByTagName("item")[i].childNodes[2].firstChild.nodeValue + "\" target=\"_blank\">" + texto.getElementsByTagName("item")[i].childNodes[2].firstChild.nodeValue + "</a></div>";
-            cadenaAEscribir = cadenaAEscribir + "<div class=\"separador\"></div>"
-            i++;
-        }
-        $("#cajaNoticias").html(cadenaAEscribir);
+        let contenidoCajaNoticia = document.createElement('div');
+        contenidoCajaNoticia.classList.add('contenido-caja-noticia');
+        let hTitular = document.createElement('h3');
+        hTitular.innerText=datos[i].titular;  
+
+        let pFecha = document.createElement('div');
+        pFecha.innerText=datos[i].fecha;
+       /* let separador = document.createElement('div');
+        separador.classList.add('separador');*/
+        contenidoCajaNoticia.appendChild(hTitular);        
+      // contenidoCajaNoticia.appendChild(separador);
+        cajaNoticias.appendChild(contenidoCajaNoticia);
+        
     }
+    
 }
 
 function escribirNoticia() {
 
     let dataType = "html";
-
-    let datos = "&operacion=traerNoticias";
-
+    let datos = "&operacion=traerCincoUltimasNoticias";
     let url = "php/peticionesNoticias.php";
     $.ajax({
         type: "POST",
         url: url,
         data: datos,
         success: function (data) {
-
             let resultado = JSON.parse(data);
-            if (resultado.result == "ok") {
-                
+            if (resultado.result == "ok") {                
                 escribir(resultado.datos);
             }
             else {

@@ -9,7 +9,6 @@ $peticion = $_POST["operacion"];
 
 switch ($peticion) {
     case 'insert':
-
         $noticia = new Noticia(0, $_POST['titular'], $_POST['fecha'], $_POST['noticia']);
         $resultado = $apiNoticia->insert($noticia);
         if ($resultado > 0) {
@@ -22,6 +21,17 @@ switch ($peticion) {
         break;
     case 'traerNoticias':
         $resultado = $apiNoticia->getAll();
+        if (sizeof($resultado) > 0) {
+            $data["result"] = "ok";
+            $data["datos"] = $resultado;
+        } else {
+            $data["result"] = "error";
+            $data["datos"] = array();
+        }
+        break;
+
+    case 'traerCincoUltimasNoticias':
+        $resultado = $apiNoticia->getCincoNoticias();
         if (sizeof($resultado) > 0) {
             $data["result"] = "ok";
             $data["datos"] = $resultado;
