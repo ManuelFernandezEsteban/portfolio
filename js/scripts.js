@@ -14,6 +14,10 @@ function navega(enlace) {
     REFERENCIAMAIN.load(enlace);
 }
 
+function mostrarNoticia(ev){
+    console.log(ev.target);
+}
+
 function escribir(datos) {
 
     let cajaNoticias = document.querySelector('#cajaNoticias');
@@ -25,13 +29,17 @@ function escribir(datos) {
         contenidoCajaNoticia.classList.add('contenido-caja-noticia');
         let hTitular = document.createElement('h3');
         hTitular.innerText=datos[i].titular;  
-
+        hTitular.addEventListener('click',mostrarNoticia);
+        let dNoticia = document.createElement('div');
+        dNoticia.innerHTML=datos[i].noticia;
         let pFecha = document.createElement('div');
         pFecha.innerText=datos[i].fecha;
-       /* let separador = document.createElement('div');
-        separador.classList.add('separador');*/
+        let separador = document.createElement('div');
+        separador.classList.add('separador');
         contenidoCajaNoticia.appendChild(hTitular);        
-      // contenidoCajaNoticia.appendChild(separador);
+        contenidoCajaNoticia.appendChild(dNoticia);
+        contenidoCajaNoticia.appendChild(pFecha);
+        contenidoCajaNoticia.appendChild(separador);
         cajaNoticias.appendChild(contenidoCajaNoticia);
         
     }
