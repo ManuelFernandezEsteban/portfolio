@@ -1,0 +1,49 @@
+<div class="contenedor-login">
+    <h1>Alta de usuarios</h1>
+
+    <form method="POST" class="formularioLogin" id="formularioNuevoUsuario" name="formularioNuevoUser">
+
+        <p>
+            <label for="NuevoUsuario">Usuario </label><br>
+            <input type="text" class="input-formulario NuevoUsuario" name="usuario" required
+                onblur="ComprobarUser(this.value)">
+            <span class="respuestaLogin"></span>
+        </p>
+        <p>
+            <label for="NuevoUserPassword">Password</label><br>
+            <input type="password" class="input-formulario" id="NuevoUserPassword" name="password" required>
+        </p>
+        <p>
+            <label for="NuevoUserPasswordConfirmacion">Repita password</label><br>
+            <input type="password" class="input-formulario" id="NuevoUserPasswordConfirmacion"
+                name="NuevoUserPasswordConfirmacion" required>
+        </p>
+        <p>
+            <label for="nombre">Nombre </label><br>
+            <input type="text" class="input-formulario" id="nombre" name="nombre" required>
+        </p>
+
+        <p>
+            <label for="apellidos" class="col-sm-2 col-form-label">Apellidos </label><br>
+            <input type="text" class="input-formulario" id="apellidos" name="apellidos" required>
+        </p>
+        <p>
+            <label for="email">Email </label><br>
+            <input type="email" class="input-formulario" id="email" name="email" required>
+        </p>
+        <p>
+            <label for="movil">Telefono </label><br>
+
+            <input type="text" class="input-formulario" id="movil" name="telefono" required>
+        </p>
+
+    </form>
+    <div class="caja-botones-login">
+        <button type="button" id="enviarNuevoUser" class="boton" onclick="NuevoUser()">Login</button><br>
+        <button type="button" id="botonResetAltaUser" class="boton" onclick="LimpiarUser()">Cancelar</button>
+    </div>
+</div>
+</div>
+
+
+

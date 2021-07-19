@@ -5,6 +5,8 @@ const REFERENCIAMAIN = $('main');
 var fuera = false;
 var saludo;
 var objetoHttp = null;
+let user = null;
+let cita = null;
 
 
 function navega(enlace) {
@@ -12,41 +14,115 @@ function navega(enlace) {
     REFERENCIAMAIN.load(enlace);
 }
 
-function escribir() {
+function escribirNoticiaSeleccionada(idNoticia) {
 
-    if (objetoHttp.readyState == 4) {
-        var documento = objetoHttp.responseXML;
-        var texto = documento.documentElement;
-        var cadenaAEscribir = "";
-        var i = 0;
-        while (i <= 6) {
-            cadenaAEscribir = cadenaAEscribir + "<div class=\"contenido-caja-noticia\"><h3>" + texto.getElementsByTagName("item")[i].childNodes[4].firstChild.nodeValue + "</h3>";
-            cadenaAEscribir = cadenaAEscribir + "<div>" + texto.getElementsByTagName("item")[i].childNodes[6].firstChild.nodeValue + "</div>";
-            cadenaAEscribir = cadenaAEscribir + "<a href=\"" + texto.getElementsByTagName("item")[i].childNodes[2].firstChild.nodeValue + "\" target=\"_blank\">" + texto.getElementsByTagName("item")[i].childNodes[2].firstChild.nodeValue + "</a></div>";
-            cadenaAEscribir = cadenaAEscribir + "<div class=\"separador\"></div>"
-            i++;
-        }
-        $("#cajaNoticias").html(cadenaAEscribir);
+    let dataType = "html";
+    let datos = "idNoticia=" + idNoticia;
+    datos += "&operacion=traerNoticia";
+    console.log(datos);
+
+    let url = "php/peticionesNoticias.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+
+        success: function (data) {
+
+            let resultado = JSON.parse(data);
+            if (resultado.result == "ok") {
+                let titular = document.querySelector('#titular');
+                let cuerpoNoticia = document.querySelector('#noticia');
+                let fecha = document.querySelector('#fecha');
+                let cajaNoticiaSeleccionada = document.querySelector('#cajaNoticiaSeleccionada');
+                cajaNoticiaSeleccionada.style.display = 'block';
+                noticia = new Noticia(idNoticia, resultado.datos[0].fecha, resultado.datos[0].titular, resultado.datos[0].noticia);
+                titular.innerHTML = noticia.titular;
+                cuerpoNoticia.innerHTML = noticia.noticia;
+                fecha.innerHTML = noticia.fecha;
+            } else {
+                console.log(resultado);
+            }
+        },
+
+        error: function () {
+            console.log("error");
+            return null;
+        },
+        dataType: dataType
+    });
+}
+
+function mostrarNoticia(ev) {
+    console.log(ev.target.parentNode);
+    console.log(ev.target.parentNode.getAttribute('idNoticia'))
+    let idNoticia = ev.target.parentNode.getAttribute('idNoticia');
+    escribirNoticiaSeleccionada(idNoticia);
+    if (screen.width < 768) {
+        cerrarPanelNoticias();
     }
+}
+
+function escribir(datos) {
+
+    let cajaNoticias = document.querySelector('#cajaNoticias');
+    cajaNoticias.innerHTML = '';
+
+    for (let i in datos) {
+
+        let contenidoCajaNoticia = document.createElement('div');
+        contenidoCajaNoticia.classList.add('contenido-caja-noticia');
+        contenidoCajaNoticia.setAttribute('idNoticia', datos[i].idNoticia);
+        let hTitular = document.createElement('h3');
+        hTitular.innerText = datos[i].titular;
+        hTitular.addEventListener('click', mostrarNoticia);
+       /* let dNoticia = document.createElement('div');
+        dNoticia.innerHTML = datos[i].noticia;
+        let pFecha = document.createElement('div');
+        pFecha.innerText = datos[i].fecha;*/
+        let separador = document.createElement('div');
+        separador.classList.add('separador');
+        contenidoCajaNoticia.appendChild(hTitular);
+       // contenidoCajaNoticia.appendChild(dNoticia);
+      //  contenidoCajaNoticia.appendChild(pFecha);
+        contenidoCajaNoticia.appendChild(separador);
+        cajaNoticias.appendChild(contenidoCajaNoticia);
+
+    }
+
 }
 
 function escribirNoticia() {
 
-    if (window.XMLHttpRequest) {
-        objetoHttp = new XMLHttpRequest();
-    } else if (window.ActiveXObject) {
-        objetoHttp = new ActiveXObject("Microsoft.XMLHTTP")
-    }
-    objetoHttp.open("GET", XMLNOTICIAS, true);
-    objetoHttp.onreadystatechange = escribir;
-    objetoHttp.send(null);
+    let dataType = "html";
+    let datos = "&operacion=traerCincoUltimasNoticias";
+    let url = "php/peticionesNoticias.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+        success: function (data) {
+            let resultado = JSON.parse(data);
+            if (resultado.result == "ok") {
+                escribir(resultado.datos);
+            }
+            else {
+                console.log(resultado);
+            }
+        },
+        error: function () {
+            console.log("error");
+        },
+        dataType: dataType
+
+    });
 
 }
 
 function mostrarBienvenida() {
 
     //$('.caja-bienvenida').css('display', 'flex');
-    alert("Bienvenidos a mi PortFolio");
+    //alert("Bienvenidos a mi PortFolio");
 }
 
 function mensaje() {
@@ -57,12 +133,16 @@ function mensaje() {
 function iniciar() {
 
     navega(CUERPOINICIAL);
+    if (screen.width > 768) {
+        abrirPanelNoticias();
+    }
     $('.caja-disparador p').css("align-self", "center");
-    $('.noticias').css('flex-grow', '0');  //cualquier otro tamaño          
-    $('#cajaNoticias').css('display', 'none');
+    $('.noticias').css('flex-grow', '4');  //cualquier otro tamaño          
+    $('#cajaNoticias').css('display', 'block');
     if (screen.width < 768) { //tamaño movil        
         $('#contenedor-secundario').css('display', 'block');
     }
+
     saludo = setTimeout(mensaje, 5000);
 
 }
@@ -83,21 +163,22 @@ function validar(formularioPresupuesto) {     // valida el formulario de contact
         return false;
     }
     listacaracteres = /^[_a-z0-9-]+(.[a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,3})$/
-    if (!listacaracteres.test(document.getElementById('email').value)) {
+    if (!listacaracteres.test(formularioPresupuesto.email.value)) {
         alert("Debe indicar un email valido");
         return false;
     }
-    if (formularioPresupuesto.movil.value.length == 0) {
+    if (formularioPresupuesto.telefono.value.length == 0) {
         alert("Indique un movil de contacto");
         return false;
     }
     listacaracteres = /^[0-9]{9}$/
-    if (!listacaracteres.test(document.getElementById('movil').value)) {
+    if (!listacaracteres.test(formularioPresupuesto.telefono.value)) {
         alert("Debe indicar un movil valido");
         return false;
     }
     alert("Formulario correcto");
-    formularioPresupuesto.submit();
+    //formularioPresupuesto.submit();
+    return true;
 }
 
 function mirarLopd(check) {
@@ -108,6 +189,5 @@ function mirarLopd(check) {
         $('#btnSubmit').prop('disabled', true);
     }
 }
-
 
 

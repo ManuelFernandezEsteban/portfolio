@@ -15,6 +15,11 @@
     padding: 5px;
     font-family: 'Ubuntu';    
 }   
+.contenido-caja-noticia h3:hover{
+    font-style: italic;
+    padding-left: 10px;
+    cursor: pointer;
+}
 .contenido-caja-noticia a{
     color: white;
 }
@@ -47,12 +52,26 @@
 }
 
 #cajaNoticias{
-    display: none;      
-        
+    display: block;      
+    width: 100%;        
+}
+#cajaNoticiaSeleccionada{
+    display: none;    
+    border-bottom: 1px solid #999999;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0.3px #999999;
+    width: 80%;
 }
 
 /*fin aside noticias*/
 /*estilos contenedor principal*/
+.estiloLogin{
+    color: white;
+    font-family: 'Ubuntu';
+    font-size: 0.8rem;
+}
+
 .contenedor-secundario{
     flex:4;
 }
@@ -62,10 +81,17 @@ header{
     position: sticky;
     top:0; 
     z-index: 2;
+    
 }
+
+.oculta{
+    display: none;
+}
+
 main{
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;  
+    margin-bottom: 100px;  
 }
 /*menu responsive*/
 #opcion{
@@ -203,10 +229,13 @@ body{
 
 footer{
     width: 100%;
-    height: 10%;  
+  
     background-color: black;
     display: flex;
     align-items: center;
+    position: fixed;
+    bottom: 0px;
+    
 }
 .blanco {
     color: white;
@@ -412,8 +441,32 @@ img.icono{
     color: white;
     font-family: 'Tillana';
     border-radius: 0;
-    border: 0;
-    
+    border: 0;    
+    box-shadow: 1px 1px 0.5px #999999;
+}
+
+.boton:hover{
+    box-shadow: none;
+    background-color: white;
+    color: black;
+}
+.boton:active{
+    background-color: #EEE;
+    color: black;
+}
+
+input[type="button"]:disabled{
+    background-color: #999999;
+}
+
+textarea{
+    font-size: 1rem;
+    font-family: Ubuntu;
+    color: #999999;
+    font-style: italic;
+}
+textarea:focus{
+    color: black;
 }
 .botones{        
     padding: 5%;
@@ -425,7 +478,13 @@ img.icono{
     border-left: none;
     border-right: none;
     font-family: Ubuntu;
+    color: #999999;
+    font-style: italic;
 }
+.input-formulario:focus{
+    color: black;
+}
+
 
 .contenedor-formulario-contacto{
     display: flex;
@@ -483,7 +542,39 @@ legend{
 }
 
 /*fin estilos presupuesto*/
+/* estilos login*/
+.contenedor-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+}
+.caja-formulario-login{
+    display: flex;
+    flex-direction: column;
+    
+}
+.formularioLogin{
+    width: 80%;
+    margin-bottom: 30px;
+}
 
+.caja-botones-login{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    justify-content: center;
+}
+.enFila{
+    flex-direction: row;
+}
+
+.caja-botones-login>.boton{
+    margin-left: 5px;
+}
+
+/*fin estilos login*/
 
 /*bienvenida*/
 
@@ -536,11 +627,238 @@ legend{
 }
 /*fin caja bienvenida*/
 
+.boxUsuarios{
+    display: flex;
+    flex-direction: column;
+}
+.boxPerfilCitas{
+    display: flex;
+    flex-direction: column;
+}
 
+.caja-contenido-usuarios{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.aside-botenes{
+
+    display: flex;
+    flex-direction: row;
+}
+.caja-botones{
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+.caja-botones .boton{
+    width: 100%;
+    
+}
+/*caja citas*/
+.caja-botones>h2{
+    padding: 0px;
+    margin:5px;
+ }
+
+.divTableUsuarios,.divTableCitas,.divTableProyectos,.divTableNoticias{
+	display: none;
+	width: 100%;
+    font-family: 'Ubuntu';
+    text-align: center;
+    
+}
+.divTableRow {
+	display: table-row;
+}
+/*.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}*/
+.divTableCell, .divTableHead,.divTableCellHeader {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.divTableHeading {
+	background-color: black;
+    color: white;
+    
+    font-weight: bold;
+}
+
+.divTableBody {
+	display: table-row-group;
+}
+
+.divTableCell:hover{
+    cursor: pointer;
+    background-color: #999999;
+}
+.boxProyectos,.boxNoticias{
+    display: none;
+    flex-flow: column;
+    flex: 1;
+    width: 100%;
+}
+.boxPerfil,.boxCitas{
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+    align-items: center;
+}
+.boxProyectos{
+    border-bottom: 1px solid #999999;
+}
+.boxContent{
+    display: flex;
+    flex-direction: column;    
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px; 
+    margin-right: 10px;  
+}
+
+.enlaceCitas{
+    display: block;
+    text-decoration: none;
+}
+
+.dosColumnas{
+    display: flex;
+    flex-direction: column;
+}
+
+.imgProyecto{
+    width: 100%;
+}
+
+#foto{
+    display: none;
+}
+#ruta{
+    font-family: Ubuntu;
+    font-size: 1rem;
+    color: #999999;
+}
+/*fin caja citas*/ 
+
+.boxDatosAcceso{
+    margin-top: 20px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    
+}
+.respuestaLogin{
+    font-family: Ubuntu;
+    font-size: 0.6rem;
+}
+
+.contenedorPrincipal{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.contenedorProyectos{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+  
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid #999999;
+    margin: 5px;
+    /*justify-content: center;*/
+    align-items: center;
+}
+.card-title{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Teko';
+    font-size: 1.5rem;
+    width: 90%;
+}
+.card-title > h4{
+    font-size: 1.8rem;
+}
+.card-title i:hover{
+    cursor: pointer;
+
+}
+.card-reveal{
+    visibility: collapse;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0px;
+    
+}
+
+.card-reveal > p {
+    font-size: 0.7rem;
+}
+.card-reveal > h3 {
+    font-size: 1.5rem;
+}
+
+
+.img-card{
+    
+    width: 100%;
+   
+    display: block;
+}
+.card-content{
+   
+    width: 100%;
+}
+.contenedorCard{
+    width: 100%;
+    height: auto;
+    display: block;
+}
 /*media querys*/
+
+
+
 /*tamaño ipad*/
+
+
 @media only screen and (min-width:768px){
 
+    .card-title > h4{
+        font-size: 2rem;
+    }
+    
+    .card-reveal > p {
+        font-size: 1rem;
+    }
+    .card-reveal > h3 {
+        font-size: 2rem;
+    }
+    .caja-botones>h2{
+        /* font-size: 2.5em;
+         font-weight: bold;
+         */
+         margin: 5px;
+     }
+    .contenedor-login{
+        min-height: 600px;
+    }
     .imagenGaleria{
         width: 100%;
     }
@@ -584,7 +902,81 @@ legend{
 
 /*tamaño laptop*/
 @media only screen and (min-width:1024px){
+    .contenedorProyectos{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;   
+      
+    }
+    .img-card{
+    
+        width: 90%;
+       
+        display: block;
+    }
+    .card-content{
+       
+        width: 90%;
+    }
 
+    .boxUsuarios,.contenedorCajasAdmin{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content:center;
+        align-items: baseline;
+        border-bottom: 1px solid #999999;
+    }
+    
+    .boxPerfilCitas{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-top: 30px;
+    }    
+
+    
+    .divTableCitas{
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 10px;
+    }
+    .contenedor-login{
+        justify-content: space-between;
+        width: 40%;
+        min-height: 600px;
+    }
+    .caja-login{
+        color: #f2f2f2;
+    }
+    .caja-contenido-usuarios{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+    .aside-botenes{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        border-right: 1px solid #999999;
+    }
+    .caja-botones{
+        display: flex;
+        width: 100%;
+        margin-top: 20px;
+        flex-direction: column;
+        margin-bottom: 20px;
+        flex: 1;
+    }
+    
+    .contenedorCajasAdmin{
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+        align-items: baseline;
+        width: 100%;
+    }
     .trabajo{
         flex-direction: row;
     }
@@ -592,11 +984,27 @@ legend{
     #opcion{
         display: none;
     }
-    .noticias{
-        /*flex-grow:2;*/
-        width: 80px;        
-    }
 
+
+    .noticias{
+       flex-grow: 3;
+        /*width: 80px;        */
+    }
+    .caja-disparador{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100%;
+    }
+    #cajaNoticias{
+        display: block;
+        padding-top: 0px;
+    }
+    .caja-disparador p{
+        align-self: start;
+        top: 0px;
+        transform: rotate(0deg);
+    }
     .menuresponsive{
         display: none;
     }
@@ -678,10 +1086,30 @@ legend{
     .caja-formulario:last-child{
         align-self: flex-end;
     }
+
+    .dosColumnas{
+        display: flex;
+        flex-direction: row;
+    }
+    .unaColumna{
+        flex: 1;
+        margin: 10px;
+    }
+    .imgProyecto{
+        width: 400px;
+    }
 }
 
 @media only screen and (min-width:1200px){
  
+
+    .wrapper-login{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        height: 800px; 
+    }
+
     .contenedor-contacto{
         flex-flow: row wrap;
         justify-content: center;

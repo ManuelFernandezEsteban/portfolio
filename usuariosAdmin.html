@@ -1,0 +1,199 @@
+<div class="caja-contenido-usuarios">
+
+    <aside class="aside-botenes">
+        <nav class="caja-botones">
+            <h2>Usuarios</h2>
+            <input type="button" class="boton" value="Mis datos" id="btnPerfil" onclick="cargarPerfil()">
+            <!--      <input type="button" class="boton" value="Perfil" >
+            <input type="button" class="boton" value="Citas" id="btnCitas" onclick="cargarCitasBtn()">-->
+            <h2>Administrador</h2>
+            <input type="button" class="boton" value="Usuarios" id="btnAdmin" onclick="cargarUsuarios()">
+            <input type="button" class="boton" value="Proyectos" id="btnProyectos" onclick="cargarProyectos()" disabled>
+            <input type="button" class="boton" value="Noticias" id="btnNoticias" onclick="cargarNoticias()" disabled>
+        </nav>
+    </aside>
+
+
+    <div class="contenedorCajasAdmin">
+        <div class="boxUsuarios">
+            <h2>Usuarios</h2>
+            <div class="divTableUsuarios">
+            </div>
+            <div class="boxPerfilCitas">
+                <section class="boxPerfil">
+                    <h3>Perfil </h3>
+                    <div class="boxContent">
+                        <form method="POST" class="formularioLogin" id="formularioPerfilUsuario"
+                            name="formularioPerfilUser">
+
+                            <label for="usuarioPerfil">Usuario </label><br>
+                            <input type="text" class="input-formulario" id="usuarioPerfil" name="usuario" readonly>
+                            <br>
+                            <br>
+                            <label for="nombrePerfil">Nombre </label><br>
+                            <input type="text" class="input-formulario" id="nombrePerfil" name="nombre" required>
+                            <br><br>
+                            <label for="apellidosPerfil">Apellidos </label><br>
+                            <input type="text" class="input-formulario" id="apellidosPerfil" name="apellidos" required>
+                            <br><br>
+                            <label for="emailPerfil">Email </label><br>
+                            <input type="email" class="input-formulario" id="emailPerfil" name="email" required>
+                            <br><br>
+                            <label for="movilPerfil">Telefono </label><br>
+                            <input type="text" class="input-formulario" id="movilPerfil" name="telefono" required>
+
+                        </form>
+                        <div class="caja-botones-login enFila">
+                            <button type="button" id="enviarNuevoUser" class="boton"
+                                onclick="enviarCambiosPerfil()">Enviar</button><br>
+                            <button type="button" id="botonResetAltaUser" class="boton"
+                                onclick="resetCambiosPerfil()">Cancelar</button>
+                            <button type="button" id="modificarAcceso" class="boton"
+                                onclick="mostrarDatosAcceso()">Modificar datos de acceso</button><br>
+                        </div>
+
+                    </div>
+
+                    <div class="boxDatosAcceso">
+
+                        <form method="POST" class="formularioLogin" id="formularioCambioDatosAcceso"
+                            name="formularioCambioDatosAcceso">
+                            <label for="nuevoUsuarioPerfil">Nuevo usuario </label><br>
+                            <input type="text" class="input-formulario NuevoUsuario" name="nuevoUsuario"
+                                onblur="ComprobarUser(this.value)">
+                            <span class="respuestaLogin"></span>
+                            <br>
+                            <br>
+                            <label for="NuevoUserPassword">Nuevo Password</label><br>
+                            <input type="password" class="input-formulario" name="cambioUserPassword" required>
+                            <br><br>
+                            <label for="NuevoUserPasswordConfirmacion">Repita nuevo password</label><br>
+                            <input type="password" class="input-formulario" name="cambioUserPasswordConfirmacion"
+                                required>
+                            <br><br>
+                            <div class="caja-botones-login enFila">
+                                <button type="button" class="boton" onclick="enviarCambiosAcceso()">Enviar</button><br>
+                                <button type="button" class="boton" onclick="resetCambiosAcceso()">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                <section class="boxCitas">
+                    <h3>Citas</h3>
+                    <div class="divTableCitas">
+                    </div>
+
+                    <div class="boxContent">
+                        <form method="POST" class="formularioLogin" id="formulariocitasUsuario"
+                            name="formularioCitasUser">
+
+                            <p>Horario de citas L-V 10:00-13:00 y 17:00 19:00 </p>
+                            <label for="horaCita">Fecha y hora de la cita</label>
+                            <input type="datetime-local" name="fechaCita" id="fechaCita" step=1800>
+                            <br><br>
+                            <label for="motivoCita">Motivo</label>
+                            <input type="text" class="input-formulario" name="motivoCita" id="motivoCita">
+                        </form>
+                        <div class="caja-botones-login enFila">
+                            <button type="button" id="enviarCitaUser" class="boton"
+                                onclick="enviarCitaUser()">Enviar</button><br>
+                            <button type="button" id="editarCitaUser" class="boton" onclick="editarCitaUser()"
+                                disabled="disabled">Editar</button><br>
+                            <button type="button" id="eliminarCitaUser" class="boton" onclick="eliminarCitaUser()"
+                                disabled>Eliminar</button><br>
+                            <button type="button" id="botonResetAltaUser" class="boton"
+                                onclick="resetCitaUser()">Cancelar</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <section class="boxProyectos">
+            <h2>Proyectos</h2>
+            <div class="divTableProyectos">
+            </div>
+            <div class="boxContent">
+                <form method="POST" class="formularioLogin" id="formularioProyecto" enctype="multipart/form-data"
+                    name="formularioProyecto">
+                    <div class="dosColumnas">
+                        <div class="unaColumna">
+                            <label for="nombre">Nombre </label><br>
+                            <input type="text" class="input-formulario" id="nombre" name="nombre" required>
+                            <br><br>
+                            <label for="tecnologia">Tecnologías </label><br>
+                            <input type="text" class="input-formulario" id="tecnologia" name="tecnologia" required>
+                            <br><br>
+                            <label for="duracion">Duración </label><br>
+                            <input type="text" class="input-formulario" id="duracion" name="duracion" required>
+                            <br><br>
+                            <label for="descripcion">Descripción </label><br>
+                            <textarea id="descripcion" name="descripcion" cols="40" rows="8" required></textarea>
+                            <br><br>
+                        </div>
+                        <div class="unaColumna">
+
+                            <label for="foto">Subir imagen del proyecto<img class="icono" src="ico/upload.svg" alt="icono upload">
+                            </label><br><br>
+
+                            <input type="file" class="input-formulario" id="foto" name="foto"
+                                onchange="mostrarImgSeleccionada()">
+                            <span id="ruta"></span>
+                            <br><br>
+                            <img id="imgProyecto" src="">
+                        </div>
+                    </div>
+                </form>
+                <div class="caja-botones-login enFila">
+
+                    <button type="button" id="enviarProyecto" class="boton" onclick="enviarProyecto()">Enviar</button>
+
+                    <button type="button" id="editarProyecto" class="boton" onclick="editarProyecto()"
+                        disabled>Editar</button><br>
+                    <button type="button" id="eliminarProyecto" class="boton" onclick="eliminarProyecto()"
+                        disabled>Eliminar</button><br>
+                    <button type="button" id="resetProyecto" class="boton" onclick="resetProyecto()">Cancelar</button>
+                </div>
+            </div>
+
+        </section>
+        <section class="boxNoticias">
+            <h2>Noticias</h2>
+            <div class="divTableNoticias">
+            </div>
+            <div class="boxContent">
+                <form method="POST" class="formularioLogin" id="formularioNoticias" name="formularioNoticias">
+                    <div class="dosColumnas">
+                        <div class="unaColumna">
+                            <label for="titular">Nombre </label><br>
+                            <input type="text" class="input-formulario" id="titular" name="titular" required>
+                            <br><br>
+                            <label for="fecha">Fecha</label>
+                            <input type="date" name="fecha" id="fecha">
+                            <br><br>
+                        </div>
+
+                        <div class="unaColumna">
+                            <label for="noticia">Noticia </label><br>
+                            <textarea id="noticia" name="noticia" cols="40" rows="8" required></textarea>
+                            <br><br>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="caja-botones-login enFila">
+
+                    <button type="button" id="enviarNoticia" class="boton" onclick="enviarNoticia()">Enviar</button>
+
+                    <button type="button" id="editarNoticia" class="boton" onclick="editarNoticia()"
+                        disabled>Editar</button><br>
+                    <button type="button" id="eliminarNoticia" class="boton" onclick="eliminarNoticia()"
+                        disabled>Eliminar</button><br>
+                    <button type="button" id="resetNoticia" class="boton" onclick="resetNoticia()">Cancelar</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+</div>
