@@ -55,6 +55,14 @@
     display: block;      
     width: 100%;        
 }
+#cajaNoticiaSeleccionada{
+    display: none;    
+    border-bottom: 1px solid #999999;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0.3px #999999;
+    width: 80%;
+}
 
 /*fin aside noticias*/
 /*estilos contenedor principal*/
@@ -787,7 +795,7 @@ legend{
 .card-title > h4{
     font-size: 1.8rem;
 }
-.card-title:hover{
+.card-title i:hover{
     cursor: pointer;
 
 }

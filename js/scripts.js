@@ -14,36 +14,82 @@ function navega(enlace) {
     REFERENCIAMAIN.load(enlace);
 }
 
-function mostrarNoticia(ev){
-    console.log(ev.target);
+function escribirNoticiaSeleccionada(idNoticia) {
+
+    let dataType = "html";
+    let datos = "idNoticia=" + idNoticia;
+    datos += "&operacion=traerNoticia";
+    console.log(datos);
+
+    let url = "php/peticionesNoticias.php";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: datos,
+
+        success: function (data) {
+
+            let resultado = JSON.parse(data);
+            if (resultado.result == "ok") {
+                let titular = document.querySelector('#titular');
+                let cuerpoNoticia = document.querySelector('#noticia');
+                let fecha = document.querySelector('#fecha');
+                let cajaNoticiaSeleccionada = document.querySelector('#cajaNoticiaSeleccionada');
+                cajaNoticiaSeleccionada.style.display = 'block';
+                noticia = new Noticia(idNoticia, resultado.datos[0].fecha, resultado.datos[0].titular, resultado.datos[0].noticia);
+                titular.innerHTML = noticia.titular;
+                cuerpoNoticia.innerHTML = noticia.noticia;
+                fecha.innerHTML = noticia.fecha;
+            } else {
+                console.log(resultado);
+            }
+        },
+
+        error: function () {
+            console.log("error");
+            return null;
+        },
+        dataType: dataType
+    });
+}
+
+function mostrarNoticia(ev) {
+    console.log(ev.target.parentNode);
+    console.log(ev.target.parentNode.getAttribute('idNoticia'))
+    let idNoticia = ev.target.parentNode.getAttribute('idNoticia');
+    escribirNoticiaSeleccionada(idNoticia);
+    if (screen.width < 768) {
+        cerrarPanelNoticias();
+    }
 }
 
 function escribir(datos) {
 
     let cajaNoticias = document.querySelector('#cajaNoticias');
-    cajaNoticias.innerHTML='';
-    
-    for (let i in datos){
+    cajaNoticias.innerHTML = '';
+
+    for (let i in datos) {
 
         let contenidoCajaNoticia = document.createElement('div');
         contenidoCajaNoticia.classList.add('contenido-caja-noticia');
+        contenidoCajaNoticia.setAttribute('idNoticia', datos[i].idNoticia);
         let hTitular = document.createElement('h3');
-        hTitular.innerText=datos[i].titular;  
-        hTitular.addEventListener('click',mostrarNoticia);
-        let dNoticia = document.createElement('div');
-        dNoticia.innerHTML=datos[i].noticia;
+        hTitular.innerText = datos[i].titular;
+        hTitular.addEventListener('click', mostrarNoticia);
+       /* let dNoticia = document.createElement('div');
+        dNoticia.innerHTML = datos[i].noticia;
         let pFecha = document.createElement('div');
-        pFecha.innerText=datos[i].fecha;
+        pFecha.innerText = datos[i].fecha;*/
         let separador = document.createElement('div');
         separador.classList.add('separador');
-        contenidoCajaNoticia.appendChild(hTitular);        
-        contenidoCajaNoticia.appendChild(dNoticia);
-        contenidoCajaNoticia.appendChild(pFecha);
+        contenidoCajaNoticia.appendChild(hTitular);
+       // contenidoCajaNoticia.appendChild(dNoticia);
+      //  contenidoCajaNoticia.appendChild(pFecha);
         contenidoCajaNoticia.appendChild(separador);
         cajaNoticias.appendChild(contenidoCajaNoticia);
-        
+
     }
-    
+
 }
 
 function escribirNoticia() {
@@ -57,7 +103,7 @@ function escribirNoticia() {
         data: datos,
         success: function (data) {
             let resultado = JSON.parse(data);
-            if (resultado.result == "ok") {                
+            if (resultado.result == "ok") {
                 escribir(resultado.datos);
             }
             else {
@@ -87,8 +133,8 @@ function mensaje() {
 function iniciar() {
 
     navega(CUERPOINICIAL);
-    if (screen.width > 768){
-    abrirPanelNoticias(); 
+    if (screen.width > 768) {
+        abrirPanelNoticias();
     }
     $('.caja-disparador p').css("align-self", "center");
     $('.noticias').css('flex-grow', '4');  //cualquier otro tamaño          
@@ -98,7 +144,7 @@ function iniciar() {
     }
 
     saludo = setTimeout(mensaje, 5000);
-    
+
 }
 
 function resetbtnSubmmit() {
@@ -107,7 +153,7 @@ function resetbtnSubmmit() {
 }
 
 function validar(formularioPresupuesto) {     // valida el formulario de contacto y el de presupuesto
-    
+
     if (formularioPresupuesto.nombre.value.length == 0) {
         alert("Indique un nombre");
         return false;

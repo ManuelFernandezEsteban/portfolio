@@ -1,3 +1,7 @@
+function closeNoticia(){
+    document.querySelector('#cajaNoticiaSeleccionada').style.display='none';
+}
+
 function abrirPanelNoticias() {
     
     escribirNoticia();
