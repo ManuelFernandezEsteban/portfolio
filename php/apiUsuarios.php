@@ -12,7 +12,7 @@ class apiUsuarios
     {
 
 
-        $this->conexion = new Usuarios('localhost', 'root', '', 'portfolio');
+        $this->conexion = new Usuarios('localhost', 'root', 'admin', 'portfolio');
     }
 
     function getAll()

@@ -10,7 +10,7 @@ class apiNoticias {
     function __construct( ){
 
 
-        $this-> conexion=new Noticias('localhost','root','','portfolio');
+        $this-> conexion=new Noticias('localhost','root','admin','portfolio');
 
     }
 

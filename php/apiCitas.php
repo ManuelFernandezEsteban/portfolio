@@ -10,7 +10,7 @@ class apiCitas {
     function __construct( ){
 
 
-        $this-> conexion=new Citas('localhost','root','','portfolio');
+        $this-> conexion=new Citas('localhost','root','admin','portfolio');
 
     }
 

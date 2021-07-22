@@ -10,7 +10,7 @@ class apiProyectos {
     function __construct( ){
 
 
-        $this-> conexion=new Proyectos('localhost','root','','portfolio');
+        $this-> conexion=new Proyectos('localhost','root','admin','portfolio');
 
     }
 

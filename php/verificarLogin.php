@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';
 $user = 'root';
-$password = '';
+$password = 'admin';
 $bd = 'portfolio';
 
 $mysqli = new mysqli($host, $user, $password, $bd);

@@ -102,7 +102,7 @@ function NuevoUser() {
 
             datos = $('#formularioNuevoUsuario').serialize();
             datos += "&operacion=insert";
-            console.log(datos);
+            //console.log(datos);
         }
         else {
             alert("faltan datos");
@@ -115,11 +115,14 @@ function NuevoUser() {
             url: url,
             data: datos,
             success: function (data) {
-                if (data == 'ok') {
+                let result=JSON.parse(data);
+                if (result['result'] == 'ok') {
                     $('#NuevoUsuario').val('');
                     $('#NuevoUserPassword').val('');
                     $('#NuevoUserPasswordConfirmacion').val('');
                     document.querySelector('#formularioNuevoUsuario').reset();
+                }else{
+                    console.log(data);
                 }
             },
             error: function () {
